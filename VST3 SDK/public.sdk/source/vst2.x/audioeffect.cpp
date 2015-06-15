@@ -531,7 +531,7 @@ void AudioEffect::int2string (VstInt32 value, char* text, VstInt32 maxLen)
 		value -= digit * div;
 		if (state || digit > 0)
 		{
-			char temp[2] = {'0' + (char)digit, '\0'};
+			char temp[2] = {'0' + static_cast<char>digit, '\0'};
 			vst_strncat (text, temp, maxLen);
 			state = true;
 		}
