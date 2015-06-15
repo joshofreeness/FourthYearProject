@@ -14,5 +14,7 @@ before_install:
 
 script: make
 
+compiler: clang
+
 os:
   - linux
