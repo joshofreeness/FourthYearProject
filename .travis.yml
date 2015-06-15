@@ -1,3 +1,16 @@
 language: cpp
-#Change to make
-script:  true
+
+#whitelist
+branches:
+  only:
+    - master
+    - develop
+
+before_install:
+  - sudo apt-get update -qq
+  - sudo apt-get install -y libasound2-dev
+
+script: cd Project/Builds/Linux && ./configure && make && make test
+
+os:
+  - linux
