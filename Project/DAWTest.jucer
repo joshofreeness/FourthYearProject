@@ -26,7 +26,7 @@
     </GROUP>
   </MAINGROUP>
   <EXPORTFORMATS>
-    <VS2013 targetFolder="Builds/VisualStudio2013" vstFolder="C:\Users\Michael\Desktop\p4p\VST3 SDK">
+    <VS2013 targetFolder="Builds/VisualStudio2013" vstFolder="..\..\VST3 SDK">
       <CONFIGURATIONS>
         <CONFIGURATION name="Debug" winWarningLevel="4" generateManifest="1" winArchitecture="32-bit"
                        isDebug="1" optimisation="1" targetName="DAWTest" headerPath="..\..\Source\StereoWidthCtrl; ..\..\Source\ChangeVolume;"/>
@@ -50,52 +50,28 @@
         <MODULEPATH id="juce_audio_plugin_client" path="../../JUCE-WINDOWS/modules"/>
       </MODULEPATHS>
     </VS2013>
-    <XCODE_MAC targetFolder="Builds/MacOSX">
-      <CONFIGURATIONS>
-        <CONFIGURATION name="Debug" osxSDK="default" osxCompatibility="default" osxArchitecture="default"
-                       isDebug="1" optimisation="1" targetName="DAWTest"/>
-        <CONFIGURATION name="Release" osxSDK="default" osxCompatibility="default" osxArchitecture="default"
-                       isDebug="0" optimisation="2" targetName="DAWTest"/>
-      </CONFIGURATIONS>
-      <MODULEPATHS>
-        <MODULEPATH id="juce_video" path="../../juce"/>
-        <MODULEPATH id="juce_opengl" path="../../juce"/>
-        <MODULEPATH id="juce_gui_extra" path="../../juce"/>
-        <MODULEPATH id="juce_gui_basics" path="../../juce"/>
-        <MODULEPATH id="juce_graphics" path="../../juce"/>
-        <MODULEPATH id="juce_events" path="../../juce"/>
-        <MODULEPATH id="juce_data_structures" path="../../juce"/>
-        <MODULEPATH id="juce_cryptography" path="../../juce"/>
-        <MODULEPATH id="juce_core" path="../../juce"/>
-        <MODULEPATH id="juce_audio_processors" path="../../juce"/>
-        <MODULEPATH id="juce_audio_plugin_client" path="../../juce"/>
-        <MODULEPATH id="juce_audio_formats" path="../../juce"/>
-        <MODULEPATH id="juce_audio_devices" path="../../juce"/>
-        <MODULEPATH id="juce_audio_basics" path="../../juce"/>
-      </MODULEPATHS>
-    </XCODE_MAC>
-    <LINUX_MAKE targetFolder="Builds/Linux">
+    <LINUX_MAKE targetFolder="Builds/Linux" vstFolder="../VST3 SDK">
       <CONFIGURATIONS>
         <CONFIGURATION name="Debug" libraryPath="/usr/X11R6/lib/" isDebug="1" optimisation="1"
-                       targetName="DAWTest"/>
+                       targetName="DAWTest" headerPath="..\..\Source\StereoWidthCtrl; ..\..\Source\ChangeVolume;"/>
         <CONFIGURATION name="Release" libraryPath="/usr/X11R6/lib/" isDebug="0" optimisation="2"
-                       targetName="DAWTest"/>
+                       targetName="DAWTest" headerPath="..\..\Source\StereoWidthCtrl; ..\..\Source\ChangeVolume;"/>
       </CONFIGURATIONS>
       <MODULEPATHS>
-        <MODULEPATH id="juce_video" path="../../juce"/>
-        <MODULEPATH id="juce_opengl" path="../../juce"/>
-        <MODULEPATH id="juce_gui_extra" path="../../juce"/>
-        <MODULEPATH id="juce_gui_basics" path="../../juce"/>
-        <MODULEPATH id="juce_graphics" path="../../juce"/>
-        <MODULEPATH id="juce_events" path="../../juce"/>
-        <MODULEPATH id="juce_data_structures" path="../../juce"/>
-        <MODULEPATH id="juce_cryptography" path="../../juce"/>
-        <MODULEPATH id="juce_core" path="../../juce"/>
-        <MODULEPATH id="juce_audio_processors" path="../../juce"/>
-        <MODULEPATH id="juce_audio_plugin_client" path="../../juce"/>
-        <MODULEPATH id="juce_audio_formats" path="../../juce"/>
-        <MODULEPATH id="juce_audio_devices" path="../../juce"/>
-        <MODULEPATH id="juce_audio_basics" path="../../juce"/>
+        <MODULEPATH id="juce_video" path="../JUCE-LINUX/modules"/>
+        <MODULEPATH id="juce_opengl" path="../JUCE-LINUX/modules"/>
+        <MODULEPATH id="juce_gui_extra" path="../JUCE-LINUX/modules"/>
+        <MODULEPATH id="juce_gui_basics" path="../JUCE-LINUX/modules"/>
+        <MODULEPATH id="juce_graphics" path="../JUCE-LINUX/modules"/>
+        <MODULEPATH id="juce_events" path="../JUCE-LINUX/modules"/>
+        <MODULEPATH id="juce_data_structures" path="../JUCE-LINUX/modules"/>
+        <MODULEPATH id="juce_cryptography" path="../JUCE-LINUX/modules"/>
+        <MODULEPATH id="juce_core" path="../JUCE-LINUX/modules"/>
+        <MODULEPATH id="juce_audio_processors" path="../JUCE-LINUX/modules"/>
+        <MODULEPATH id="juce_audio_plugin_client" path="../JUCE-LINUX/modules"/>
+        <MODULEPATH id="juce_audio_formats" path="../JUCE-LINUX/modules"/>
+        <MODULEPATH id="juce_audio_devices" path="../JUCE-LINUX/modules"/>
+        <MODULEPATH id="juce_audio_basics" path="../JUCE-LINUX/modules"/>
       </MODULEPATHS>
     </LINUX_MAKE>
   </EXPORTFORMATS>
