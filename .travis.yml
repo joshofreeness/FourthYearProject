@@ -12,7 +12,7 @@ before_install:
   - sudo apt-get install -y libasound2-dev
   - cd Project/Builds/Linux 
 
-script: ./configure && make && make test
+script: make
 
 os:
   - linux
