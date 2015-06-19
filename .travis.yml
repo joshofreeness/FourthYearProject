@@ -1,11 +1,6 @@
 language: cpp
 sudo: required
 
-#whitelist
-branches:
-  only:
-    - master
-    - develop
 
 before_install:
   - sudo apt-get update -qq
