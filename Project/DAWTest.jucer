@@ -34,27 +34,27 @@
                        isDebug="0" optimisation="3" targetName="DAWTest" headerPath="..\..\Source\StereoWidthCtrl; ..\..\Source\ChangeVolume;"/>
       </CONFIGURATIONS>
       <MODULEPATHS>
-        <MODULEPATH id="juce_core" path="../../JUCE-WINDOWS/modules"/>
-        <MODULEPATH id="juce_events" path="../../JUCE-WINDOWS/modules"/>
-        <MODULEPATH id="juce_graphics" path="../../JUCE-WINDOWS/modules"/>
-        <MODULEPATH id="juce_data_structures" path="../../JUCE-WINDOWS/modules"/>
-        <MODULEPATH id="juce_gui_basics" path="../../JUCE-WINDOWS/modules"/>
-        <MODULEPATH id="juce_gui_extra" path="../../JUCE-WINDOWS/modules"/>
-        <MODULEPATH id="juce_cryptography" path="../../JUCE-WINDOWS/modules"/>
-        <MODULEPATH id="juce_video" path="../../JUCE-WINDOWS/modules"/>
-        <MODULEPATH id="juce_opengl" path="../../JUCE-WINDOWS/modules"/>
-        <MODULEPATH id="juce_audio_basics" path="../../JUCE-WINDOWS/modules"/>
-        <MODULEPATH id="juce_audio_devices" path="../../JUCE-WINDOWS/modules"/>
-        <MODULEPATH id="juce_audio_formats" path="../../JUCE-WINDOWS/modules"/>
-        <MODULEPATH id="juce_audio_processors" path="../../JUCE-WINDOWS/modules"/>
-        <MODULEPATH id="juce_audio_plugin_client" path="../../JUCE-WINDOWS/modules"/>
+        <MODULEPATH id="juce_core" path="../JUCE-LINUX/modules"/>
+        <MODULEPATH id="juce_events" path="../JUCE-LINUX/modules"/>
+        <MODULEPATH id="juce_graphics" path="../JUCE-LINUX/modules"/>
+        <MODULEPATH id="juce_data_structures" path="../JUCE-LINUX/modules"/>
+        <MODULEPATH id="juce_gui_basics" path="../JUCE-LINUX/modules"/>
+        <MODULEPATH id="juce_gui_extra" path="../JUCE-LINUX/modules"/>
+        <MODULEPATH id="juce_cryptography" path="../JUCE-LINUX/modules"/>
+        <MODULEPATH id="juce_video" path="../JUCE-LINUX/modules"/>
+        <MODULEPATH id="juce_opengl" path="../JUCE-LINUX/modules"/>
+        <MODULEPATH id="juce_audio_basics" path="../JUCE-LINUX/modules"/>
+        <MODULEPATH id="juce_audio_devices" path="../JUCE-LINUX/modules"/>
+        <MODULEPATH id="juce_audio_formats" path="../JUCE-LINUX/modules"/>
+        <MODULEPATH id="juce_audio_processors" path="../JUCE-LINUX/modules"/>
+        <MODULEPATH id="juce_audio_plugin_client" path="../JUCE-LINUX/modules"/>
       </MODULEPATHS>
     </VS2013>
     <LINUX_MAKE targetFolder="Builds/Linux" vstFolder="../VST3 SDK">
       <CONFIGURATIONS>
         <CONFIGURATION name="Debug" libraryPath="/usr/X11R6/lib/" isDebug="1" optimisation="1"
                        targetName="DAWTest" headerPath="..\..\Source\StereoWidthCtrl; ..\..\Source\ChangeVolume;"/>
-        <CONFIGURATION name="Release" libraryPath="/usr/X11R6/lib/" isDebug="0" optimisation="2"
+        <CONFIGURATION name="Release" libraryPath="/usr/X11R6/lib/" isDebug="0" optimisation="3"
                        targetName="DAWTest" headerPath="..\..\Source\StereoWidthCtrl; ..\..\Source\ChangeVolume;"/>
       </CONFIGURATIONS>
       <MODULEPATHS>
