@@ -10,6 +10,7 @@
 
 #include "PluginProcessor.h"
 #include "PluginEditor.h"
+#include <cstdint>
 
 
 //==============================================================================
@@ -71,18 +72,11 @@ void DAWTestAudioProcessor::processBlock (AudioSampleBuffer& buffer, MidiBuffer&
             mVolumeControl.ClockProcess(&leftData[i], &rightData[i]);
         }
 
-
-		int noteMode = 91;
-		int KeyNumber = 54;
-		int NoteOnVelocity = 100;
+		int noteMode = 148;
+		int KeyNumber = 60;		
+		int NoteOnVelocity = 127;
 		juce::MidiMessage* newMidiMessage = new juce::MidiMessage(noteMode, KeyNumber, NoteOnVelocity, 0);
 
-
-		//Note on    9x      Key number          Note on velocity
-		//newMidiMessage->setNoteNumber(4);
-		//newMidiMessage->setVelocity(10);
-		//newMidiMessage->setChannel(1);
-		
 		midiMessages.addEvent(*newMidiMessage, 0);
 
 
