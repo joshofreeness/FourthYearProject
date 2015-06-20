@@ -1,0 +1,18 @@
+language: cpp
+sudo: required
+
+
+before_install:
+  - sudo apt-get update -qq
+  - sudo apt-get install -y libasound2-dev
+  - cd Project/Builds/Linux 
+
+script: make
+
+compiler: clang
+
+os:
+  - linux
+
+notifications:
+  slack: softeng:OmThpO52xIWmtDFBZ3LLNhqJ
