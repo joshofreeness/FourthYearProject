@@ -17,20 +17,19 @@ OutputController::~OutputController(){}
 
 void OutputController::ClockProcess(juce::MidiBuffer& midiMessages) {
 
+	if (first)
+	{
+		PlayNote(440.0f, 1.0f, 30000);
+		//first = false; //uncommented for constant tone
+	}
 
-	MidiMessage* newMidiMessage = GetMidiMessageObjectNoteOn();
+	std::list<MidiMessage*>::const_iterator iterator;
+	for (iterator = scheduledToAddToBuffer.begin(); iterator != scheduledToAddToBuffer.end(); ++iterator) {
+		midiMessages.addEvent(*(*iterator), 1); //the 0 value could cause problems
+	}
+	//TODO: Does the iterator need to be deleted/destroyed?
 
-	//int noteMode = 148;
-	//int KeyNumber = 60;
-	//int NoteOnVelocity = 127;
-	//juce::MidiMessage* newMidiMessage = new juce::MidiMessage(noteMode, KeyNumber, NoteOnVelocity, 0);
-
-	//TODO: find out how to modify Midimessage instead of using constructor use GetMidiMessageObject()
-	newMidiMessage->setVelocity(1.0);
-	newMidiMessage->setChannel(1);
-	newMidiMessage->setNoteNumber(60);
-	newMidiMessage->setTimeStamp(0.0);
-	midiMessages.addEvent(*newMidiMessage, 0);
+	scheduledToAddToBuffer.clear();
 
 	//reset pointers (possible race condition)
 	currentOnList = headOnList;
@@ -39,38 +38,29 @@ void OutputController::ClockProcess(juce::MidiBuffer& midiMessages) {
 }
 
 //This method will schedule a note to be played
-void OutputController::PlayNote(int hertz, float volume, int length)
+void OutputController::PlayNote(float hertz, float volume, double length)
 {
-	MidiMessage* midiMessageNoteOn = GetMidiMessageObjectNoteOn();
-	MidiMessage* midiMessageNoteOff = GetMidiMessageObjectNoteOff();
+	MidiMessage* midiMessageNoteOn = GetNextFromList(headOnList, currentOnList, true);
+	MidiMessage* midiMessageNoteOff = GetNextFromList(headOffList, currentOffList, false);
 
 	int NoteOnVelocity = 127  * volume; //127 is max value
-	int noteModeOn = 148; //Note on
-	//TODO: Convert hertz to midi value
+	//https://en.wikipedia.org/wiki/MIDI_Tuning_Standard
+	int midiNoteValue = 69 + (12 * log2f(hertz / 440.0f)); //midi note from provided frequency
+	double startingTimeStamp = 1;
 
-	//TODO: add it to a list of notes to be added to the next clock cycle
-}
+	midiMessageNoteOn->setVelocity(NoteOnVelocity);
+	midiMessageNoteOn->setChannel(1);
+	midiMessageNoteOn->setNoteNumber(midiNoteValue);
+	midiMessageNoteOn->setTimeStamp(startingTimeStamp);
 
-MidiMessage* OutputController::GetMidiMessageObjectNoteOn()
-{
-	return GetNextFromList(headOnList, currentOnList, true);
+	midiMessageNoteOff->setVelocity(NoteOnVelocity);
+	midiMessageNoteOff->setChannel(1);
+	midiMessageNoteOff->setNoteNumber(midiNoteValue);
+	midiMessageNoteOff->setTimeStamp(startingTimeStamp + length);
 
-	//TODO: find out how to reuse MidiMessage objects instead of new all the time
-	//Possible keep a linked list(doesn't have to be) and a pointer to the next available object, when ClockProcess is called and they are sent
-	//to the DAW then set pointer back to the head
-	MidiMessage temp = MidiMessage::noteOn(0, 0, 0.0f);
-	return &temp;
-}
-
-MidiMessage* OutputController::GetMidiMessageObjectNoteOff()
-{
-	return GetNextFromList(headOffList, currentOffList, false);
-
-	//TODO: find out how to reuse MidiMessage objects instead of new all the time
-	//Possible keep a linked list(doesn't have to be) and a pointer to the next available object, when ClockProcess is called and they are sent
-	//to the DAW then set pointer back to the head
-	MidiMessage temp = MidiMessage::noteOff(0, 0, 0);
-	return &temp;
+	scheduledToAddToBuffer.push_back(midiMessageNoteOn);
+	//TODO: correct timestamps, this is stopping it instantly
+	//scheduledToAddToBuffer.push_back(midiMessageNoteOff);
 }
 
 MidiMessage* OutputController::GetNextFromList(midiNode *head, midiNode *current, bool noteOnMessage)

@@ -30,18 +30,19 @@ public:
 	~OutputController();
 
 	void ClockProcess(juce::MidiBuffer& midiMessages);
-	void PlayNote(int hertz, float velocity, int length);
+	void PlayNote(float hertz, float velocity, double length);
 private:
 	midiNode *headOnList = nullptr;
 	midiNode *headOffList = nullptr;
 	midiNode *currentOnList = nullptr;
 	midiNode *currentOffList = nullptr;
 
+	std::list<MidiMessage*> scheduledToAddToBuffer;
+
+	bool first = true;
 
 	MidiMessage* GetNextFromList(midiNode* head, midiNode* current, bool onMessage);
 	MidiMessage NewMidiMessage(bool noteOnMessage);
-	MidiMessage* GetMidiMessageObjectNoteOn();
-	MidiMessage* GetMidiMessageObjectNoteOff();
 
 };
 
