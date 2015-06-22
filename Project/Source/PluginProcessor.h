@@ -12,6 +12,7 @@
 #define PLUGINPROCESSOR_H_INCLUDED
 
 #include "ChangeVolume.h"
+#include "Output/OutputController.h"
 #include "../JuceLibraryCode/JuceHeader.h"
 
 //==============================================================================
@@ -76,8 +77,8 @@ private:
     float UserParams[totalNumParam];
     ChangeVolume mVolumeControl;
     bool UIUpdateFlag;
-
-    //==============================================================================
+	OutputController mOutputController;
+	//==============================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (DAWTestAudioProcessor)
 };
 

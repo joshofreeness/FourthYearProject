@@ -72,13 +72,7 @@ void DAWTestAudioProcessor::processBlock (AudioSampleBuffer& buffer, MidiBuffer&
             mVolumeControl.ClockProcess(&leftData[i], &rightData[i]);
         }
 
-		int noteMode = 148;
-		int KeyNumber = 60;		
-		int NoteOnVelocity = 127;
-		juce::MidiMessage* newMidiMessage = new juce::MidiMessage(noteMode, KeyNumber, NoteOnVelocity, 0);
-
-		midiMessages.addEvent(*newMidiMessage, 0);
-
+		mOutputController.ClockProcess(midiMessages);
 
     }
 }
