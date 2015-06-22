@@ -43,17 +43,16 @@ void OutputController::PlayNote(float hertz, float volume, double length)
 	MidiMessage* midiMessageNoteOn = GetNextFromList(headOnList, currentOnList, true);
 	MidiMessage* midiMessageNoteOff = GetNextFromList(headOffList, currentOffList, false);
 
-	int NoteOnVelocity = 127  * volume; //127 is max value
 	//https://en.wikipedia.org/wiki/MIDI_Tuning_Standard
 	int midiNoteValue = 69 + (12 * log2f(hertz / 440.0f)); //midi note from provided frequency
 	double startingTimeStamp = 1;
 
-	midiMessageNoteOn->setVelocity(NoteOnVelocity);
+	midiMessageNoteOn->setVelocity(volume);
 	midiMessageNoteOn->setChannel(1);
 	midiMessageNoteOn->setNoteNumber(midiNoteValue);
 	midiMessageNoteOn->setTimeStamp(startingTimeStamp);
 
-	midiMessageNoteOff->setVelocity(NoteOnVelocity);
+	midiMessageNoteOff->setVelocity(volume);
 	midiMessageNoteOff->setChannel(1);
 	midiMessageNoteOff->setNoteNumber(midiNoteValue);
 	midiMessageNoteOff->setTimeStamp(startingTimeStamp + length);
