@@ -10,7 +10,9 @@
 
 #ifndef OUTPUTCONTROLLER_H_INCLUDED
 #define OUTPUTCONTROLLER_H_INCLUDED
-//#include <juce_audio_basics/midi/juce_MidiBuffer.h> //TODO: THE HELL?
+#include <list>
+#include <JuceHeader.h>
+
 
 namespace juce{
 	class MidiBuffer;
@@ -21,7 +23,12 @@ public:
 	OutputController();
 	~OutputController();
 
-	void ClockProcess(juce::MidiBuffer& midiMessages); //TODO: THE HELL?
+	void ClockProcess(juce::MidiBuffer& midiMessages);
+	void PlayNote(int hertz, float velocity, int length);
+	MidiMessage* GetMidiMessageObject();
+
+private:
+	std::list<MidiMessage> midiMessagesRecycling;
 
 };
 
