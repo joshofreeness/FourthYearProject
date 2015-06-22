@@ -18,6 +18,12 @@ namespace juce{
 	class MidiBuffer;
 }
 
+struct midiNode
+{
+	MidiMessage message;
+	midiNode *next;
+};
+
 class OutputController {
 public:
 	OutputController();
@@ -25,10 +31,17 @@ public:
 
 	void ClockProcess(juce::MidiBuffer& midiMessages);
 	void PlayNote(int hertz, float velocity, int length);
-	MidiMessage* GetMidiMessageObject();
-
 private:
-	std::list<MidiMessage> midiMessagesRecycling;
+	midiNode *headOnList = nullptr;
+	midiNode *headOffList = nullptr;
+	midiNode *currentOnList = nullptr;
+	midiNode *currentOffList = nullptr;
+
+
+	MidiMessage* GetNextFromList(midiNode* head, midiNode* current, bool onMessage);
+	MidiMessage NewMidiMessage(bool noteOnMessage);
+	MidiMessage* GetMidiMessageObjectNoteOn();
+	MidiMessage* GetMidiMessageObjectNoteOff();
 
 };
 
