@@ -8,6 +8,9 @@
     <Filter Include="DAWTest\Source">
       <UniqueIdentifier>{C2CEA443-1419-8F1D-4985-CD0D8A282237}</UniqueIdentifier>
     </Filter>
+    <Filter Include="DAWTest\Source\Input">
+      <UniqueIdentifier>{FB6AC29D-D390-E2D2-E731-DB8D7FA69C33}</UniqueIdentifier>
+    </Filter>
     <Filter Include="DAWTest\Source\Output">
       <UniqueIdentifier>{5F8A09A2-C62B-DED2-4DB8-C9AEC4CFF804}</UniqueIdentifier>
     </Filter>
@@ -328,6 +331,9 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\Source\Input\InputProcessor.cpp">
+      <Filter>DAWTest\Source\Input</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\Source\Output\OutputController.cpp">
       <Filter>DAWTest\Source\Output</Filter>
     </ClCompile>
@@ -1584,6 +1590,9 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\Source\Input\InputProcessor.h">
+      <Filter>DAWTest\Source\Input</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\Source\Output\OutputController.h">
       <Filter>DAWTest\Source\Output</Filter>
     </ClInclude>

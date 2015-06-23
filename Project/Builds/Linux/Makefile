@@ -51,6 +51,7 @@ ifeq ($(CONFIG),Release)
 endif
 
 OBJECTS := \
+  $(OBJDIR)/InputProcessor_d1793ef6.o \
   $(OBJDIR)/OutputController_5edcc5cc.o \
   $(OBJDIR)/ChangeVolume_c7862ff0.o \
   $(OBJDIR)/PluginProcessor_a059e380.o \
@@ -88,6 +89,11 @@ clean:
 strip:
 	@echo Stripping DAWTest
 	-@strip --strip-unneeded $(OUTDIR)/$(TARGET)
+
+$(OBJDIR)/InputProcessor_d1793ef6.o: ../../Source/Input/InputProcessor.cpp
+	-@mkdir -p $(OBJDIR)
+	@echo "Compiling InputProcessor.cpp"
+	@$(CXX) $(CXXFLAGS) -o "$@" -c "$<"
 
 $(OBJDIR)/OutputController_5edcc5cc.o: ../../Source/Output/OutputController.cpp
 	-@mkdir -p $(OBJDIR)
