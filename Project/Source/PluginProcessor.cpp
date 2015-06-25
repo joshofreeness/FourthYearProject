@@ -11,7 +11,7 @@
 #include "PluginProcessor.h"
 #include "PluginEditor.h"
 #include <cstdint>
-
+#include "Enums.h"
 
 //==============================================================================
 DAWTestAudioProcessor::DAWTestAudioProcessor()

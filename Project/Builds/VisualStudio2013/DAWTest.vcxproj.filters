@@ -1590,6 +1590,9 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\Source\Enums.h">
+      <Filter>DAWTest\Source</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\Source\Input\InputProcessor.h">
       <Filter>DAWTest\Source\Input</Filter>
     </ClInclude>

@@ -11,6 +11,7 @@
               pluginAAXCategory="AAX_ePlugInCategory_Dynamics" jucerVersion="3.1.0">
   <MAINGROUP id="wqcw6L" name="DAWTest">
     <GROUP id="{312F914C-D2B9-28ED-6C75-27A6EF5FB90D}" name="Source">
+      <FILE id="W0pRlc" name="Enums.h" compile="0" resource="0" file="Source/Enums.h"/>
       <GROUP id="{EC824676-9CE1-4323-D469-72C8F3D05FDB}" name="Input">
         <FILE id="hToCi4" name="InputProcessor.cpp" compile="1" resource="0"
               file="Source/Input/InputProcessor.cpp"/>

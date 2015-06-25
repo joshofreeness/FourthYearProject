@@ -11,6 +11,8 @@
 #ifndef INPUTPROCESSOR_H_INCLUDED
 #define INPUTPROCESSOR_H_INCLUDED
 
+#include "../Enums.h"
+
 namespace juce{
 	class MidiBuffer;
 	class AudioSampleBuffer;
@@ -23,6 +25,8 @@ public:
 
 	void SetBlock();
 	void AnalyseBlock();
+	Key_t GetKey();
+	Chord_t GetChord();
 	
 private:
 
