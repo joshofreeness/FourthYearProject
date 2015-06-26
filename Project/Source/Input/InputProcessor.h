@@ -23,7 +23,7 @@ public:
 	InputProcessor();
 	~InputProcessor();
 
-	void SetBlock();
+	void SetBlock(juce::AudioSampleBuffer& buffer);
 	void AnalyseBlock();
 	Key_t GetKey();
 	Chord_t GetChord();
