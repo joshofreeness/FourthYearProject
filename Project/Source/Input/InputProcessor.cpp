@@ -15,10 +15,13 @@ InputProcessor::~InputProcessor(){}
 
 // Sets the current block of audio data to be analysed.
 void InputProcessor::SetBlock(juce::AudioSampleBuffer& buffer) {
+    currentBuffer = &buffer;
 }
 
 // Analyses the current block of raw audio input.
-void InputProcessor::AnalyseBlock() {}
+void InputProcessor::AnalyseBlock() {
+	//TODO: Actually do something with currentBuffer
+}
 
 // Returns the estimated key of the current block of input.
 Key_t InputProcessor::GetKey() {

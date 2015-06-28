@@ -29,7 +29,7 @@ public:
 	Chord_t GetChord();
 	
 private:
-
+    juce::AudioSampleBuffer* currentBuffer;
 };
 
 #endif  // INPUTPROCESSOR_H_INCLUDED
