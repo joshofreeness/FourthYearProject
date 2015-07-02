@@ -12,6 +12,7 @@
 #define INPUTPROCESSOR_H_INCLUDED
 
 #include "../Enums.h"
+#include <JuceHeader.h>
 
 namespace juce{
 	class MidiBuffer;
@@ -29,7 +30,7 @@ public:
 	Chord_t GetChord();
 	
 private:
-    juce::AudioSampleBuffer* currentBuffer;
+    juce::AudioSampleBuffer currentBuffer;
 };
 
 #endif  // INPUTPROCESSOR_H_INCLUDED
