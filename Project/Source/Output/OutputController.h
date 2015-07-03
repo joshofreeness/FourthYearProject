@@ -29,17 +29,21 @@ public:
 	OutputController();
 	~OutputController();
 
-	void ClockProcess(juce::MidiBuffer& midiMessages);
-	void PlayNote(float hertz, float velocity, double length);
+	void ClockProcess(juce::MidiBuffer& midiMessages, double currentTime, double msPerSample);
+	void PlayNote(float hertz, float velocity, double currentTime, double length, double msPerSample);
+
+	std::list<MidiMessage*> scheduledToAddToBuffer;
 private:
 	midiNode *headOnList = nullptr;
 	midiNode *headOffList = nullptr;
 	midiNode *currentOnList = nullptr;
 	midiNode *currentOffList = nullptr;
 
-	std::list<MidiMessage*> scheduledToAddToBuffer;
+	
 
 	bool first = true;
+
+	int midiMessagesThisCycle = 0;
 
 	MidiMessage* GetNextFromList(midiNode* head, midiNode* current, bool onMessage);
 	MidiMessage NewMidiMessage(bool noteOnMessage);
