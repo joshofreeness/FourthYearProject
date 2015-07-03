@@ -78,8 +78,6 @@ private:
     ChangeVolume mVolumeControl;
     bool UIUpdateFlag;
 	OutputController mOutputController;
-	double currentTime;
-	AudioPlayHead::CurrentPositionInfo lastPosInfo;
 	//==============================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (DAWTestAudioProcessor)
 };

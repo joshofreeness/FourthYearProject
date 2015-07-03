@@ -62,27 +62,7 @@ const String DAWTestAudioProcessor::getParameterText (int index) {
 
 //This is where all the audio processing happens
 void DAWTestAudioProcessor::processBlock (AudioSampleBuffer& buffer, MidiBuffer& midiMessages) {
-    
-    //Some info from here http://www.juce.com/forum/topic/how-timestamp-midi-events-processblock-when-not-playing
-	// ask the host for the current time so we can display it...
-	AudioPlayHead::CurrentPositionInfo newTime;
-	if (getPlayHead() != nullptr && getPlayHead()->getCurrentPosition(newTime))
-	{
-		// Successfully got the current time from the host..
-		lastPosInfo = newTime;
-	}
-	else
-	{
-		// If the host fails to fill-in the current time, we'll just clear it to a default..
-		lastPosInfo.resetToDefault();
-	}
-
-	double msPerSample = 1000 / getSampleRate();
-
-
-	mOutputController.ClockProcess(midiMessages, currentTime, msPerSample);
-	
-	if(getNumInputChannels()<2) {
+    if(getNumInputChannels()<2) {
         //Nothing to do here - processing is in-place, so doing nothing is pass-through (for NumInputs=NumOutputs) 
     } else {
         //Do processing!
@@ -91,9 +71,10 @@ void DAWTestAudioProcessor::processBlock (AudioSampleBuffer& buffer, MidiBuffer&
         for(long i=0; i<buffer.getNumSamples();i++) {
             mVolumeControl.ClockProcess(&leftData[i], &rightData[i]);
         }
+
+		mOutputController.ClockProcess(midiMessages);
+
     }
-	// keep track of time even whe the host isn't playing (set currentTime = 0 in prepareToPlay)
-	currentTime += msPerSample * buffer.getNumSamples();
 }
 
 //Save UserParams/Data to file

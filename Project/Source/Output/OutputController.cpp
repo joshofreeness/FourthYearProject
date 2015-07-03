@@ -9,33 +9,23 @@
 */
 
 #include "OutputController.h"
-#include <thread>
 
 OutputController::OutputController(){}
 OutputController::~OutputController(){}
 
 
-void threadNoteOff(MidiMessage* midiMessageNoteOff, OutputController *controller)
-{
-	std::this_thread::sleep_for(std::chrono::seconds(3));
-	controller->scheduledToAddToBuffer.push_back(midiMessageNoteOff);
-}
 
+void OutputController::ClockProcess(juce::MidiBuffer& midiMessages) {
 
-void OutputController::ClockProcess(juce::MidiBuffer& midiMessages, double currentTime, double msPerSample) {
-
-	midiMessages.clear();
 	if (first)
 	{
-		PlayNote(440.0f, 1.0f, currentTime, 1, msPerSample);
-		first = false; //uncommented for constant tone
+		PlayNote(440.0f, 1.0f, 30000);
+		//first = false; //uncommented for constant tone
 	}
-	std::cout << currentTime;
 
 	std::list<MidiMessage*>::const_iterator iterator;
 	for (iterator = scheduledToAddToBuffer.begin(); iterator != scheduledToAddToBuffer.end(); ++iterator) {
 		midiMessages.addEvent(*(*iterator), 1); //the 0 value could cause problems
-		
 	}
 	//TODO: Does the iterator need to be deleted/destroyed?
 
@@ -48,15 +38,14 @@ void OutputController::ClockProcess(juce::MidiBuffer& midiMessages, double curre
 }
 
 //This method will schedule a note to be played
-void OutputController::PlayNote(float hertz, float volume, double currentTime, double length, double msPerSample)
+void OutputController::PlayNote(float hertz, float volume, double length)
 {
-	//MidiMessage temp = MidiMessage::noteOn(0, 0, 0.0f);
 	MidiMessage* midiMessageNoteOn = GetNextFromList(headOnList, currentOnList, true);
 	MidiMessage* midiMessageNoteOff = GetNextFromList(headOffList, currentOffList, false);
 
 	//https://en.wikipedia.org/wiki/MIDI_Tuning_Standard
 	int midiNoteValue = 69 + (12 * log2f(hertz / 440.0f)); //midi note from provided frequency
-	double startingTimeStamp = currentTime + midiMessagesThisCycle*msPerSample;
+	double startingTimeStamp = 1;
 
 	midiMessageNoteOn->setVelocity(volume);
 	midiMessageNoteOn->setChannel(1);
@@ -70,7 +59,6 @@ void OutputController::PlayNote(float hertz, float volume, double currentTime, d
 
 	scheduledToAddToBuffer.push_back(midiMessageNoteOn);
 	//TODO: correct timestamps, this is stopping it instantly
-	std::thread thread(threadNoteOff, midiMessageNoteOff, this);
 	//scheduledToAddToBuffer.push_back(midiMessageNoteOff);
 }
 
