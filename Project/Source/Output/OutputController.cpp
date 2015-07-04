@@ -19,22 +19,33 @@ void OutputController::ClockProcess(juce::MidiBuffer& midiMessages) {
 
 	if (first)
 	{
-		PlayNote(440.0f, 1.0f, 30000);
-		//first = false; //uncommented for constant tone
+		PlayNote(450.0f, 1.0f, 1);
+		first = false;
+		second = true;
+	}
+	else if (second)
+	{
+		PlayNote(300.0f, 1.0f, 30000);
+		second = false;
+	}
+	else
+	{
+		//PlayNote(150.0f, 1.0f, 10000);
 	}
 
 	std::list<MidiMessage*>::const_iterator iterator;
+
+	int i = 1;
 	for (iterator = scheduledToAddToBuffer.begin(); iterator != scheduledToAddToBuffer.end(); ++iterator) {
-		midiMessages.addEvent(*(*iterator), 1); //the 0 value could cause problems
+		midiMessages.addEvent(*(*iterator), i);
+		i++;
 	}
-	//TODO: Does the iterator need to be deleted/destroyed?
 
 	scheduledToAddToBuffer.clear();
 
 	//reset pointers (possible race condition)
 	currentOnList = headOnList;
 	currentOffList = headOffList;
-
 }
 
 //This method will schedule a note to be played
@@ -45,20 +56,18 @@ void OutputController::PlayNote(float hertz, float volume, double length)
 
 	//https://en.wikipedia.org/wiki/MIDI_Tuning_Standard
 	int midiNoteValue = 69 + (12 * log2f(hertz / 440.0f)); //midi note from provided frequency
-	double startingTimeStamp = 1;
 
 	midiMessageNoteOn->setVelocity(volume);
 	midiMessageNoteOn->setChannel(1);
 	midiMessageNoteOn->setNoteNumber(midiNoteValue);
-	midiMessageNoteOn->setTimeStamp(startingTimeStamp);
+	midiMessageNoteOn->setTimeStamp(0);
 
 	midiMessageNoteOff->setVelocity(volume);
 	midiMessageNoteOff->setChannel(1);
 	midiMessageNoteOff->setNoteNumber(midiNoteValue);
-	midiMessageNoteOff->setTimeStamp(startingTimeStamp + length);
+	midiMessageNoteOff->setTimeStamp(length);
 
 	scheduledToAddToBuffer.push_back(midiMessageNoteOn);
-	//TODO: correct timestamps, this is stopping it instantly
 	//scheduledToAddToBuffer.push_back(midiMessageNoteOff);
 }
 

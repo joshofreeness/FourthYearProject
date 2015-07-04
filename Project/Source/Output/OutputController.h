@@ -40,6 +40,7 @@ private:
 	std::list<MidiMessage*> scheduledToAddToBuffer;
 
 	bool first = true;
+	bool second = false;
 
 	MidiMessage* GetNextFromList(midiNode* head, midiNode* current, bool onMessage);
 	MidiMessage NewMidiMessage(bool noteOnMessage);
