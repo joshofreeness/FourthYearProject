@@ -33,24 +33,11 @@ public:
 	void ClockProcess(MidiBuffer& midiMessages);
 	void PlayNote(float hertz, float velocity, double length, juce::MidiBuffer& midiMessages, int delay);
 private:
-	midiNode *headOnList = nullptr;
-	midiNode *headOffList = nullptr;
-	midiNode *currentOnList = nullptr;
-	midiNode *currentOffList = nullptr;
-
-	std::list<MidiMessage*> scheduledToAddToBuffer;
-
-	bool first = true;
-	bool second = false;
 	bool test = true;
 
 	const double unit = 44100.0; // Represents something to do with the number of channels in the sound driver, I think. Most common values 44,100 and 44,400. Idk. Google it.
 
-	MidiMessage* GetNextFromList(midiNode* head, midiNode* current, bool onMessage);
-	MidiMessage NewMidiMessage(bool noteOnMessage);
-
 	MidiOutput* midiOutput = MidiOutput::openDevice(0);
-
 };
 
 #endif  // OUTPUTCONTROLLER_H_INCLUDED
