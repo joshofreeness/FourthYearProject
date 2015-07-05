@@ -52,7 +52,6 @@ endif
 
 OBJECTS := \
   $(OBJDIR)/OutputController_5edcc5cc.o \
-  $(OBJDIR)/ChangeVolume_c7862ff0.o \
   $(OBJDIR)/PluginProcessor_a059e380.o \
   $(OBJDIR)/PluginEditor_94d4fb09.o \
   $(OBJDIR)/juce_audio_basics_4ffcba92.o \
@@ -92,11 +91,6 @@ strip:
 $(OBJDIR)/OutputController_5edcc5cc.o: ../../Source/Output/OutputController.cpp
 	-@mkdir -p $(OBJDIR)
 	@echo "Compiling OutputController.cpp"
-	@$(CXX) $(CXXFLAGS) -o "$@" -c "$<"
-
-$(OBJDIR)/ChangeVolume_c7862ff0.o: ../../Source/ChangeVolume/ChangeVolume.cpp
-	-@mkdir -p $(OBJDIR)
-	@echo "Compiling ChangeVolume.cpp"
 	@$(CXX) $(CXXFLAGS) -o "$@" -c "$<"
 
 $(OBJDIR)/PluginProcessor_a059e380.o: ../../Source/PluginProcessor.cpp
