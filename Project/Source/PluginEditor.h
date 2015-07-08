@@ -68,6 +68,8 @@ private:
     ScopedPointer<Label> lblVolume;
     ScopedPointer<Slider> sliderFrequency;
     ScopedPointer<Label> lblFrequency;
+    ScopedPointer<Label> lblFrequencyInput;
+    ScopedPointer<Label> lblFrequencyInputDisplay;
 
 
     //==============================================================================
