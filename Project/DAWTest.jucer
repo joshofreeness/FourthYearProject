@@ -7,14 +7,15 @@
               pluginManufacturerCode="Manu" pluginCode="Plug" pluginChannelConfigs="{1, 1}, {2, 2}"
               pluginIsSynth="0" pluginWantsMidiIn="1" pluginProducesMidiOut="1"
               pluginSilenceInIsSilenceOut="0" pluginEditorRequiresKeys="0"
-              pluginAUExportPrefix="DAWTestAU" pluginRTASCategory="" aaxIdentifier="com.yourcompany.DAWTest"
+              pluginAUExportPrefix="DAWTestAU" pluginRTASCategory="" aaxIdentifier="com.mlo_jfree.DAWTest"
               pluginAAXCategory="AAX_ePlugInCategory_Dynamics" jucerVersion="3.1.0">
   <MAINGROUP id="wqcw6L" name="DAWTest">
     <GROUP id="{312F914C-D2B9-28ED-6C75-27A6EF5FB90D}" name="Source">
-      <GROUP id="{487B687B-19ED-BEA8-1D41-527B4CCB2A2A}" name="ChangeVolume">
-        <FILE id="b0xGcz" name="ChangeVolume.cpp" compile="1" resource="0"
-              file="Source/ChangeVolume/ChangeVolume.cpp"/>
-        <FILE id="XRawg1" name="ChangeVolume.h" compile="0" resource="0" file="Source/ChangeVolume/ChangeVolume.h"/>
+      <GROUP id="{74C960F8-2FF2-605B-EE56-375A861ED758}" name="Output">
+        <FILE id="kKrHqW" name="OutputController.cpp" compile="1" resource="0"
+              file="Source/Output/OutputController.cpp"/>
+        <FILE id="Vr2S7b" name="OutputController.h" compile="0" resource="0"
+              file="Source/Output/OutputController.h"/>
       </GROUP>
       <FILE id="vBsLzY" name="PluginProcessor.cpp" compile="1" resource="0"
             file="Source/PluginProcessor.cpp"/>
@@ -29,9 +30,9 @@
     <VS2013 targetFolder="Builds/VisualStudio2013" vstFolder="..\VST3 SDK">
       <CONFIGURATIONS>
         <CONFIGURATION name="Debug" winWarningLevel="4" generateManifest="1" winArchitecture="32-bit"
-                       isDebug="1" optimisation="1" targetName="DAWTest" headerPath="..\..\Source\StereoWidthCtrl; ..\..\Source\ChangeVolume;"/>
+                       isDebug="1" optimisation="1" targetName="DAWTest" headerPath="..\..\Source\StereoWidthCtrl; ..\..\Source\ChangeVolume; ..\..\Source\Output\OutputController;"/>
         <CONFIGURATION name="Release" winWarningLevel="4" generateManifest="1" winArchitecture="32-bit"
-                       isDebug="0" optimisation="3" targetName="DAWTest" headerPath="..\..\Source\StereoWidthCtrl; ..\..\Source\ChangeVolume;"/>
+                       isDebug="0" optimisation="3" targetName="DAWTest" headerPath="..\..\Source\StereoWidthCtrl; ..\..\Source\ChangeVolume; ..\..\Source\Output\OutputController;"/>
       </CONFIGURATIONS>
       <MODULEPATHS>
         <MODULEPATH id="juce_core" path="../JUCE-LINUX/modules"/>
@@ -53,9 +54,9 @@
     <LINUX_MAKE targetFolder="Builds/Linux" vstFolder="../VST3 SDK">
       <CONFIGURATIONS>
         <CONFIGURATION name="Debug" libraryPath="/usr/X11R6/lib/" isDebug="1" optimisation="1"
-                       targetName="DAWTest" headerPath="..\..\Source\StereoWidthCtrl; ..\..\Source\ChangeVolume;"/>
+                       targetName="DAWTest" headerPath="..\..\Source\StereoWidthCtrl; ..\..\Source\ChangeVolume; ..\..\Source\Output\OutputController;"/>
         <CONFIGURATION name="Release" libraryPath="/usr/X11R6/lib/" isDebug="0" optimisation="3"
-                       targetName="DAWTest" headerPath="..\..\Source\StereoWidthCtrl; ..\..\Source\ChangeVolume;"/>
+                       targetName="DAWTest" headerPath="..\..\Source\StereoWidthCtrl; ..\..\Source\ChangeVolume; ..\..\Source\Output\OutputController;"/>
       </CONFIGURATIONS>
       <MODULEPATHS>
         <MODULEPATH id="juce_video" path="../JUCE-LINUX/modules"/>

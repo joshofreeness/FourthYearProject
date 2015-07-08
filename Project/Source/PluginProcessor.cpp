@@ -10,13 +10,16 @@
 
 #include "PluginProcessor.h"
 #include "PluginEditor.h"
+#include <cstdint>
 
 
 //==============================================================================
 DAWTestAudioProcessor::DAWTestAudioProcessor()
 {
-    UserParams[Volume]=1.0f; //default volume 1.0 (no change)
-    mVolumeControl.SetVolume(UserParams[Volume]); //push VST default to effect
+	UserParams[Volume] = 1.0f; //default volume 1.0 (no change)
+	mOutputController.SetVolume(UserParams[Volume]); //push VST default to effect
+	UserParams[Frequency] = (1 / 3); //default frequency 500Hz (no change)
+	mOutputController.SetFrequency(UserParams[Frequency]); //push VST default to effect
     UIUpdateFlag=true; //Request UI update
 }
 
@@ -27,28 +30,36 @@ DAWTestAudioProcessor::~DAWTestAudioProcessor()
 int DAWTestAudioProcessor::getNumParameters(){ return totalNumParam; }
 
 float DAWTestAudioProcessor::getParameter (int index) {
-    switch(index) {
-        case Volume://example update from internal
-            UserParams[Volume]=mVolumeControl.GetVolume();
-            return UserParams[Volume];
+	switch (index) {
+		case Volume://example update from internal
+			UserParams[Volume] = mOutputController.GetVolume();
+			return UserParams[Volume];
+		case Frequency://example update from internal
+			UserParams[Frequency] = mOutputController.GetFrequency();
+			return UserParams[Volume];
         default: return 0.0f;//invalid index
     }
 }
 
 void DAWTestAudioProcessor::setParameter (int index, float newValue) {
-    switch(index) {
-        case Volume:
-            UserParams[Volume]=newValue;
-            mVolumeControl.SetVolume(UserParams[Volume]);
-            break;
+	switch (index) {
+		case Volume:
+			UserParams[Volume] = newValue;
+			mOutputController.SetVolume(UserParams[Volume]);
+			break;
+		case Frequency:
+			UserParams[Frequency] = newValue;
+			mOutputController.SetFrequency(UserParams[Frequency] * 1200); //Convert from parameter to Hz value.
+			break;
 		default: return;
     }
     UIUpdateFlag=true;//Request UI update -- Some OSX hosts use alternate editors, this updates ours
 }
 
 const String DAWTestAudioProcessor::getParameterName (int index) {
-    switch(index) {
-        case Volume: return "Volume";
+	switch (index) {
+		case Volume: return "Volume";
+		case Frequency: return "Frequency";
         default:return String::empty;
     }
 }
@@ -65,20 +76,18 @@ void DAWTestAudioProcessor::processBlock (AudioSampleBuffer& buffer, MidiBuffer&
         //Nothing to do here - processing is in-place, so doing nothing is pass-through (for NumInputs=NumOutputs) 
     } else {
         //Do processing!
-        float* leftData = buffer.getWritePointer(0);
-        float* rightData = buffer.getWritePointer(1);
-        for(long i=0; i<buffer.getNumSamples();i++) {
-            mVolumeControl.ClockProcess(&leftData[i], &rightData[i]);
-        }
+		mOutputController.ClockProcess(midiMessages);
     }
 }
 
 //Save UserParams/Data to file
 void DAWTestAudioProcessor::getStateInformation (MemoryBlock& destData) {
     XmlElement root("Root");
-    XmlElement *el;
-    el = root.createNewChildElement("Volume");
-    el->addTextElement(String(UserParams[Volume]));
+	XmlElement *el;
+	el = root.createNewChildElement("Volume");
+	el->addTextElement(String(UserParams[Volume]));
+	el = root.createNewChildElement("Frequency");
+	el->addTextElement(String(UserParams[Frequency]));
     copyXmlToBinary(root,destData);
 }
  
@@ -87,11 +96,14 @@ void DAWTestAudioProcessor::setStateInformation (const void* data, int sizeInByt
     XmlElement* pRoot = getXmlFromBinary(data,sizeInBytes);
     
     if(pRoot!=NULL) {
-        forEachXmlChildElement((*pRoot),pChild) {
-            if(pChild->hasTagName("Volume")) {
-                String text = pChild->getAllSubText();
-                setParameter(Volume,text.getFloatValue());
-            }
+		forEachXmlChildElement((*pRoot), pChild) {
+			if (pChild->hasTagName("Volume")) {
+				String text = pChild->getAllSubText();
+				setParameter(Volume, text.getFloatValue());
+			} else if (pChild->hasTagName("Frequency")) {
+				String text = pChild->getAllSubText();
+				setParameter(Frequency, text.getFloatValue());
+			}
         }
         delete pRoot;
         UIUpdateFlag=true;//Request UI update

@@ -45,11 +45,28 @@ DAWTestAudioProcessorEditor::DAWTestAudioProcessorEditor (DAWTestAudioProcessor&
     lblVolume->setColour (TextEditor::textColourId, Colours::black);
     lblVolume->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
 
+    addAndMakeVisible (sliderFrequency = new Slider ("sliderFrequency"));
+    sliderFrequency->setRange (15, 1200, 1);
+    sliderFrequency->setSliderStyle (Slider::LinearHorizontal);
+    sliderFrequency->setTextBoxStyle (Slider::TextBoxLeft, false, 80, 20);
+    sliderFrequency->addListener (this);
+
+    addAndMakeVisible (lblFrequency = new Label ("lblFrequency",
+                                                 TRANS("Frequency")));
+    lblFrequency->setFont (Font ("Avenir Next LT Pro", 20.00f, Font::bold));
+    lblFrequency->setJustificationType (Justification::centredLeft);
+    lblFrequency->setEditable (false, false, false);
+    lblFrequency->setColour (Label::textColourId, Colours::lightgrey);
+    lblFrequency->setColour (TextEditor::textColourId, Colours::black);
+    lblFrequency->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
+
 
     //[UserPreSize]
+	sliderFrequency->setValue(450);
+	sliderVolume->setValue(1);
     //[/UserPreSize]
 
-    setSize (600, 100);
+    setSize (600, 200);
 
 
     //[Constructor] You can add your own custom stuff here..
@@ -65,6 +82,8 @@ DAWTestAudioProcessorEditor::~DAWTestAudioProcessorEditor()
 
     sliderVolume = nullptr;
     lblVolume = nullptr;
+    sliderFrequency = nullptr;
+    lblFrequency = nullptr;
 
 
     //[Destructor]. You can add your own custom destruction code here..
@@ -88,8 +107,10 @@ void DAWTestAudioProcessorEditor::resized()
     //[UserPreResize] Add your own custom resize code here..
     //[/UserPreResize]
 
-    sliderVolume->setBounds (24, 40, 560, 40);
-    lblVolume->setBounds (24, 16, 150, 24);
+    sliderVolume->setBounds (20, 49, 560, 40);
+    lblVolume->setBounds (20, 25, 150, 24);
+    sliderFrequency->setBounds (16, 136, 560, 40);
+    lblFrequency->setBounds (20, 108, 150, 24);
     //[UserResized] Add your own custom resize handling here..
     //[/UserResized]
 }
@@ -105,6 +126,12 @@ void DAWTestAudioProcessorEditor::sliderValueChanged (Slider* sliderThatWasMoved
         //[UserSliderCode_sliderVolume] -- add your slider handling code here..
         ourProcessor->setParameter(DAWTestAudioProcessor::Volume, (float)sliderVolume->getValue());
         //[/UserSliderCode_sliderVolume]
+    }
+    else if (sliderThatWasMoved == sliderFrequency)
+    {
+        //[UserSliderCode_sliderFrequency] -- add your slider handling code here..
+		ourProcessor->setParameter(DAWTestAudioProcessor::Frequency, (float)sliderFrequency->getValue() / 1200);
+        //[/UserSliderCode_sliderFrequency]
     }
 
     //[UsersliderValueChanged_Post]
@@ -138,15 +165,24 @@ BEGIN_JUCER_METADATA
                  componentName="" parentClasses="public AudioProcessorEditor, public Timer"
                  constructorParams="DAWTestAudioProcessor&amp; ownerFilter" variableInitialisers="AudioProcessorEditor(ownerFilter)"
                  snapPixels="8" snapActive="1" snapShown="1" overlayOpacity="0.330"
-                 fixedSize="1" initialWidth="600" initialHeight="100">
+                 fixedSize="1" initialWidth="600" initialHeight="200">
   <BACKGROUND backgroundColour="ff514f4f"/>
   <SLIDER name="sliderVolume" id="d834204f246a0f88" memberName="sliderVolume"
-          virtualName="" explicitFocusOrder="0" pos="24 40 560 40" min="0"
+          virtualName="" explicitFocusOrder="0" pos="20 49 560 40" min="0"
           max="1" int="0.01" style="LinearHorizontal" textBoxPos="TextBoxLeft"
           textBoxEditable="1" textBoxWidth="80" textBoxHeight="20" skewFactor="1"/>
   <LABEL name="lblVolume" id="e3981c189293ff08" memberName="lblVolume"
-         virtualName="" explicitFocusOrder="0" pos="24 16 150 24" textCol="ffd3d3d3"
+         virtualName="" explicitFocusOrder="0" pos="20 25 150 24" textCol="ffd3d3d3"
          edTextCol="ff000000" edBkgCol="0" labelText="Volume" editableSingleClick="0"
+         editableDoubleClick="0" focusDiscardsChanges="0" fontname="Avenir Next LT Pro"
+         fontsize="20" bold="1" italic="0" justification="33"/>
+  <SLIDER name="sliderFrequency" id="e42b5e5b430a6417" memberName="sliderFrequency"
+          virtualName="" explicitFocusOrder="0" pos="16 136 560 40" min="15"
+          max="1200" int="1" style="LinearHorizontal" textBoxPos="TextBoxLeft"
+          textBoxEditable="1" textBoxWidth="80" textBoxHeight="20" skewFactor="1"/>
+  <LABEL name="lblFrequency" id="711836deab664bff" memberName="lblFrequency"
+         virtualName="" explicitFocusOrder="0" pos="20 108 150 24" textCol="ffd3d3d3"
+         edTextCol="ff000000" edBkgCol="0" labelText="Frequency" editableSingleClick="0"
          editableDoubleClick="0" focusDiscardsChanges="0" fontname="Avenir Next LT Pro"
          fontsize="20" bold="1" italic="0" justification="33"/>
 </JUCER_COMPONENT>

@@ -8,8 +8,8 @@
     <Filter Include="DAWTest\Source">
       <UniqueIdentifier>{C2CEA443-1419-8F1D-4985-CD0D8A282237}</UniqueIdentifier>
     </Filter>
-    <Filter Include="DAWTest\Source\ChangeVolume">
-      <UniqueIdentifier>{C90FBDF7-3C55-D6F0-DA29-C4969BCC4830}</UniqueIdentifier>
+    <Filter Include="DAWTest\Source\Output">
+      <UniqueIdentifier>{5F8A09A2-C62B-DED2-4DB8-C9AEC4CFF804}</UniqueIdentifier>
     </Filter>
     <Filter Include="Juce Modules">
       <UniqueIdentifier>{422C46B7-0467-2DB0-BF3C-16DFCAFD69AC}</UniqueIdentifier>
@@ -325,8 +325,8 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\Source\ChangeVolume\ChangeVolume.cpp">
-      <Filter>DAWTest\Source\ChangeVolume</Filter>
+    <ClCompile Include="..\..\Source\Output\OutputController.cpp">
+      <Filter>DAWTest\Source\Output</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\PluginProcessor.cpp">
       <Filter>DAWTest\Source</Filter>
@@ -1578,8 +1578,8 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\Source\ChangeVolume\ChangeVolume.h">
-      <Filter>DAWTest\Source\ChangeVolume</Filter>
+    <ClInclude Include="..\..\Source\Output\OutputController.h">
+      <Filter>DAWTest\Source\Output</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\PluginProcessor.h">
       <Filter>DAWTest\Source</Filter>

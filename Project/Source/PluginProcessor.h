@@ -11,7 +11,7 @@
 #ifndef PLUGINPROCESSOR_H_INCLUDED
 #define PLUGINPROCESSOR_H_INCLUDED
 
-#include "ChangeVolume.h"
+#include "Output/OutputController.h"
 #include "../JuceLibraryCode/JuceHeader.h"
 
 //==============================================================================
@@ -66,7 +66,7 @@ public:
     void setStateInformation (const void* data, int sizeInBytes) override;
     
     //Custom Methods, Params and Public Data
-    enum Parameters{Volume, totalNumParam};
+    enum Parameters{Volume, Frequency, totalNumParam};
     bool NeedsUIUpdate(){return UIUpdateFlag;};
     void RequestUIUpdate(){UIUpdateFlag=true;};
     void ClearUIUpdateFlag(){UIUpdateFlag=false;};
@@ -74,10 +74,9 @@ public:
 private:
     //Private Data, helper methods etc.
     float UserParams[totalNumParam];
-    ChangeVolume mVolumeControl;
     bool UIUpdateFlag;
-
-    //==============================================================================
+	OutputController mOutputController;
+	//==============================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (DAWTestAudioProcessor)
 };
 

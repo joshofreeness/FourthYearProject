@@ -15,6 +15,7 @@
 *.d
 *.sdf
 *.opensdf
+*.db #for thumbs.db - change if we have any db files
 xcuserdata
 *.xccheckout
 contents.xcworkspacedata
@@ -67,3 +68,5 @@ Icon
 Network Trash Folder
 Temporary Items
 .apdisk
+
+JUCE-WINDOWS/

@@ -18,12 +18,12 @@ ifeq ($(CONFIG),Debug)
     TARGET_ARCH := -march=native
   endif
 
-  CPPFLAGS := $(DEPFLAGS) -std=c++11 -D "LINUX=1" -D "DEBUG=1" -D "_DEBUG=1" -D "JUCER_LINUX_MAKE_7346DA2A=1" -D "JUCE_APP_VERSION=1.0.0" -D "JUCE_APP_VERSION_HEX=0x10000" -I /usr/include -I /usr/include/freetype2 -I "../../../VST3 SDK" -I ../../JuceLibraryCode -I ../../../JUCE-LINUX/modules -I ../../Source/StereoWidthCtrl -I ../../Source/ChangeVolume
+  CPPFLAGS := $(DEPFLAGS) -std=c++11 -D "LINUX=1" -D "DEBUG=1" -D "_DEBUG=1" -D "JUCER_LINUX_MAKE_7346DA2A=1" -D "JUCE_APP_VERSION=1.0.0" -D "JUCE_APP_VERSION_HEX=0x10000" -I /usr/include -I /usr/include/freetype2 -I "../../../VST3 SDK" -I ../../JuceLibraryCode -I ../../../JUCE-LINUX/modules -I ../../Source/StereoWidthCtrl -I ../../Source/ChangeVolume -I ../../Source/Output/OutputController
   CFLAGS += $(CPPFLAGS) $(TARGET_ARCH) -g -ggdb -fPIC -O0
   CXXFLAGS += $(CFLAGS)
   LDFLAGS += $(TARGET_ARCH) -L$(BINDIR) -L$(LIBDIR) -shared -L/usr/X11R6/lib/ -lGL -lX11 -lXext -lXinerama -lasound -ldl -lfreetype -lpthread -lrt 
   LDDEPS :=
-  RESFLAGS :=  -D "LINUX=1" -D "DEBUG=1" -D "_DEBUG=1" -D "JUCER_LINUX_MAKE_7346DA2A=1" -D "JUCE_APP_VERSION=1.0.0" -D "JUCE_APP_VERSION_HEX=0x10000" -I /usr/include -I /usr/include/freetype2 -I "../../../VST3 SDK" -I ../../JuceLibraryCode -I ../../../JUCE-LINUX/modules -I ../../Source/StereoWidthCtrl -I ../../Source/ChangeVolume
+  RESFLAGS :=  -D "LINUX=1" -D "DEBUG=1" -D "_DEBUG=1" -D "JUCER_LINUX_MAKE_7346DA2A=1" -D "JUCE_APP_VERSION=1.0.0" -D "JUCE_APP_VERSION_HEX=0x10000" -I /usr/include -I /usr/include/freetype2 -I "../../../VST3 SDK" -I ../../JuceLibraryCode -I ../../../JUCE-LINUX/modules -I ../../Source/StereoWidthCtrl -I ../../Source/ChangeVolume -I ../../Source/Output/OutputController
   TARGET := DAWTest.so
   BLDCMD = $(CXX) -o $(OUTDIR)/$(TARGET) $(OBJECTS) $(LDFLAGS) $(RESOURCES) $(TARGET_ARCH)
   CLEANCMD = rm -rf $(OUTDIR)/$(TARGET) $(OBJDIR)
@@ -39,19 +39,19 @@ ifeq ($(CONFIG),Release)
     TARGET_ARCH := -march=native
   endif
 
-  CPPFLAGS := $(DEPFLAGS) -std=c++11 -D "LINUX=1" -D "NDEBUG=1" -D "JUCER_LINUX_MAKE_7346DA2A=1" -D "JUCE_APP_VERSION=1.0.0" -D "JUCE_APP_VERSION_HEX=0x10000" -I /usr/include -I /usr/include/freetype2 -I "../../../VST3 SDK" -I ../../JuceLibraryCode -I ../../../JUCE-LINUX/modules -I ../../Source/StereoWidthCtrl -I ../../Source/ChangeVolume
+  CPPFLAGS := $(DEPFLAGS) -std=c++11 -D "LINUX=1" -D "NDEBUG=1" -D "JUCER_LINUX_MAKE_7346DA2A=1" -D "JUCE_APP_VERSION=1.0.0" -D "JUCE_APP_VERSION_HEX=0x10000" -I /usr/include -I /usr/include/freetype2 -I "../../../VST3 SDK" -I ../../JuceLibraryCode -I ../../../JUCE-LINUX/modules -I ../../Source/StereoWidthCtrl -I ../../Source/ChangeVolume -I ../../Source/Output/OutputController
   CFLAGS += $(CPPFLAGS) $(TARGET_ARCH) -fPIC -O3
   CXXFLAGS += $(CFLAGS)
   LDFLAGS += $(TARGET_ARCH) -L$(BINDIR) -L$(LIBDIR) -shared -fvisibility=hidden -L/usr/X11R6/lib/ -lGL -lX11 -lXext -lXinerama -lasound -ldl -lfreetype -lpthread -lrt 
   LDDEPS :=
-  RESFLAGS :=  -D "LINUX=1" -D "NDEBUG=1" -D "JUCER_LINUX_MAKE_7346DA2A=1" -D "JUCE_APP_VERSION=1.0.0" -D "JUCE_APP_VERSION_HEX=0x10000" -I /usr/include -I /usr/include/freetype2 -I "../../../VST3 SDK" -I ../../JuceLibraryCode -I ../../../JUCE-LINUX/modules -I ../../Source/StereoWidthCtrl -I ../../Source/ChangeVolume
+  RESFLAGS :=  -D "LINUX=1" -D "NDEBUG=1" -D "JUCER_LINUX_MAKE_7346DA2A=1" -D "JUCE_APP_VERSION=1.0.0" -D "JUCE_APP_VERSION_HEX=0x10000" -I /usr/include -I /usr/include/freetype2 -I "../../../VST3 SDK" -I ../../JuceLibraryCode -I ../../../JUCE-LINUX/modules -I ../../Source/StereoWidthCtrl -I ../../Source/ChangeVolume -I ../../Source/Output/OutputController
   TARGET := DAWTest.so
   BLDCMD = $(CXX) -o $(OUTDIR)/$(TARGET) $(OBJECTS) $(LDFLAGS) $(RESOURCES) $(TARGET_ARCH)
   CLEANCMD = rm -rf $(OUTDIR)/$(TARGET) $(OBJDIR)
 endif
 
 OBJECTS := \
-  $(OBJDIR)/ChangeVolume_c7862ff0.o \
+  $(OBJDIR)/OutputController_5edcc5cc.o \
   $(OBJDIR)/PluginProcessor_a059e380.o \
   $(OBJDIR)/PluginEditor_94d4fb09.o \
   $(OBJDIR)/juce_audio_basics_4ffcba92.o \
@@ -88,9 +88,9 @@ strip:
 	@echo Stripping DAWTest
 	-@strip --strip-unneeded $(OUTDIR)/$(TARGET)
 
-$(OBJDIR)/ChangeVolume_c7862ff0.o: ../../Source/ChangeVolume/ChangeVolume.cpp
+$(OBJDIR)/OutputController_5edcc5cc.o: ../../Source/Output/OutputController.cpp
 	-@mkdir -p $(OBJDIR)
-	@echo "Compiling ChangeVolume.cpp"
+	@echo "Compiling OutputController.cpp"
 	@$(CXX) $(CXXFLAGS) -o "$@" -c "$<"
 
 $(OBJDIR)/PluginProcessor_a059e380.o: ../../Source/PluginProcessor.cpp

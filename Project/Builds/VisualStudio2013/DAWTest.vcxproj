@@ -57,7 +57,7 @@
     <ClCompile>
       <Optimization>Disabled</Optimization>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
-      <AdditionalIncludeDirectories>..\..\JuceLibraryCode;..\..\..\JUCE-LINUX\modules;..\..\..\VST3 SDK;..\..\Source\StereoWidthCtrl;..\..\Source\ChangeVolume;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\JuceLibraryCode;..\..\..\JUCE-LINUX\modules;..\..\..\VST3 SDK;..\..\Source\StereoWidthCtrl;..\..\Source\ChangeVolume;..\..\Source\Output\OutputController;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_WINDOWS;DEBUG;_DEBUG;JUCER_VS2013_78A5020=1;JUCE_APP_VERSION=1.0.0;JUCE_APP_VERSION_HEX=0x10000;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
@@ -99,7 +99,7 @@
     </Midl>
     <ClCompile>
       <Optimization>Full</Optimization>
-      <AdditionalIncludeDirectories>..\..\JuceLibraryCode;..\..\..\JUCE-LINUX\modules;..\..\..\VST3 SDK;..\..\Source\StereoWidthCtrl;..\..\Source\ChangeVolume;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\JuceLibraryCode;..\..\..\JUCE-LINUX\modules;..\..\..\VST3 SDK;..\..\Source\StereoWidthCtrl;..\..\Source\ChangeVolume;..\..\Source\Output\OutputController;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;JUCER_VS2013_78A5020=1;JUCE_APP_VERSION=1.0.0;JUCE_APP_VERSION_HEX=0x10000;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
@@ -133,7 +133,7 @@
     </Bscmake>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\Source\ChangeVolume\ChangeVolume.cpp"/>
+    <ClCompile Include="..\..\Source\Output\OutputController.cpp"/>
     <ClCompile Include="..\..\Source\PluginProcessor.cpp"/>
     <ClCompile Include="..\..\Source\PluginEditor.cpp"/>
     <ClCompile Include="..\..\..\JUCE-LINUX\modules\juce_audio_basics\buffers\juce_AudioDataConverters.cpp">
@@ -1256,7 +1256,7 @@
     <ClCompile Include="..\..\..\JUCE-LINUX\modules\juce_audio_plugin_client\VST3\juce_VST3_Wrapper.cpp"/>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\Source\ChangeVolume\ChangeVolume.h"/>
+    <ClInclude Include="..\..\Source\Output\OutputController.h"/>
     <ClInclude Include="..\..\Source\PluginProcessor.h"/>
     <ClInclude Include="..\..\Source\PluginEditor.h"/>
     <ClInclude Include="..\..\..\JUCE-LINUX\modules\juce_audio_basics\buffers\juce_AudioDataConverters.h"/>
