@@ -7,7 +7,7 @@
               pluginManufacturerCode="Manu" pluginCode="Plug" pluginChannelConfigs="{1, 1}, {2, 2}"
               pluginIsSynth="0" pluginWantsMidiIn="1" pluginProducesMidiOut="1"
               pluginSilenceInIsSilenceOut="0" pluginEditorRequiresKeys="0"
-              pluginAUExportPrefix="DAWTestAU" pluginRTASCategory="" aaxIdentifier="com.yourcompany.DAWTest"
+              pluginAUExportPrefix="DAWTestAU" pluginRTASCategory="" aaxIdentifier="com.mlo_jfree.DAWTest"
               pluginAAXCategory="AAX_ePlugInCategory_Dynamics" jucerVersion="3.1.0">
   <MAINGROUP id="wqcw6L" name="DAWTest">
     <GROUP id="{312F914C-D2B9-28ED-6C75-27A6EF5FB90D}" name="Source">
@@ -23,11 +23,6 @@
               file="Source/Output/OutputController.cpp"/>
         <FILE id="Vr2S7b" name="OutputController.h" compile="0" resource="0"
               file="Source/Output/OutputController.h"/>
-      </GROUP>
-      <GROUP id="{487B687B-19ED-BEA8-1D41-527B4CCB2A2A}" name="ChangeVolume">
-        <FILE id="b0xGcz" name="ChangeVolume.cpp" compile="1" resource="0"
-              file="Source/ChangeVolume/ChangeVolume.cpp"/>
-        <FILE id="XRawg1" name="ChangeVolume.h" compile="0" resource="0" file="Source/ChangeVolume/ChangeVolume.h"/>
       </GROUP>
       <FILE id="vBsLzY" name="PluginProcessor.cpp" compile="1" resource="0"
             file="Source/PluginProcessor.cpp"/>

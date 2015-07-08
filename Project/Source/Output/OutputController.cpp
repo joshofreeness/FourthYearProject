@@ -10,88 +10,41 @@
 
 #include "OutputController.h"
 
-OutputController::OutputController(){}
+OutputController::OutputController(){
+	midiOutput->startBackgroundThread();
+}
 OutputController::~OutputController(){}
 
 
+void OutputController::ClockProcess(MidiBuffer& midiMessages) {
+	//Lots of help from http://www.juce.com/forum/topic/midi-accuracy, particularly comment #12
 
-void OutputController::ClockProcess(juce::MidiBuffer& midiMessages) {
-
-	if (first)
-	{
-		PlayNote(440.0f, 1.0f, 30000);
-		//first = false; //uncommented for constant tone
+	//Notes are being sent far too fast
+	if (Time::getMillisecondCounter() % 500 <= 10) {
+		PlayNote(m_frequency, midiMessages, 2);
 	}
-
-	std::list<MidiMessage*>::const_iterator iterator;
-	for (iterator = scheduledToAddToBuffer.begin(); iterator != scheduledToAddToBuffer.end(); ++iterator) {
-		midiMessages.addEvent(*(*iterator), 1); //the 0 value could cause problems
-	}
-	//TODO: Does the iterator need to be deleted/destroyed?
-
-	scheduledToAddToBuffer.clear();
-
-	//reset pointers (possible race condition)
-	currentOnList = headOnList;
-	currentOffList = headOffList;
-
 }
 
 //This method will schedule a note to be played
-void OutputController::PlayNote(float hertz, float volume, double length)
+void OutputController::PlayNote(float hertz, MidiBuffer& midiMessages, int delay)
 {
-	MidiMessage* midiMessageNoteOn = GetNextFromList(headOnList, currentOnList, true);
-	MidiMessage* midiMessageNoteOff = GetNextFromList(headOffList, currentOffList, false);
-
 	//https://en.wikipedia.org/wiki/MIDI_Tuning_Standard
 	int midiNoteValue = 69 + (12 * log2f(hertz / 440.0f)); //midi note from provided frequency
-	double startingTimeStamp = 1;
 
-	midiMessageNoteOn->setVelocity(volume);
-	midiMessageNoteOn->setChannel(1);
-	midiMessageNoteOn->setNoteNumber(midiNoteValue);
-	midiMessageNoteOn->setTimeStamp(startingTimeStamp);
+	MidiMessage midiMessage = MidiMessage::noteOn(1, midiNoteValue, m_volume);
+	//MidiMessage midiMessageOff = MidiMessage::noteOn(1, midiNoteValue, 0.0f);
+	midiMessage.setTimeStamp(Time::getMillisecondCounter());
+	//midiMessageOff.setTimeStamp(Time::getMillisecondCounter());
 
-	midiMessageNoteOff->setVelocity(volume);
-	midiMessageNoteOff->setChannel(1);
-	midiMessageNoteOff->setNoteNumber(midiNoteValue);
-	midiMessageNoteOff->setTimeStamp(startingTimeStamp + length);
+	double aBpmRatio = (double)60 / 120; //the divisor here is the bpm
+	
+	midiMessages.addEvent(midiMessage, unit * aBpmRatio);
 
-	scheduledToAddToBuffer.push_back(midiMessageNoteOn);
-	//TODO: correct timestamps, this is stopping it instantly
-	//scheduledToAddToBuffer.push_back(midiMessageNoteOff);
-}
+	double time = Time::getMillisecondCounter() + delay; // The time at which the note is to be played. Time::getMillisecondCounter() = current time.
+	midiOutput->sendBlockOfMessages(midiMessages, time, unit);
+	midiMessages.clear();
 
-MidiMessage* OutputController::GetNextFromList(midiNode *head, midiNode *current, bool noteOnMessage)
-{
-	//Handle a completely empty list
-	if (head == nullptr)
-	{
-		head = new midiNode();
-		head->message = NewMidiMessage(noteOnMessage);
-		current = head;
-		return &(head->message);
-	}
-
-	//handle if next is null  (current should never be null)
-	if (current->next == nullptr)
-	{
-		current->next = new midiNode();
-		current->next->message = NewMidiMessage(noteOnMessage);
-		current = current->next;
-		return &(current->message);
-	} else
-	{
-		current = current->next;
-		return &(current->message);
-	}
-}
-
-MidiMessage OutputController::NewMidiMessage(bool noteOnMessage)
-{
-	if (noteOnMessage)
-	{
-		return MidiMessage::noteOn(0, 0, 0.0f);
-	}
-	return  MidiMessage::noteOff(0, 0, 0);
+	//midiMessages.addEvent(midiMessageOff, unit * aBpmRatio);
+	//midiOutput->sendBlockOfMessages(midiMessages, time+1000, unit);
+	//midiMessages.clear();
 }

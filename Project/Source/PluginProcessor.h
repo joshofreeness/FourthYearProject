@@ -11,7 +11,6 @@
 #ifndef PLUGINPROCESSOR_H_INCLUDED
 #define PLUGINPROCESSOR_H_INCLUDED
 
-#include "ChangeVolume.h"
 #include "Output/OutputController.h"
 #include "Input/InputProcessor.h"
 #include "../JuceLibraryCode/JuceHeader.h"
@@ -68,7 +67,7 @@ public:
     void setStateInformation (const void* data, int sizeInBytes) override;
     
     //Custom Methods, Params and Public Data
-    enum Parameters{Volume, totalNumParam};
+    enum Parameters{Volume, Frequency, totalNumParam};
     bool NeedsUIUpdate(){return UIUpdateFlag;};
     void RequestUIUpdate(){UIUpdateFlag=true;};
     void ClearUIUpdateFlag(){UIUpdateFlag=false;};

@@ -16,6 +16,7 @@
 
 namespace juce{
 	class MidiBuffer;
+	class MidiMessage;
 }
 
 struct midiNode
@@ -29,21 +30,22 @@ public:
 	OutputController();
 	~OutputController();
 
-	void ClockProcess(juce::MidiBuffer& midiMessages);
-	void PlayNote(float hertz, float velocity, double length);
+	void ClockProcess(MidiBuffer& midiMessages);
+	void PlayNote(float hertz, MidiBuffer& midiMessages, int delay);
+
+	void SetVolume(float volume){ m_volume = volume; };
+	float GetVolume(void){ return m_volume; };
+
+	void SetFrequency(float frequency) { m_frequency = frequency; };
+	float GetFrequency(void){ return m_frequency; };
+
 private:
-	midiNode *headOnList = nullptr;
-	midiNode *headOffList = nullptr;
-	midiNode *currentOnList = nullptr;
-	midiNode *currentOffList = nullptr;
+	const double unit = 44100.0; // Represents something to do with the number of channels in the sound driver, I think. Most common values 44,100 and 44,400. Idk. Google it.
 
-	std::list<MidiMessage*> scheduledToAddToBuffer;
+	MidiOutput* midiOutput = MidiOutput::openDevice(0);
 
-	bool first = true;
-
-	MidiMessage* GetNextFromList(midiNode* head, midiNode* current, bool onMessage);
-	MidiMessage NewMidiMessage(bool noteOnMessage);
-
+	float m_volume;
+	float m_frequency;
 };
 
 #endif  // OUTPUTCONTROLLER_H_INCLUDED

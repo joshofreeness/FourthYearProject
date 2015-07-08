@@ -306,7 +306,7 @@
  #define JucePlugin_RTASDisableMultiMono   0
 #endif
 #ifndef  JucePlugin_AAXIdentifier
- #define JucePlugin_AAXIdentifier          com.yourcompany.DAWTest
+ #define JucePlugin_AAXIdentifier          com.mlo_jfree.DAWTest
 #endif
 #ifndef  JucePlugin_AAXManufacturerCode
  #define JucePlugin_AAXManufacturerCode    JucePlugin_ManufacturerCode
