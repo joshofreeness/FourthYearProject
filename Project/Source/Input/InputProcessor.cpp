@@ -26,6 +26,7 @@ void InputProcessor::AnalyseBlock() {
 	const float** readPointers = currentBuffer.getArrayOfReadPointers();
 	const float* thePointers = *readPointers;
 
+	currentFrequency = 440.0f;
 	// lol I have no idea what I'm doing
 
 	//for (int channel = 0; channel < number of pointers; ++channel)
@@ -44,4 +45,9 @@ Key_t InputProcessor::GetKey() {
 // Returns the estimated chord of the current block of input.
 Chord_t InputProcessor::GetChord() {
 	return Chord_t::Placeholder1;
+}
+
+float InputProcessor::GetFrequency()
+{
+	return currentFrequency;
 }

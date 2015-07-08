@@ -77,6 +77,19 @@ void DAWTestAudioProcessor::processBlock (AudioSampleBuffer& buffer, MidiBuffer&
     } else {
         //Do processing!
 		mOutputController.ClockProcess(midiMessages);
+
+		mInputProcessor.SetBlock(buffer);
+		mInputProcessor.AnalyseBlock();
+		float currentFreq = mInputProcessor.GetFrequency();
+
+		if (hasEditor())
+		{
+			//DAWTestAudioProcessorEditor *theOne = getActiveEditor();
+			AudioProcessorEditor *temp = getActiveEditor();
+			//TODO: get a reference to the editor and call UpdateGUILabel  
+			//temp->UpdateGUILable("Haha");
+			//DAWTestAudioProcessorEditor *tempDaw = static_cast<DAWTestAudioProcessorEditor>(*temp);
+		}
     }
 }
 

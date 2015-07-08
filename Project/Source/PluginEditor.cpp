@@ -77,6 +77,7 @@ DAWTestAudioProcessorEditor::DAWTestAudioProcessorEditor (DAWTestAudioProcessor&
     lblFrequencyInputDisplay->setColour (Label::textColourId, Colours::white);
     lblFrequencyInputDisplay->setColour (TextEditor::textColourId, Colours::black);
     lblFrequencyInputDisplay->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
+	
 
 
     //[UserPreSize]
@@ -160,6 +161,10 @@ void DAWTestAudioProcessorEditor::sliderValueChanged (Slider* sliderThatWasMoved
     //[/UsersliderValueChanged_Post]
 }
 
+void DAWTestAudioProcessorEditor::UpdateGUILabel(String newText)
+{
+	lblFrequencyInputDisplay->setText(newText, sendNotification);
+}
 
 
 //[MiscUserCode] You can add your own definitions of your custom methods or any other code here...

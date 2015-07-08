@@ -57,6 +57,7 @@ public:
     void resized();
     void sliderValueChanged (Slider* sliderThatWasMoved);
 
+	void UpdateGUILabel(String newText);
 
 
 private:

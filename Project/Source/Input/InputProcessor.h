@@ -28,9 +28,10 @@ public:
 	void AnalyseBlock();
 	Key_t GetKey();
 	Chord_t GetChord();
-	
+	float GetFrequency();
 private:
     juce::AudioSampleBuffer currentBuffer;
+	float currentFrequency;
 };
 
 #endif  // INPUTPROCESSOR_H_INCLUDED
