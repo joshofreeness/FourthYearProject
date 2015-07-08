@@ -75,7 +75,6 @@ public:
 private:
     //Private Data, helper methods etc.
     float UserParams[totalNumParam];
-    ChangeVolume mVolumeControl;
 	bool UIUpdateFlag;
 	OutputController mOutputController;
 	InputProcessor mInputProcessor;
