@@ -12,6 +12,7 @@
 #define PLUGINPROCESSOR_H_INCLUDED
 
 #include "Output/OutputController.h"
+#include "Input/InputProcessor.h"
 #include "../JuceLibraryCode/JuceHeader.h"
 
 //==============================================================================
@@ -74,8 +75,9 @@ public:
 private:
     //Private Data, helper methods etc.
     float UserParams[totalNumParam];
-    bool UIUpdateFlag;
+	bool UIUpdateFlag;
 	OutputController mOutputController;
+	InputProcessor mInputProcessor;
 	//==============================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (DAWTestAudioProcessor)
 };
