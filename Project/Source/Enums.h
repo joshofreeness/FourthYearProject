@@ -18,7 +18,7 @@ enum class Key_t { A, A_sharp, B, C, C_sharp, D, D_sharp, E, F, F_sharp, G, G_sh
 // Not necessary, but I think it'd be worth it because we can ensure no instance ever 
 // leaves that range and also makes the code more readable - 
 // don't have to go look up what the number represents.
-enum class Chord_t { 1, 2, 3, 4, 5, 6, 7 };
+enum class Chord_t { chord_1, chord_2, chord_3, chord_4, chord_5, chord_6, chord_7 };
 
 
 #endif  // ENUMS_H_INCLUDED
