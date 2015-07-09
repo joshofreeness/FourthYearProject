@@ -43,5 +43,5 @@ Key_t InputProcessor::GetKey() {
 
 // Returns the estimated chord of the current block of input.
 Chord_t InputProcessor::GetChord() {
-	return Chord_t::1;
+	return Chord_t::chord_1;
 }
