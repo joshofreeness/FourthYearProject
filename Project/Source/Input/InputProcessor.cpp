@@ -28,10 +28,20 @@ void InputProcessor::AnalyseBlock() {
 
 	for (int channel = 0; channel < numInputChannels; ++channel)
 	{
-		// ChannelData is a pointer to an ARRAY of floats. Access the actual data using channelData[i].
-		// Unfortunately, it looks like it'll be really hard to get the length of channelData (the number of samples in the channel).
+		// pointer to an array of floats (the actual audio samples in the channel).
 		const float* channelData = currentBuffer.getReadPointer(channel);
-		currentFrequency = channelData[0];
+		
+		int i = 0;
+		std::vector<float> samples;
+
+		try {
+			samples.push_back(channelData[i]);
+			i++;
+		} catch (...) {
+		}
+
+		// TODO: Find some way of displaying/logging data to ourselves (maybe add a way to change a text field in the GUI
+		// so we can see things like the number of samples and channels. Would be very useful for our own stuff.
 	}
 }
 
