@@ -25,13 +25,15 @@ public:
 	~InputProcessor();
 
 	void SetBlock(juce::AudioSampleBuffer& buffer);
+	void SetNumInputChannels(int numInputChannels);
 	void AnalyseBlock();
 	Key_t GetKey();
 	Chord_t GetChord();
 	float GetFrequency();
 private:
-    juce::AudioSampleBuffer currentBuffer;
+	juce::AudioSampleBuffer currentBuffer;
 	float currentFrequency;
+	int numInputChannels;
 };
 
 #endif  // INPUTPROCESSOR_H_INCLUDED

@@ -46,7 +46,7 @@ DAWTestAudioProcessorEditor::DAWTestAudioProcessorEditor (DAWTestAudioProcessor&
     lblVolume->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
 
     addAndMakeVisible (sliderFrequency = new Slider ("sliderFrequency"));
-    sliderFrequency->setRange (15, 1200, 1);
+    sliderFrequency->setRange (50, 1200, 1);
     sliderFrequency->setSliderStyle (Slider::LinearHorizontal);
     sliderFrequency->setTextBoxStyle (Slider::TextBoxLeft, false, 80, 20);
     sliderFrequency->addListener (this);
@@ -77,7 +77,6 @@ DAWTestAudioProcessorEditor::DAWTestAudioProcessorEditor (DAWTestAudioProcessor&
     lblFrequencyInputDisplay->setColour (Label::textColourId, Colours::white);
     lblFrequencyInputDisplay->setColour (TextEditor::textColourId, Colours::black);
     lblFrequencyInputDisplay->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
-	
 
 
     //[UserPreSize]
@@ -161,10 +160,6 @@ void DAWTestAudioProcessorEditor::sliderValueChanged (Slider* sliderThatWasMoved
     //[/UsersliderValueChanged_Post]
 }
 
-void DAWTestAudioProcessorEditor::UpdateGUILabel(String newText)
-{
-	lblFrequencyInputDisplay->setText(newText, sendNotification);
-}
 
 
 //[MiscUserCode] You can add your own definitions of your custom methods or any other code here...
@@ -204,7 +199,7 @@ BEGIN_JUCER_METADATA
          editableDoubleClick="0" focusDiscardsChanges="0" fontname="Avenir Next LT Pro"
          fontsize="20" bold="1" italic="0" justification="33"/>
   <SLIDER name="sliderFrequency" id="e42b5e5b430a6417" memberName="sliderFrequency"
-          virtualName="" explicitFocusOrder="0" pos="16 112 560 40" min="15"
+          virtualName="" explicitFocusOrder="0" pos="16 112 560 40" min="50"
           max="1200" int="1" style="LinearHorizontal" textBoxPos="TextBoxLeft"
           textBoxEditable="1" textBoxWidth="80" textBoxHeight="20" skewFactor="1"/>
   <LABEL name="lblFrequency" id="711836deab664bff" memberName="lblFrequency"

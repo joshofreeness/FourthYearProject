@@ -15,26 +15,24 @@ InputProcessor::~InputProcessor(){}
 
 // Sets the current block of audio data to be analysed.
 void InputProcessor::SetBlock(juce::AudioSampleBuffer& buffer) {
-    currentBuffer = buffer;
+	currentBuffer = buffer;
+}
+
+// Sets the current block of audio data to be analysed.
+void InputProcessor::SetNumInputChannels(int number) {
+	numInputChannels = number;
 }
 
 // Analyses the current block of raw audio input.
 void InputProcessor::AnalyseBlock() {
-	//TODO: Actually do something with currentBuffer
-	// https://www.juce.com/api/classAudioSampleBuffer.html
 
-	const float** readPointers = currentBuffer.getArrayOfReadPointers();
-	const float* thePointers = *readPointers;
-
-	currentFrequency = 440.0f;
-	// lol I have no idea what I'm doing
-
-	//for (int channel = 0; channel < number of pointers; ++channel)
-	//{
-	//	float* channelData = buffer.getSampleData(channel);
-	//
-	//	// Do something with channelData
-	//}
+	for (int channel = 0; channel < numInputChannels; ++channel)
+	{
+		// ChannelData is a pointer to an ARRAY of floats. Access the actual data using channelData[i].
+		// Unfortunately, it looks like it'll be really hard to get the length of channelData (the number of samples in the channel).
+		const float* channelData = currentBuffer.getReadPointer(channel);
+		currentFrequency = channelData[0];
+	}
 }
 
 // Returns the estimated key of the current block of input.
