@@ -9,6 +9,28 @@
 */
 
 #include "InputProcessor.h"
+#include <string>
+
+// See http://stackoverflow.com/questions/1149620/how-to-write-to-the-output-window-in-visual-studio for details
+#include <Windows.h>
+#include <iostream>
+#include <sstream>
+
+#define LOG_W( s )            \
+{                             \
+   std::wostringstream os_;    \
+   os_ << s;                   \
+   OutputDebugStringW( os_.str().c_str() );  \
+}
+
+#define LOG( s )            \
+{                             \
+   std::ostringstream os_;    \
+   os_ << s;                   \
+   OutputDebugString( os_.str().c_str() );  \
+}
+
+using namespace std;
 
 InputProcessor::InputProcessor(){}
 InputProcessor::~InputProcessor(){}
@@ -39,6 +61,9 @@ void InputProcessor::AnalyseBlock() {
 			i++;
 		} catch (...) {
 		}
+
+		string test = "This is a test";
+		cout << test;
 
 		// TODO: Find some way of displaying/logging data to ourselves (maybe add a way to change a text field in the GUI
 		// so we can see things like the number of samples and channels. Would be very useful for our own stuff.
