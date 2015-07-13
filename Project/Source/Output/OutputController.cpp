@@ -13,10 +13,13 @@
 // See http://stackoverflow.com/questions/1149620/how-to-write-to-the-output-window-in-visual-studio for details
 // and http://blog.wavosaur.com/debugging-vst-2-4-part-1-visual-studio/ for how to set up Cantabile debugging.
 // you'll need to make the working directory ".\Debug".
-#include <Windows.h>
+
 #include <iostream>
 #include <string>
 #include <sstream>
+
+#ifdef WIN32
+#include <Windows.h>
 
 // Use this for logging on Windows - different characterset or something.
 #define LOG_W( s )            \
@@ -33,6 +36,7 @@
    os_ << s;                   \
    OutputDebugString( os_.str().c_str() );  \
 }
+#endif
 
 using namespace std;
 
@@ -51,11 +55,13 @@ void OutputController::ClockProcess(MidiBuffer& midiMessages) {
 	if (Time::getMillisecondCounter() % 500 <= 10) {
 		PlayNote(m_frequency, midiMessages, 2);
 
+#ifdef WIN32
 		string test = "This is a test\n";
 		LOG_W(test);
 
 		test = "This is also a test\n";
 		LOG(test);
+#endif
 	}
 }
 
