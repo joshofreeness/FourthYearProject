@@ -63,10 +63,7 @@ void InputProcessor::AnalyseBlock() {
 		}
 
 		string test = "This is a test";
-		cout << test;
-
-		// TODO: Find some way of displaying/logging data to ourselves (maybe add a way to change a text field in the GUI
-		// so we can see things like the number of samples and channels. Would be very useful for our own stuff.
+		LOG_W(test);
 	}
 }
 
