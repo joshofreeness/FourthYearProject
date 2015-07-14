@@ -12,8 +12,7 @@
 #define OUTPUTCONTROLLER_H_INCLUDED
 #include <list>
 #include <JuceHeader.h>
-#include "..\..\Logging.h"
-
+#include "../Logging.h"
 
 namespace juce{
 	class MidiBuffer;

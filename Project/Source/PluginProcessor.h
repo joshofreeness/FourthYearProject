@@ -80,6 +80,7 @@ private:
 	bool UIUpdateFlag;
 	OutputController mOutputController;
 	InputProcessor mInputProcessor;
+	bool first = true;
 	//==============================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (DAWTestAudioProcessor)
 };

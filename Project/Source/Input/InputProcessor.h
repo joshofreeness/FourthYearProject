@@ -12,6 +12,7 @@
 #define INPUTPROCESSOR_H_INCLUDED
 
 #include "../Enums.h"
+#include "../Logging.h"
 #include <JuceHeader.h>
 
 namespace juce{
@@ -34,6 +35,8 @@ private:
 	juce::AudioSampleBuffer currentBuffer;
 	float currentFrequency;
 	int numInputChannels;
+
+	bool first = true;
 };
 
 #endif  // INPUTPROCESSOR_H_INCLUDED
