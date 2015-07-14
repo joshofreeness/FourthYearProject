@@ -9,6 +9,7 @@
 */
 
 #include "InputProcessor.h"
+#include "..\..\Logging.h"
 
 InputProcessor::InputProcessor(){}
 InputProcessor::~InputProcessor(){}
@@ -37,6 +38,7 @@ void InputProcessor::AnalyseBlock() {
 		try {
 			samples.push_back(channelData[i]);
 			i++;
+
 		} catch (...) {
 		}
 	}

@@ -11,7 +11,6 @@
 #include "PluginProcessor.h"
 #include "PluginEditor.h"
 #include <cstdint>
-#include "Enums.h"
 
 //==============================================================================
 DAWTestAudioProcessor::DAWTestAudioProcessor()
@@ -76,6 +75,11 @@ void DAWTestAudioProcessor::processBlock (AudioSampleBuffer& buffer, MidiBuffer&
 	if(getNumInputChannels()<2) {
         //Nothing to do here - processing is in-place, so doing nothing is pass-through (for NumInputs=NumOutputs) 
     } else {
+
+		#ifdef WIN32
+			LOG("Number of input channels:")
+			LOG(std::to_string(getNumInputChannels()));
+		#endif
         //Do processing!
 		mOutputController.ClockProcess(midiMessages);
 

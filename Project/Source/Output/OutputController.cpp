@@ -10,34 +10,6 @@
 
 #include "OutputController.h"
 
-// See http://stackoverflow.com/questions/1149620/how-to-write-to-the-output-window-in-visual-studio for details
-// and http://blog.wavosaur.com/debugging-vst-2-4-part-1-visual-studio/ for how to set up Cantabile debugging.
-// you'll need to make the working directory ".\Debug".
-
-#include <iostream>
-#include <string>
-#include <sstream>
-
-#ifdef WIN32
-#include <Windows.h>
-
-// Use this for logging on Windows - different characterset or something.
-#define LOG_W( s )            \
-{                             \
-   std::wostringstream os_;    \
-   os_ << s;                   \
-   OutputDebugStringW( os_.str().c_str() );  \
-}
-
-// Use this for logging on Linux.
-#define LOG( s )            \
-{                             \
-   std::ostringstream os_;    \
-   os_ << s;                   \
-   OutputDebugString( os_.str().c_str() );  \
-}
-#endif
-
 using namespace std;
 
 OutputController::OutputController(){
@@ -54,14 +26,6 @@ void OutputController::ClockProcess(MidiBuffer& midiMessages) {
 	//Notes were being sent far too fast
 	if (Time::getMillisecondCounter() % 500 <= 10) {
 		PlayNote(m_frequency, midiMessages, 2);
-
-#ifdef WIN32
-		string test = "This is a test\n";
-		LOG_W(test);
-
-		test = "This is also a test\n";
-		LOG(test);
-#endif
 	}
 }
 

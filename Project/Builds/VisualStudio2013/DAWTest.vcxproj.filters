@@ -1584,6 +1584,9 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\Source\Logging.h">
+      <Filter>DAWTest\Source</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\Source\Enums.h">
       <Filter>DAWTest\Source</Filter>
     </ClInclude>

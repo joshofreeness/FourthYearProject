@@ -1257,6 +1257,7 @@
     <ClCompile Include="..\..\..\JUCE-LINUX\modules\juce_audio_plugin_client\VST3\juce_VST3_Wrapper.cpp"/>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\Source\Logging.h"/>
     <ClInclude Include="..\..\Source\Enums.h"/>
     <ClInclude Include="..\..\Source\Input\InputProcessor.h"/>
     <ClInclude Include="..\..\Source\Output\OutputController.h"/>

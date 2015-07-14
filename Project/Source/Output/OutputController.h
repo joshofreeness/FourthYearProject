@@ -12,6 +12,7 @@
 #define OUTPUTCONTROLLER_H_INCLUDED
 #include <list>
 #include <JuceHeader.h>
+#include "..\..\Logging.h"
 
 
 namespace juce{
@@ -40,7 +41,7 @@ public:
 	float GetFrequency(void){ return m_frequency; };
 
 private:
-	const double unit = 44100.0; // Represents something to do with the number of channels in the sound driver, I think. Most common values 44,100 and 44,400. Idk. Google it.
+	double unit = 44100.0; // Represents something to do with the number of channels in the sound driver, I think. Most common values 44,100 and 44,400. Idk. Google it.
 
 	MidiOutput* midiOutput = MidiOutput::openDevice(0);
 

@@ -14,6 +14,8 @@
 #include "Output/OutputController.h"
 #include "Input/InputProcessor.h"
 #include "../JuceLibraryCode/JuceHeader.h"
+#include "Enums.h"
+#include "Logging.h"
 
 //==============================================================================
 /**
