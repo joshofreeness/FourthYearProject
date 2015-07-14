@@ -71,11 +71,6 @@ const String DAWTestAudioProcessor::getParameterText (int index) {
 
 //This is where all the audio processing happens
 void DAWTestAudioProcessor::processBlock(AudioSampleBuffer& buffer, MidiBuffer& midiMessages) {
-	if (first) {
-		mInputProcessor.SetNumInputChannels(getNumInputChannels());
-		first = false;
-	}
-
 	if(getNumInputChannels()<2) {
         //Nothing to do here - processing is in-place, so doing nothing is pass-through (for NumInputs=NumOutputs) 
     } else {

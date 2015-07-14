@@ -18,43 +18,36 @@ void InputProcessor::SetBlock(juce::AudioSampleBuffer& buffer) {
 	currentBuffer = buffer;
 }
 
-// Sets the current block of audio data to be analysed.
-void InputProcessor::SetNumInputChannels(int number) {
-	numInputChannels = number;
-}
-
 // Analyses the current block of raw audio input.
 void InputProcessor::AnalyseBlock() {
-	for (int channel = 0; channel < numInputChannels; ++channel)
+#ifdef WIN32
+	LOG("The current number of channels is " + std::to_string(currentBuffer.getNumChannels()));
+#endif
+
+	for (int channel = 0; channel < currentBuffer.getNumChannels(); ++channel)
 	{
 		// Pointer to an array of floats (the actual audio samples in the channel).
 		const float* channelData = currentBuffer.getReadPointer(channel);
 
-		// TODO: Find a way to convert a pointer array to a vector without needing to know the size of the array
-		// Or find a way to get the size of the array
-		std::vector<float> sampleData;
-		
-		float sample1 = channelData[0];
-		float sample2 = channelData[1];
-		float sample3 = channelData[2];
-		float sample4 = channelData[3];
-		float sample5 = channelData[4];
-		float sample6 = channelData[5];
-		float sample7 = channelData[6];
-		float sample8 = channelData[7];
-		float sample9 = channelData[8];
+		std::vector<float> sampleData(*channelData, currentBuffer.getNumSamples());
 
-#ifdef WIN32
-		LOG(std::to_string(sample1));
-		LOG(std::to_string(sample2));
-		LOG(std::to_string(sample3));
-		LOG(std::to_string(sample4));
-		LOG(std::to_string(sample5));
-		LOG(std::to_string(sample6));
-		LOG(std::to_string(sample7));
-		LOG(std::to_string(sample8));
-		LOG(std::to_string(sample9));
-#endif
+		/* http://stackoverflow.com/questions/10158756/using-stdmax-element-on-a-vectordouble
+
+		auto biggest = std::max_element(std::begin(sampleData), std::end(sampleData));
+
+		#ifdef WIN32
+		LOG("The highest magnitude in channel " + std::to_string(channel) + " is " + std::to_string(*biggest)) + " at position " + std::to_string(std::distance(std::begin(sampleData), biggest));
+		#endif 
+
+		*/
+
+		//TODO: Do stuff with the data
+
+		//this will be removed later and is just for investigative purposes
+		// I want to find the frequency with the highest volume (can get the value by currentBuffer.getMagnitude()
+		// and set that as our current frequency, so that our output notes will kind of match the recorded input.
+		juce::Range<float> minAndMax1 = currentBuffer.findMinMax(0, 0, currentBuffer.getNumSamples());
+		juce::Range<float> minAndMax2 = currentBuffer.findMinMax(1, 0, currentBuffer.getNumSamples());
 	}
 }
 
