@@ -20,34 +20,26 @@ void InputProcessor::SetBlock(juce::AudioSampleBuffer& buffer) {
 
 // Analyses the current block of raw audio input.
 void InputProcessor::AnalyseBlock() {
-#ifdef WIN32
-	LOG("The current number of channels is " + std::to_string(currentBuffer.getNumChannels()));
-#endif
-
 	for (int channel = 0; channel < currentBuffer.getNumChannels(); ++channel)
 	{
 		// Pointer to an array of floats (the actual audio samples in the channel).
 		const float* channelData = currentBuffer.getReadPointer(channel);
 
-		std::vector<float> sampleData(*channelData, currentBuffer.getNumSamples());
+		std::vector<float> sampleData(channelData, channelData + currentBuffer.getNumSamples());
 
-		/* http://stackoverflow.com/questions/10158756/using-stdmax-element-on-a-vectordouble
+		// http://stackoverflow.com/questions/10158756/using-stdmax-element-on-a-vectordouble
 
 		auto biggest = std::max_element(std::begin(sampleData), std::end(sampleData));
 
+		int position = std::distance(std::begin(sampleData), biggest);
+
 		#ifdef WIN32
-		LOG("The highest magnitude in channel " + std::to_string(channel) + " is " + std::to_string(*biggest)) + " at position " + std::to_string(std::distance(std::begin(sampleData), biggest));
+			LOG("currentBuffer.getNumSamples() is " + std::to_string(currentBuffer.getNumSamples()));
+			LOG("The size of the vector is " + std::to_string(sampleData.size()));
+			LOG("The highest magnitude in channel " + std::to_string(channel) + " is " + std::to_string(*biggest) + " at position " + std::to_string(position));
 		#endif 
 
-		*/
-
-		//TODO: Do stuff with the data
-
-		//this will be removed later and is just for investigative purposes
-		// I want to find the frequency with the highest volume (can get the value by currentBuffer.getMagnitude()
-		// and set that as our current frequency, so that our output notes will kind of match the recorded input.
-		juce::Range<float> minAndMax1 = currentBuffer.findMinMax(0, 0, currentBuffer.getNumSamples());
-		juce::Range<float> minAndMax2 = currentBuffer.findMinMax(1, 0, currentBuffer.getNumSamples());
+		//TODO: Temporary thing matching output frequency to input.
 	}
 }
 
