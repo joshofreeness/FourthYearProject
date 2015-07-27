@@ -13,4 +13,9 @@
 NoteAnalyser::NoteAnalyser(){}
 NoteAnalyser::~NoteAnalyser(){}
 
-//TODO: Sort out the list of functions to go here and start writing them.
+//TODO: Look at the current (and previous) notes and chords, determine which note should be played next (probability/Markov/whatever), and return its frequency.
+float NoteAnalyser::getNote() {
+	return 0;
+}
+
+//TODO: Sort out what other functions may be needed.

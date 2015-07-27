@@ -19,6 +19,8 @@ class NoteAnalyser {
 public:
 	NoteAnalyser();
 	~NoteAnalyser();
+
+	float getNote();
 };
 
 
