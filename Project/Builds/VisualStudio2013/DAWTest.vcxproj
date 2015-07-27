@@ -133,6 +133,7 @@
     </Bscmake>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\Source\Analysis\NoteAnalyser.cpp"/>
     <ClCompile Include="..\..\Source\Input\InputProcessor.cpp"/>
     <ClCompile Include="..\..\Source\Output\OutputController.cpp"/>
     <ClCompile Include="..\..\Source\PluginProcessor.cpp"/>
@@ -1257,6 +1258,7 @@
     <ClCompile Include="..\..\..\JUCE-LINUX\modules\juce_audio_plugin_client\VST3\juce_VST3_Wrapper.cpp"/>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\Source\Analysis\NoteAnalyser.h"/>
     <ClInclude Include="..\..\Source\Logging.h"/>
     <ClInclude Include="..\..\Source\Enums.h"/>
     <ClInclude Include="..\..\Source\Input\InputProcessor.h"/>

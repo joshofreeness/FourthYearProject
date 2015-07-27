@@ -51,6 +51,7 @@ ifeq ($(CONFIG),Release)
 endif
 
 OBJECTS := \
+  $(OBJDIR)/NoteAnalyser_dccfee45.o \
   $(OBJDIR)/InputProcessor_d1793ef6.o \
   $(OBJDIR)/OutputController_5edcc5cc.o \
   $(OBJDIR)/PluginProcessor_a059e380.o \
@@ -88,6 +89,11 @@ clean:
 strip:
 	@echo Stripping DAWTest
 	-@strip --strip-unneeded $(OUTDIR)/$(TARGET)
+
+$(OBJDIR)/NoteAnalyser_dccfee45.o: ../../Source/Analysis/NoteAnalyser.cpp
+	-@mkdir -p $(OBJDIR)
+	@echo "Compiling NoteAnalyser.cpp"
+	@$(CXX) $(CXXFLAGS) -o "$@" -c "$<"
 
 $(OBJDIR)/InputProcessor_d1793ef6.o: ../../Source/Input/InputProcessor.cpp
 	-@mkdir -p $(OBJDIR)
