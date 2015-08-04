@@ -7,12 +7,12 @@
   the "//[xyz]" and "//[/xyz]" sections will be retained when the file is loaded
   and re-saved.
 
-  Created with Introjucer version: 3.1.0
+  Created with Introjucer version: 3.2.0
 
   ------------------------------------------------------------------------------
 
   The Introjucer is part of the JUCE library - "Jules' Utility Class Extensions"
-  Copyright 2004-13 by Raw Material Software Ltd.
+  Copyright (c) 2015 - ROLI Ltd.
 
   ==============================================================================
 */
@@ -30,6 +30,9 @@
 DAWTestAudioProcessorEditor::DAWTestAudioProcessorEditor (DAWTestAudioProcessor& ownerFilter)
     : AudioProcessorEditor(ownerFilter)
 {
+    //[Constructor_pre] You can add your own custom stuff here..
+    //[/Constructor_pre]
+
     addAndMakeVisible (sliderVolume = new Slider ("sliderVolume"));
     sliderVolume->setRange (0, 1, 0.01);
     sliderVolume->setSliderStyle (Slider::LinearHorizontal);

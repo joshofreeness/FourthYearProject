@@ -33,6 +33,7 @@ public:
 private:
 	juce::AudioSampleBuffer currentBuffer;
 	float currentFrequency;
+	FFT *fastFourierTransformObject;
 };
 
 #endif  // INPUTPROCESSOR_H_INCLUDED
