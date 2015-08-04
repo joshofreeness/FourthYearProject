@@ -40,6 +40,8 @@ void InputProcessor::AnalyseBlock() {
 		#endif 
 
 		//TODO: Temporary thing matching output frequency to input.
+		//	juce::FFT::performFrequencyOnlyForwardTransform(currentBuffer);
+		//	juce::
 	}
 }
 
