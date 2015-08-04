@@ -20,7 +20,14 @@ public:
 	NoteAnalyser();
 	~NoteAnalyser();
 
+	void setFrequency(float frequency) { frequency = frequency; };
+	void setAmplitude(float amplitude) { amplitude = amplitude; };
+
 	float getNote();
+
+private:
+	float frequency;
+	float amplitude;
 };
 
 

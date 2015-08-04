@@ -13,9 +13,9 @@
 NoteAnalyser::NoteAnalyser(){}
 NoteAnalyser::~NoteAnalyser(){}
 
-//TODO: Look at the current (and previous) notes and chords, determine which note should be played next (probability/Markov/whatever), and return its frequency.
+// Look at the current (and previous) notes and chords, determine which note should be played next (probability/Markov/whatever), and return its frequency.
 float NoteAnalyser::getNote() {
-	return 0;
+	return frequency;
 }
 
 //TODO: Sort out what other functions may be needed.
