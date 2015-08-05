@@ -39,6 +39,17 @@ void InputProcessor::AnalyseBlock() {
 			LOG("The highest magnitude in channel " + std::to_string(channel) + " is " + std::to_string(*biggest) + " at position " + std::to_string(position));
 		#endif 
 
+		#ifdef WIN32
+			// Print all sample data from the first block processed
+			// So it can be graphed and we can try to figure out what it means
+			if (first) {
+				for (int i = 0; i < currentBuffer.getNumSamples(); i++) {
+					LOG(std::to_string(sampleData[i]));
+				}
+				first = false;
+			}
+		#endif
+
 		//TODO: Temporary thing matching output frequency to input.
 		//	juce::FFT::performFrequencyOnlyForwardTransform(currentBuffer);
 		//	juce::
