@@ -33,7 +33,6 @@ public:
 private:
 	juce::AudioSampleBuffer currentBuffer;
 	float currentFrequency;
-	bool first = true;
 };
 
 #endif  // INPUTPROCESSOR_H_INCLUDED

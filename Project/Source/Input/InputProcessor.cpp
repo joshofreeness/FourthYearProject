@@ -34,19 +34,10 @@ void InputProcessor::AnalyseBlock() {
 		int position = std::distance(std::begin(sampleData), biggest);
 
 		#ifdef WIN32
-			LOG("currentBuffer.getNumSamples() is " + std::to_string(currentBuffer.getNumSamples()));
-			LOG("The size of the vector is " + std::to_string(sampleData.size()));
-			LOG("The highest magnitude in channel " + std::to_string(channel) + " is " + std::to_string(*biggest) + " at position " + std::to_string(position));
-		#endif 
-
-		#ifdef WIN32
 			// Print all sample data from the first block processed
 			// So it can be graphed and we can try to figure out what it means
-			if (first) {
-				for (int i = 0; i < currentBuffer.getNumSamples(); i++) {
-					LOG(std::to_string(sampleData[i]));
-				}
-				first = false;
+			for (int i = 0; i < currentBuffer.getNumSamples(); i++) {
+				LOG(std::to_string(sampleData[i]));
 			}
 		#endif
 
