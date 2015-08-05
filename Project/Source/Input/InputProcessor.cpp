@@ -12,7 +12,7 @@
 
 InputProcessor::InputProcessor()
 {
-	fastFourierTransformObject = new FFT(2, false);
+	fastFourierTransformObject = new FFT(9, false);
 }
 InputProcessor::~InputProcessor(){}
 
@@ -29,22 +29,25 @@ void InputProcessor::AnalyseBlock() {
 		//const float* channelData = currentBuffer.getReadPointer(channel);
 		float* channelData = currentBuffer.getWritePointer(channel);
 
-		std::vector<float> sampleData(channelData, channelData + currentBuffer.getNumSamples());
+		//std::vector<float> sampleData(channelData, channelData + currentBuffer.getNumSamples());
 
 		// http://stackoverflow.com/questions/10158756/using-stdmax-element-on-a-vectordouble
 
-		auto biggest = std::max_element(std::begin(sampleData), std::end(sampleData));
+		//auto biggest = std::max_element(std::begin(sampleData), std::end(sampleData));
 
-		int position = std::distance(std::begin(sampleData), biggest);
+		//int position = std::distance(std::begin(sampleData), biggest);
 
-		#ifdef WIN32
-			LOG("currentBuffer.getNumSamples() is " + std::to_string(currentBuffer.getNumSamples()));
-			LOG("The size of the vector is " + std::to_string(sampleData.size()));
-			LOG("The highest magnitude in channel " + std::to_string(channel) + " is " + std::to_string(*biggest) + " at position " + std::to_string(position));
-		#endif 
+#if FALSE//#ifdef WIN32
+		LOG("currentBuffer.getNumSamples() is " + std::to_string(currentBuffer.getNumSamples()));
+		LOG("The size of the vector is " + std::to_string(sampleData.size()));
+		LOG("The highest magnitude in channel " + std::to_string(channel) + " is " + std::to_string(*biggest) + " at position " + std::to_string(position));
+#endif 
 
 		//THIS method supposidly does a FFT but I don't know what order it should be nore how to get meaningful data back from it
 			fastFourierTransformObject->performFrequencyOnlyForwardTransform(channelData);
+
+			std::vector<float> sampleData(channelData, channelData + currentBuffer.getNumSamples());
+			auto biggest = std::max_element(std::begin(sampleData), std::end(sampleData));
 	}
 }
 

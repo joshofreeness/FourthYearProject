@@ -24,9 +24,9 @@ void OutputController::ClockProcess(MidiBuffer& midiMessages) {
 	//Lots of help from http://www.juce.com/forum/topic/midi-accuracy, particularly comment #12
 
 	//Notes were being sent far too fast
-	if (Time::getMillisecondCounter() % 500 <= 10) {
-		PlayNote(m_frequency, midiMessages, 2);
-	}
+	//if (Time::getMillisecondCounter() % 500 <= 10) {
+	//	PlayNote(m_frequency, midiMessages, 2);
+	//}
 }
 
 //This method will schedule a note to be played
