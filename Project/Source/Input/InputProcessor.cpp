@@ -44,6 +44,15 @@ void InputProcessor::AnalyseBlock() {
 		//TODO: Temporary thing matching output frequency to input.
 		//	juce::FFT::performFrequencyOnlyForwardTransform(currentBuffer);
 		//	juce::
+
+		/* FFT docs and useful links:
+		http://www.juce.com/forum/topic/open-source-fft-plugin
+		https://github.com/aaronleese/FFT-Plugin
+		http://learn.juce.com/doc/classFFT.php
+
+		Also look into this once we think we have a calculated frequency value:
+		http://www.juce.com/forum/topic/best-way-update-gui-parameters
+		*/
 	}
 }
 
