@@ -34,10 +34,14 @@ void InputProcessor::AnalyseBlock() {
 		int position = std::distance(std::begin(sampleData), biggest);
 
 		#ifdef WIN32
-			// Print all sample data from the first block processed
-			// So it can be graphed and we can try to figure out what it means
-			for (int i = 0; i < currentBuffer.getNumSamples(); i++) {
-				LOG(std::to_string(sampleData[i]));
+			//To stop it printing thousands of lines per second
+			if (rand() % 1000 == 1) {
+				LOG("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
+				// Print all sample data from the first block processed
+				// So it can be graphed and we can try to figure out what it means
+				for (int i = 0; i < currentBuffer.getNumSamples(); i++) {
+					LOG(std::to_string(sampleData[i]));
+				}
 			}
 		#endif
 
