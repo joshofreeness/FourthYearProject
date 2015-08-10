@@ -26,6 +26,8 @@ public:
 	float getNote();
 
 private:
+	void placeholderProbabilityStuff();
+
 	float frequency;
 	float amplitude;
 };

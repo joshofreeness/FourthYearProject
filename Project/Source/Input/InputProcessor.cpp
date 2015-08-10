@@ -43,11 +43,37 @@ void InputProcessor::AnalyseBlock() {
 		LOG("The highest magnitude in channel " + std::to_string(channel) + " is " + std::to_string(*biggest) + " at position " + std::to_string(position));
 #endif 
 
+
 		//THIS method supposidly does a FFT but I don't know what order it should be nore how to get meaningful data back from it
 			fastFourierTransformObject->performFrequencyOnlyForwardTransform(channelData);
 
 			std::vector<float> sampleData(channelData, channelData + currentBuffer.getNumSamples());
 			auto biggest = std::max_element(std::begin(sampleData), std::end(sampleData));
+
+#ifdef WIN32
+			//To stop it printing thousands of lines per second
+			if (rand() % 1000 == 1) {
+				LOG("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
+				// Print all sample data from the first block processed
+				// So it can be graphed and we can try to figure out what it means
+				for (int i = 0; i < currentBuffer.getNumSamples(); i++) {
+					LOG(std::to_string(sampleData[i]));
+				}
+			}
+#endif
+
+		//TODO: Temporary thing matching output frequency to input.
+		//	juce::FFT::performFrequencyOnlyForwardTransform(currentBuffer);
+		//	juce::
+
+		/* FFT docs and useful links:
+		http://www.juce.com/forum/topic/open-source-fft-plugin
+		https://github.com/aaronleese/FFT-Plugin
+		http://learn.juce.com/doc/classFFT.php
+
+		Also look into this once we think we have a calculated frequency value:
+		http://www.juce.com/forum/topic/best-way-update-gui-parameters
+		*/
 	}
 }
 

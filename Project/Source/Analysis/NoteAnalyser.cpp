@@ -19,3 +19,22 @@ float NoteAnalyser::getNote() {
 }
 
 //TODO: Sort out what other functions may be needed.
+void placeholderProbabilityStuff() {
+	/*
+	Next note to play:	1	2	3	4	5	6	7	8
+	Current note:	1
+					2
+					3
+					4
+					5
+					6
+					7
+					8
+	*/
+
+	//TODO: Figure out how to move this into the header without causing compile errors.
+	std::vector<std::vector<float>> theMatrix;
+
+	// Creates a 2D vector of size 8x8, filled with 0s - our Markov probability matrix.
+	theMatrix.resize(8, std::vector<float>(8, 0));
+}
