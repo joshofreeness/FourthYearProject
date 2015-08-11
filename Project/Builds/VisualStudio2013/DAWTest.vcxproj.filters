@@ -331,6 +331,9 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\Source\Analysis\FFT.cpp">
+      <Filter>DAWTest\Source\Analysis</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\Source\Analysis\NoteAnalyser.cpp">
       <Filter>DAWTest\Source\Analysis</Filter>
     </ClCompile>
@@ -1602,6 +1605,9 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\Source\Analysis\FFT.h">
+      <Filter>DAWTest\Source\Analysis</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\Source\Analysis\NoteAnalyser.h">
       <Filter>DAWTest\Source\Analysis</Filter>
     </ClInclude>

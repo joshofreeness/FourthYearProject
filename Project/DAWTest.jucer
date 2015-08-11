@@ -12,6 +12,8 @@
   <MAINGROUP id="wqcw6L" name="DAWTest">
     <GROUP id="{312F914C-D2B9-28ED-6C75-27A6EF5FB90D}" name="Source">
       <GROUP id="{9A3812E0-D5F5-50AC-AA93-DECBC129F46F}" name="Analysis">
+        <FILE id="EhSIaO" name="FFT.cpp" compile="1" resource="0" file="Source/Analysis/FFT.cpp"/>
+        <FILE id="Ne4lmo" name="FFT.h" compile="0" resource="0" file="Source/Analysis/FFT.h"/>
         <FILE id="g1gWxO" name="NoteAnalyser.cpp" compile="1" resource="0"
               file="Source/Analysis/NoteAnalyser.cpp"/>
         <FILE id="tpN8mW" name="NoteAnalyser.h" compile="0" resource="0" file="Source/Analysis/NoteAnalyser.h"/>

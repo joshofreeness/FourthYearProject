@@ -49,6 +49,7 @@ ifeq ($(CONFIG),Release)
 endif
 
 OBJECTS := \
+  $(OBJDIR)/FFT_302329ea.o \
   $(OBJDIR)/NoteAnalyser_dccfee45.o \
   $(OBJDIR)/InputProcessor_d1793ef6.o \
   $(OBJDIR)/OutputController_5edcc5cc.o \
@@ -87,6 +88,11 @@ clean:
 strip:
 	@echo Stripping DAWTest
 	-@strip --strip-unneeded $(OUTDIR)/$(TARGET)
+
+$(OBJDIR)/FFT_302329ea.o: ../../Source/Analysis/FFT.cpp
+	-@mkdir -p $(OBJDIR)
+	@echo "Compiling FFT.cpp"
+	@$(CXX) $(CXXFLAGS) -o "$@" -c "$<"
 
 $(OBJDIR)/NoteAnalyser_dccfee45.o: ../../Source/Analysis/NoteAnalyser.cpp
 	-@mkdir -p $(OBJDIR)
