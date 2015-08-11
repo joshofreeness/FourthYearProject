@@ -10,6 +10,7 @@
 
 #ifndef FFT_H_INCLUDED
 #define FFT_H_INCLUDED
+#include <vector>
 
 namespace Analysis{
 	class FFT
@@ -17,8 +18,9 @@ namespace Analysis{
 	public:
 		FFT();
 		~FFT();
-		static float* PerformFFT(float* data, int length);
+		static float* PerformFFT(std::vector<float> data, int length);
 	private:
+		static void ditfft2(std::vector<float> freqXModify, std::vector<float> xArray, int xStart, int N, int s);
 	};
 
 }

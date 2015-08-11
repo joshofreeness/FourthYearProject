@@ -9,6 +9,10 @@
 */
 
 #include "FFT.h"
+#define _USE_MATH_DEFINES
+#include <math.h>
+
+
 
 Analysis::FFT::FFT(){};
 Analysis::FFT::~FFT(){};
@@ -41,9 +45,31 @@ X0,...,N-1 <- ditfft2(x, N, s):             DFT of (x0, xs, x2s, ..., x(N-1)s):
 ==============================================================================
 */
 
-float* Analysis::FFT::PerformFFT(float* data, int length)
+float* Analysis::FFT::PerformFFT(std::vector<float> data, int length)
 {
-	
+	std::vector<float>* freqX = new std::vector<float>(length);
+	ditfft2(*freqX, data, 0, length, 1);
+
 	float temp = 2.0f;
 	return &temp;
+}
+
+//I am going to use vector for now for ease of coding, might be faster to change to pointers later
+void Analysis::FFT::ditfft2(std::vector<float> freqXModify, std::vector<float> xArray, int xStart, int n, int s)
+{
+	if (n = 1)
+	{
+		freqXModify[xStart] = xArray[xStart];
+	} else
+	{
+		ditfft2(freqXModify, xArray, xStart, n/2, 2*s);
+		ditfft2(freqXModify, xArray, xStart+s, n / 2, 2 * s);
+
+		for (int k = 0; k < (n / 2 - 1); k++)
+		{
+			float t = freqXModify[k];
+			freqXModify[k] = t + exp(-2 * M_PI /*time (i)- WHAT IS "I"???*/) * freqXModify[k+n/2];
+			freqXModify[k + n / 2] = t - exp(-2 * M_PI /*time (i)- WHAT IS "I"???*/) * freqXModify[k + n / 2];
+		}
+	}
 }

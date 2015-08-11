@@ -28,7 +28,9 @@ void InputProcessor::AnalyseBlock() {
 	if (currentBuffer.getNumChannels() >0)
 	{
 		//perform fourier transform TODO: is this the right place for it? probs not
-		Analysis::FFT::PerformFFT(currentBuffer.getWritePointer(0), currentBuffer.getNumSamples());
+		float* channelData = currentBuffer.getWritePointer(0);
+		std::vector<float> sampleData(channelData, channelData + currentBuffer.getNumSamples());
+		Analysis::FFT::PerformFFT(sampleData, currentBuffer.getNumSamples());
 	}
 	for (int channel = 0; channel < currentBuffer.getNumChannels(); ++channel)
 	{
