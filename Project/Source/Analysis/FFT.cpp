@@ -10,8 +10,8 @@
 
 #include "FFT.h"
 
-FFT::FFT(){};
-FFT::~FFT(){};
+Analysis::FFT::FFT(){};
+Analysis::FFT::~FFT(){};
 
 
 /*
@@ -41,7 +41,7 @@ X0,...,N-1 <- ditfft2(x, N, s):             DFT of (x0, xs, x2s, ..., x(N-1)s):
 ==============================================================================
 */
 
-float* FFT::PerformFFT(float* data, int length)
+float* Analysis::FFT::PerformFFT(float* data, int length)
 {
 	
 	float temp = 2.0f;

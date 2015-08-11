@@ -9,6 +9,7 @@
 */
 
 #include "InputProcessor.h"
+#include "../Analysis/FFT.h"
 
 InputProcessor::InputProcessor()
 {
@@ -23,6 +24,12 @@ void InputProcessor::SetBlock(juce::AudioSampleBuffer& buffer) {
 
 // Analyses the current block of raw audio input.
 void InputProcessor::AnalyseBlock() {
+	//For most audio setups the audio will either be mono, or both tracks will be the same
+	if (currentBuffer.getNumChannels() >0)
+	{
+		//perform fourier transform TODO: is this the right place for it? probs not
+		Analysis::FFT::PerformFFT(currentBuffer.getWritePointer(0), currentBuffer.getNumSamples());
+	}
 	for (int channel = 0; channel < currentBuffer.getNumChannels(); ++channel)
 	{
 		// Pointer to an array of floats (the actual audio samples in the channel).
@@ -43,12 +50,12 @@ void InputProcessor::AnalyseBlock() {
 		LOG("The highest magnitude in channel " + std::to_string(channel) + " is " + std::to_string(*biggest) + " at position " + std::to_string(position));
 #endif 
 
-
+		//juce FFT code - being replaced
 		//THIS method supposidly does a FFT but I don't know what order it should be nore how to get meaningful data back from it
-			fastFourierTransformObject->performFrequencyOnlyForwardTransform(channelData);
+			//fastFourierTransformObject->performFrequencyOnlyForwardTransform(channelData);
 
 			std::vector<float> sampleData(channelData, channelData + currentBuffer.getNumSamples());
-			auto biggest = std::max_element(std::begin(sampleData), std::end(sampleData));
+			//auto biggest = std::max_element(std::begin(sampleData), std::end(sampleData));
 
 #ifdef WIN32
 			//To stop it printing thousands of lines per second

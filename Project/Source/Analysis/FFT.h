@@ -11,16 +11,17 @@
 #ifndef FFT_H_INCLUDED
 #define FFT_H_INCLUDED
 
-class FFT
-{
-public:
-	FFT();
-	~FFT();
-	float* PerformFFT(float* data, int length);
-private:
-};
+namespace Analysis{
+	class FFT
+	{
+	public:
+		FFT();
+		~FFT();
+		static float* PerformFFT(float* data, int length);
+	private:
+	};
 
-
+}
 
 
 #endif  // FFT_H_INCLUDED
