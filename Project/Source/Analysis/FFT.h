@@ -16,7 +16,7 @@ class FFT
 public:
 	FFT();
 	~FFT();
-	float* FFT::PerformFFT(float* data, int length);
+	float* PerformFFT(float* data, int length);
 private:
 };
 
