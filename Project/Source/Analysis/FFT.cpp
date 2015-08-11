@@ -11,7 +11,7 @@
 #include "FFT.h"
 #define _USE_MATH_DEFINES
 #include <math.h>
-
+#include <complex>
 
 
 Analysis::FFT::FFT(){};
@@ -64,12 +64,17 @@ void Analysis::FFT::ditfft2(std::vector<float> freqXModify, std::vector<float> x
 	{
 		ditfft2(freqXModify, xArray, xStart, n/2, 2*s);
 		ditfft2(freqXModify, xArray, xStart+s, n / 2, 2 * s);
+		
 
 		for (int k = 0; k < (n / 2 - 1); k++)
 		{
+			std::complex<float>* twiddleFactor = new std::complex<float>();
+			twiddleFactor->imag(-2 * M_PI);
+			twiddleFactor->real(k/n);
+
 			float t = freqXModify[k];
-			freqXModify[k] = t + exp(-2 * M_PI /*time (i)- WHAT IS "I"???*/) * freqXModify[k+n/2];
-			freqXModify[k + n / 2] = t - exp(-2 * M_PI /*time (i)- WHAT IS "I"???*/) * freqXModify[k + n / 2];
+			//freqXModify[k] = t + exp(*twiddleFactor) * freqXModify[k + n / 2];
+			//freqXModify[k + n / 2] = t - exp(*twiddleFactor) * freqXModify[k + n / 2];
 		}
 	}
 }
