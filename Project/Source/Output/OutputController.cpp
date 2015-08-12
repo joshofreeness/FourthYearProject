@@ -37,6 +37,9 @@ void OutputController::PlayNote(float hertz, MidiBuffer& midiMessages, int delay
 	if (midiNoteValue > 128) {
 		midiNoteValue = 128;
 	}
+	else if (midiNoteValue < 1) {
+		midiNoteValue = 1;
+	}
 
 	MidiMessage midiMessage = MidiMessage::noteOn(1, midiNoteValue, m_volume);
 	//MidiMessage midiMessageOff = MidiMessage::noteOn(1, midiNoteValue, 0.0f);
