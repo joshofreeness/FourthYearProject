@@ -130,5 +130,4 @@ void Input::FFT::perform_FFT(float data[], unsigned long number_of_samples, unsi
 	//since the array of complex has the format [real][complex]=>[absolute value]
 	//the maximum absolute value must be ajusted to half
 	fundamental_frequency=(long)floor((float)fundamental_frequency/2);
-
 }
