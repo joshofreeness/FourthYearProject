@@ -10,7 +10,7 @@
 */
 
 #include <math.h>
-#include ".\FFT.h"
+#include "./FFT.h"
 
 #define SWAP(a,b) tempr=(a); (a)=(b); (b)=tempr
 
