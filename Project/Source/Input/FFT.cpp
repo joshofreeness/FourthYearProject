@@ -12,6 +12,10 @@
 #include <math.h>
 #include "./FFT.h"
 
+#ifndef NULL
+	#define NULL 0
+#endif
+
 #define SWAP(a,b) tempr=(a); (a)=(b); (b)=tempr
 
 Input::FFT::FFT(void)
