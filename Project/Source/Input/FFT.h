@@ -12,18 +12,17 @@
 #define FFT_H_INCLUDED
 #include <vector>
 
-namespace Analysis{
+namespace Input{
 	class FFT
 	{
 	public:
-		FFT();
-		~FFT();
-		static float* PerformFFT(std::vector<float> data, int length);
-	private:
-		static void ditfft2(std::vector<float> freqXModify, std::vector<float> xArray, int xStart, int N, int s);
+		double pi;
+		unsigned long int fundamental_frequency;
+		float *vector;
+		FFT(void);
+		~FFT(void);
+		// FFT 1D
+		void perform_FFT(float data[], unsigned long number_of_samples, unsigned int sample_rate, int sign);
 	};
-
 }
-
-
 #endif  // FFT_H_INCLUDED
