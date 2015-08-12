@@ -12,8 +12,6 @@
   <MAINGROUP id="wqcw6L" name="DAWTest">
     <GROUP id="{312F914C-D2B9-28ED-6C75-27A6EF5FB90D}" name="Source">
       <GROUP id="{9A3812E0-D5F5-50AC-AA93-DECBC129F46F}" name="Analysis">
-        <FILE id="EhSIaO" name="FFT.cpp" compile="1" resource="0" file="Source/Analysis/FFT.cpp"/>
-        <FILE id="Ne4lmo" name="FFT.h" compile="0" resource="0" file="Source/Analysis/FFT.h"/>
         <FILE id="g1gWxO" name="NoteAnalyser.cpp" compile="1" resource="0"
               file="Source/Analysis/NoteAnalyser.cpp"/>
         <FILE id="tpN8mW" name="NoteAnalyser.h" compile="0" resource="0" file="Source/Analysis/NoteAnalyser.h"/>
@@ -21,6 +19,8 @@
       <FILE id="TTxG9h" name="Logging.h" compile="0" resource="0" file="Source/Logging.h"/>
       <FILE id="W0pRlc" name="Enums.h" compile="0" resource="0" file="Source/Enums.h"/>
       <GROUP id="{EC824676-9CE1-4323-D469-72C8F3D05FDB}" name="Input">
+        <FILE id="eYJuFL" name="FFT.cpp" compile="1" resource="0" file="Source/Input/FFT.cpp"/>
+        <FILE id="XTefi2" name="FFT.h" compile="0" resource="0" file="Source/Input/FFT.h"/>
         <FILE id="hToCi4" name="InputProcessor.cpp" compile="1" resource="0"
               file="Source/Input/InputProcessor.cpp"/>
         <FILE id="X1u9Y1" name="InputProcessor.h" compile="0" resource="0"

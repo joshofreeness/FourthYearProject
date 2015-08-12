@@ -49,8 +49,8 @@ ifeq ($(CONFIG),Release)
 endif
 
 OBJECTS := \
-  $(OBJDIR)/FFT_302329ea.o \
   $(OBJDIR)/NoteAnalyser_dccfee45.o \
+  $(OBJDIR)/FFT_aa2de5b0.o \
   $(OBJDIR)/InputProcessor_d1793ef6.o \
   $(OBJDIR)/OutputController_5edcc5cc.o \
   $(OBJDIR)/PluginProcessor_a059e380.o \
@@ -89,14 +89,14 @@ strip:
 	@echo Stripping DAWTest
 	-@strip --strip-unneeded $(OUTDIR)/$(TARGET)
 
-$(OBJDIR)/FFT_302329ea.o: ../../Source/Analysis/FFT.cpp
-	-@mkdir -p $(OBJDIR)
-	@echo "Compiling FFT.cpp"
-	@$(CXX) $(CXXFLAGS) -o "$@" -c "$<"
-
 $(OBJDIR)/NoteAnalyser_dccfee45.o: ../../Source/Analysis/NoteAnalyser.cpp
 	-@mkdir -p $(OBJDIR)
 	@echo "Compiling NoteAnalyser.cpp"
+	@$(CXX) $(CXXFLAGS) -o "$@" -c "$<"
+
+$(OBJDIR)/FFT_aa2de5b0.o: ../../Source/Input/FFT.cpp
+	-@mkdir -p $(OBJDIR)
+	@echo "Compiling FFT.cpp"
 	@$(CXX) $(CXXFLAGS) -o "$@" -c "$<"
 
 $(OBJDIR)/InputProcessor_d1793ef6.o: ../../Source/Input/InputProcessor.cpp
