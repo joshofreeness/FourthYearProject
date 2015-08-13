@@ -26,3 +26,6 @@ plot(f, sampleData_fft)
 xlabel('Frequency (Hz)')
 ylabel('Amplitude')
 title('Frequency Response of sampleData')
+
+[frequency, amplitude] = max(sampleData_fft)
+%TODO: print highest frequency and its magnitude
