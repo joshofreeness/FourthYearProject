@@ -82,7 +82,7 @@ void DAWTestAudioProcessor::processBlock(AudioSampleBuffer& buffer, MidiBuffer& 
 
 		float currentFreq = mInputProcessor.GetFrequency();
 
-		float note = mInputProcessor.GetFrequency();
+		float note = currentFreq;
 		//float note = mNoteAnalyser.getNote();
 		//TODO: Uncomment this when it returns a real frequency value and not just 0
 		

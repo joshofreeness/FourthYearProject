@@ -19,15 +19,15 @@
       <FILE id="TTxG9h" name="Logging.h" compile="0" resource="0" file="Source/Logging.h"/>
       <FILE id="W0pRlc" name="Enums.h" compile="0" resource="0" file="Source/Enums.h"/>
       <GROUP id="{EC824676-9CE1-4323-D469-72C8F3D05FDB}" name="Input">
-        <FILE id="AEKP9d" name="_kiss_fft_guts.h" compile="0" resource="0"
-              file="Source/Input/_kiss_fft_guts.h"/>
-        <FILE id="FC1Yuv" name="kiss_fft.c" compile="1" resource="0" file="Source/Input/kiss_fft.c"/>
-        <FILE id="kOIKPN" name="kiss_fft.h" compile="0" resource="0" file="Source/Input/kiss_fft.h"/>
-        <FILE id="aoQuj6" name="kiss_fftr.c" compile="1" resource="0" file="Source/Input/kiss_fftr.c"/>
-        <FILE id="IkqnzH" name="kiss_fftr.h" compile="0" resource="0" file="Source/Input/kiss_fftr.h"/>
-        <FILE id="SoVU7x" name="kissfft.hh" compile="0" resource="0" file="Source/Input/kissfft.hh"/>
-        <FILE id="eYJuFL" name="FFT.cpp" compile="1" resource="0" file="Source/Input/FFT.cpp"/>
-        <FILE id="XTefi2" name="FFT.h" compile="0" resource="0" file="Source/Input/FFT.h"/>
+        <GROUP id="{0BE5AFF6-FF1D-AA18-7586-566C6AAD6C20}" name="kiss_fft">
+          <FILE id="odOOXY" name="_kiss_fft_guts.h" compile="0" resource="0"
+                file="Source/Input/kiss_fft/_kiss_fft_guts.h"/>
+          <FILE id="ZCWRKG" name="kiss_fft.c" compile="1" resource="0" file="Source/Input/kiss_fft/kiss_fft.c"/>
+          <FILE id="t6Vwa5" name="kiss_fft.h" compile="0" resource="0" file="Source/Input/kiss_fft/kiss_fft.h"/>
+          <FILE id="uNkcWi" name="kiss_fftr.c" compile="1" resource="0" file="Source/Input/kiss_fft/kiss_fftr.c"/>
+          <FILE id="zXPAM5" name="kiss_fftr.h" compile="0" resource="0" file="Source/Input/kiss_fft/kiss_fftr.h"/>
+          <FILE id="UjvJxQ" name="kissfft.hh" compile="0" resource="0" file="Source/Input/kiss_fft/kissfft.hh"/>
+        </GROUP>
         <FILE id="hToCi4" name="InputProcessor.cpp" compile="1" resource="0"
               file="Source/Input/InputProcessor.cpp"/>
         <FILE id="X1u9Y1" name="InputProcessor.h" compile="0" resource="0"

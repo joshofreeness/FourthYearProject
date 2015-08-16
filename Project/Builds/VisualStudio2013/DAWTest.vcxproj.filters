@@ -14,6 +14,9 @@
     <Filter Include="DAWTest\Source\Input">
       <UniqueIdentifier>{FB6AC29D-D390-E2D2-E731-DB8D7FA69C33}</UniqueIdentifier>
     </Filter>
+    <Filter Include="DAWTest\Source\Input\kiss_fft">
+      <UniqueIdentifier>{6A5FFA2F-6E82-4897-8974-1384CD513C95}</UniqueIdentifier>
+    </Filter>
     <Filter Include="DAWTest\Source\Output">
       <UniqueIdentifier>{5F8A09A2-C62B-DED2-4DB8-C9AEC4CFF804}</UniqueIdentifier>
     </Filter>
@@ -334,14 +337,11 @@
     <ClCompile Include="..\..\Source\Analysis\NoteAnalyser.cpp">
       <Filter>DAWTest\Source\Analysis</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Source\Input\kiss_fft.c">
-      <Filter>DAWTest\Source\Input</Filter>
+    <ClCompile Include="..\..\Source\Input\kiss_fft\kiss_fft.c">
+      <Filter>DAWTest\Source\Input\kiss_fft</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Source\Input\kiss_fftr.c">
-      <Filter>DAWTest\Source\Input</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\Input\FFT.cpp">
-      <Filter>DAWTest\Source\Input</Filter>
+    <ClCompile Include="..\..\Source\Input\kiss_fft\kiss_fftr.c">
+      <Filter>DAWTest\Source\Input\kiss_fft</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\Input\InputProcessor.cpp">
       <Filter>DAWTest\Source\Input</Filter>
@@ -1620,20 +1620,17 @@
     <ClInclude Include="..\..\Source\Enums.h">
       <Filter>DAWTest\Source</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Source\Input\_kiss_fft_guts.h">
-      <Filter>DAWTest\Source\Input</Filter>
+    <ClInclude Include="..\..\Source\Input\kiss_fft\_kiss_fft_guts.h">
+      <Filter>DAWTest\Source\Input\kiss_fft</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Source\Input\kiss_fft.h">
-      <Filter>DAWTest\Source\Input</Filter>
+    <ClInclude Include="..\..\Source\Input\kiss_fft\kiss_fft.h">
+      <Filter>DAWTest\Source\Input\kiss_fft</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Source\Input\kiss_fftr.h">
-      <Filter>DAWTest\Source\Input</Filter>
+    <ClInclude Include="..\..\Source\Input\kiss_fft\kiss_fftr.h">
+      <Filter>DAWTest\Source\Input\kiss_fft</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Source\Input\kissfft.hh">
-      <Filter>DAWTest\Source\Input</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\Input\FFT.h">
-      <Filter>DAWTest\Source\Input</Filter>
+    <ClInclude Include="..\..\Source\Input\kiss_fft\kissfft.hh">
+      <Filter>DAWTest\Source\Input\kiss_fft</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\Input\InputProcessor.h">
       <Filter>DAWTest\Source\Input</Filter>

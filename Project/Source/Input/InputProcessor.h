@@ -14,7 +14,7 @@
 #include "../Enums.h"
 #include "../Logging.h"
 #include <JuceHeader.h>
-#include "./FFT.h"
+#include "./kiss_fft/kiss_fftr.h"
 
 namespace juce{
 	class MidiBuffer;
@@ -33,8 +33,7 @@ public:
 	float GetFrequency();
 private:
 	juce::AudioSampleBuffer currentBuffer;
-	float currentFrequency;
-	Input::FFT *fastFourierTransformObject;
+	int currentFrequency;
 };
 
 #endif  // INPUTPROCESSOR_H_INCLUDED
