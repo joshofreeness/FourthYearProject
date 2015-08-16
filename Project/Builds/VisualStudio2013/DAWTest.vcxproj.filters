@@ -334,6 +334,12 @@
     <ClCompile Include="..\..\Source\Analysis\NoteAnalyser.cpp">
       <Filter>DAWTest\Source\Analysis</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Source\Input\kiss_fft.c">
+      <Filter>DAWTest\Source\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Input\kiss_fftr.c">
+      <Filter>DAWTest\Source\Input</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\Source\Input\FFT.cpp">
       <Filter>DAWTest\Source\Input</Filter>
     </ClCompile>
@@ -1613,6 +1619,18 @@
     </ClInclude>
     <ClInclude Include="..\..\Source\Enums.h">
       <Filter>DAWTest\Source</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Input\_kiss_fft_guts.h">
+      <Filter>DAWTest\Source\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Input\kiss_fft.h">
+      <Filter>DAWTest\Source\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Input\kiss_fftr.h">
+      <Filter>DAWTest\Source\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Input\kissfft.hh">
+      <Filter>DAWTest\Source\Input</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\Input\FFT.h">
       <Filter>DAWTest\Source\Input</Filter>

@@ -50,6 +50,8 @@ endif
 
 OBJECTS := \
   $(OBJDIR)/NoteAnalyser_dccfee45.o \
+  $(OBJDIR)/kiss_fft_5603caa1.o \
+  $(OBJDIR)/kiss_fftr_6a7682bb.o \
   $(OBJDIR)/FFT_aa2de5b0.o \
   $(OBJDIR)/InputProcessor_d1793ef6.o \
   $(OBJDIR)/OutputController_5edcc5cc.o \
@@ -93,6 +95,16 @@ $(OBJDIR)/NoteAnalyser_dccfee45.o: ../../Source/Analysis/NoteAnalyser.cpp
 	-@mkdir -p $(OBJDIR)
 	@echo "Compiling NoteAnalyser.cpp"
 	@$(CXX) $(CXXFLAGS) -o "$@" -c "$<"
+
+$(OBJDIR)/kiss_fft_5603caa1.o: ../../Source/Input/kiss_fft.c
+	-@mkdir -p $(OBJDIR)
+	@echo "Compiling kiss_fft.c"
+	@$(CC) $(CFLAGS) -o "$@" -c "$<"
+
+$(OBJDIR)/kiss_fftr_6a7682bb.o: ../../Source/Input/kiss_fftr.c
+	-@mkdir -p $(OBJDIR)
+	@echo "Compiling kiss_fftr.c"
+	@$(CC) $(CFLAGS) -o "$@" -c "$<"
 
 $(OBJDIR)/FFT_aa2de5b0.o: ../../Source/Input/FFT.cpp
 	-@mkdir -p $(OBJDIR)

@@ -19,6 +19,13 @@
       <FILE id="TTxG9h" name="Logging.h" compile="0" resource="0" file="Source/Logging.h"/>
       <FILE id="W0pRlc" name="Enums.h" compile="0" resource="0" file="Source/Enums.h"/>
       <GROUP id="{EC824676-9CE1-4323-D469-72C8F3D05FDB}" name="Input">
+        <FILE id="AEKP9d" name="_kiss_fft_guts.h" compile="0" resource="0"
+              file="Source/Input/_kiss_fft_guts.h"/>
+        <FILE id="FC1Yuv" name="kiss_fft.c" compile="1" resource="0" file="Source/Input/kiss_fft.c"/>
+        <FILE id="kOIKPN" name="kiss_fft.h" compile="0" resource="0" file="Source/Input/kiss_fft.h"/>
+        <FILE id="aoQuj6" name="kiss_fftr.c" compile="1" resource="0" file="Source/Input/kiss_fftr.c"/>
+        <FILE id="IkqnzH" name="kiss_fftr.h" compile="0" resource="0" file="Source/Input/kiss_fftr.h"/>
+        <FILE id="SoVU7x" name="kissfft.hh" compile="0" resource="0" file="Source/Input/kissfft.hh"/>
         <FILE id="eYJuFL" name="FFT.cpp" compile="1" resource="0" file="Source/Input/FFT.cpp"/>
         <FILE id="XTefi2" name="FFT.h" compile="0" resource="0" file="Source/Input/FFT.h"/>
         <FILE id="hToCi4" name="InputProcessor.cpp" compile="1" resource="0"
