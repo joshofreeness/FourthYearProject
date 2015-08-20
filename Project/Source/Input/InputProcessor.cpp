@@ -10,7 +10,10 @@
 
 #include "InputProcessor.h"
 
-InputProcessor::InputProcessor(){}
+InputProcessor::InputProcessor(){
+	fftObject = new juce::FFT(11, false);
+}
+
 InputProcessor::~InputProcessor(){}
 
 // Sets the current block of audio data to be analysed.
@@ -25,7 +28,8 @@ void InputProcessor::AnalyseBlock() {
 	if (currentBuffer.getNumChannels() >0)
 	{
 		float* channelData = currentBuffer.getWritePointer(0);
-
+		
+		/* KissFFT Temporarily commented out.
 		// Config object with settings and stuff
 		kiss_fftr_cfg cfg = kiss_fftr_alloc( currentBuffer.getNumSamples(), false, 0, 0 );
 		
@@ -45,11 +49,11 @@ void InputProcessor::AnalyseBlock() {
 			if ((pow(transformed[i].r, 2) + pow(transformed[i].i, 2))>(pow(transformed[currentFrequency].r, 2) + pow(transformed[currentFrequency].i, 2))){
 				currentFrequency = i;
 			}
-		}
+		}*/
 
 #ifdef WIN32
 	LOG("Fundamental frequency of channelData is " + std::to_string(currentFrequency));
-	LOG("with a magnitude of " + std::to_string(pow(transformed[currentFrequency].r, 2) + pow(transformed[currentFrequency].i, 2)));
+	//LOG("with a magnitude of " + std::to_string(pow(transformed[currentFrequency].r, 2) + pow(transformed[currentFrequency].i, 2)));
 #endif
 	}
 }

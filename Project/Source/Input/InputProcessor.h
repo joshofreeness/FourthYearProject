@@ -19,6 +19,7 @@
 namespace juce{
 	class MidiBuffer;
 	class AudioSampleBuffer;
+	class FFT;
 }
 
 class InputProcessor {
@@ -34,6 +35,7 @@ public:
 private:
 	juce::AudioSampleBuffer currentBuffer;
 	int currentFrequency;
+	juce::FFT* fftObject;
 };
 
 #endif  // INPUTPROCESSOR_H_INCLUDED
