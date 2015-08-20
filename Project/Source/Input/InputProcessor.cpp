@@ -14,7 +14,9 @@ InputProcessor::InputProcessor(){
 	fftObject = new juce::FFT(11, false);
 }
 
-InputProcessor::~InputProcessor(){}
+InputProcessor::~InputProcessor(){
+	free(fftObject);
+}
 
 // Sets the current block of audio data to be analysed.
 void InputProcessor::SetBlock(juce::AudioSampleBuffer& buffer) {
@@ -28,7 +30,12 @@ void InputProcessor::AnalyseBlock() {
 	if (currentBuffer.getNumChannels() >0)
 	{
 		float* channelData = currentBuffer.getWritePointer(0);
-		
+		float* doubleLength = new float[currentBuffer.getNumSamples() * 2];
+
+		for (int i = 0; i < currentBuffer.getNumSamples(); i++) {
+			doubleLength[i] = channelData[i];
+		}
+
 		/* KissFFT Temporarily commented out.
 		// Config object with settings and stuff
 		kiss_fftr_cfg cfg = kiss_fftr_alloc( currentBuffer.getNumSamples(), false, 0, 0 );
@@ -51,6 +58,19 @@ void InputProcessor::AnalyseBlock() {
 			}
 		}*/
 
+		fftObject->performRealOnlyForwardTransform(doubleLength);
+
+		// Find the fundamental frequency
+		currentFrequency = 0;
+		for (int i = 0; i < currentBuffer.getNumSamples() * 2; i+= 2)
+		{
+			float newMag = (pow(doubleLength[i], 2) + pow(doubleLength[i + 1], 2));
+			float oldMag = (pow(doubleLength[currentFrequency], 2) + pow(doubleLength[currentFrequency + 1], 2));
+			
+			if (newMag > oldMag) {
+				currentFrequency = i;
+			}
+		}
 #ifdef WIN32
 	LOG("Fundamental frequency of channelData is " + std::to_string(currentFrequency));
 	//LOG("with a magnitude of " + std::to_string(pow(transformed[currentFrequency].r, 2) + pow(transformed[currentFrequency].i, 2)));
