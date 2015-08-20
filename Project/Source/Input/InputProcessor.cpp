@@ -27,8 +27,7 @@ void InputProcessor::SetBlock(juce::AudioSampleBuffer& buffer) {
 void InputProcessor::AnalyseBlock() {
 	// For most audio setups the audio will either be mono, or both tracks will be the same
 	// So we only FFT one of the channels, for speed
-	if (currentBuffer.getNumChannels() >0)
-	{
+	if (currentBuffer.getNumChannels() > 0) {
 		float* channelData = currentBuffer.getWritePointer(0);
 		float* doubleLength = new float[currentBuffer.getNumSamples() * 2];
 
@@ -62,8 +61,7 @@ void InputProcessor::AnalyseBlock() {
 
 		// Find the fundamental frequency
 		currentFrequency = 0;
-		for (int i = 0; i < currentBuffer.getNumSamples() * 2; i+= 2)
-		{
+		for (int i = 0; i < currentBuffer.getNumSamples() * 2; i+= 2) {
 			float newMag = (pow(doubleLength[i], 2) + pow(doubleLength[i + 1], 2));
 			float oldMag = (pow(doubleLength[currentFrequency], 2) + pow(doubleLength[currentFrequency + 1], 2));
 			
@@ -71,10 +69,12 @@ void InputProcessor::AnalyseBlock() {
 				currentFrequency = i;
 			}
 		}
+
 #ifdef WIN32
 	LOG("Fundamental frequency of channelData is " + std::to_string(currentFrequency));
 	//LOG("with a magnitude of " + std::to_string(pow(transformed[currentFrequency].r, 2) + pow(transformed[currentFrequency].i, 2)));
 #endif
+
 	}
 }
 
