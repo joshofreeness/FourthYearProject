@@ -34,8 +34,8 @@ void OutputController::PlayNote(float hertz, MidiBuffer& midiMessages, int delay
 {
 	//https://en.wikipedia.org/wiki/MIDI_Tuning_Standard
 	int midiNoteValue = 69 + (12 * log2f(hertz / 440.0f)); //midi note from provided frequency
-	if (midiNoteValue > 128) {
-		midiNoteValue = 128;
+	if (midiNoteValue >= 127) {
+		midiNoteValue = 127;
 	}
 	else if (midiNoteValue < 1) {
 		midiNoteValue = 1;

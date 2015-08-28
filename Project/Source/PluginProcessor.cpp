@@ -78,8 +78,8 @@ void DAWTestAudioProcessor::processBlock(AudioSampleBuffer& buffer, MidiBuffer& 
 		mOutputController.ClockProcess(midiMessages);
 
 		mInputProcessor.SetBlock(buffer);
+		mInputProcessor.SetSampleRate(getSampleRate());
 		mInputProcessor.AnalyseBlock();
-
 		float currentFreq = mInputProcessor.GetFrequency();
 
 		float note = currentFreq;

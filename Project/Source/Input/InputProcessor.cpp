@@ -60,15 +60,19 @@ void InputProcessor::AnalyseBlock() {
 		fftObject->performRealOnlyForwardTransform(doubleLength);
 
 		// Find the fundamental frequency
-		currentFrequency = 0;
+		currentHighestIndex = 0;
 		for (int i = 0; i < currentBuffer.getNumSamples() * 2; i+= 2) {
 			float newMag = (pow(doubleLength[i], 2) + pow(doubleLength[i + 1], 2));
-			float oldMag = (pow(doubleLength[currentFrequency], 2) + pow(doubleLength[currentFrequency + 1], 2));
+			float oldMag = (pow(doubleLength[currentHighestIndex], 2) + pow(doubleLength[currentHighestIndex + 1], 2));
 			
 			if (newMag > oldMag) {
-				currentFrequency = i;
+				currentHighestIndex = i;
 			}
 		}
+
+		//frequency(currentHightestIndex) = sampleRate*currentHightestIndex/2*blockSize
+		currentFrequency = (currentSampleRate*currentHighestIndex) / (currentBuffer.getNumSamples() * 2) ;
+
 
 #ifdef WIN32
 	LOG("Fundamental frequency of channelData is " + std::to_string(currentFrequency));
@@ -77,6 +81,12 @@ void InputProcessor::AnalyseBlock() {
 
 	}
 }
+
+void InputProcessor::SetSampleRate(double rate)
+{
+	currentSampleRate = rate;
+}
+
 
 // Returns the estimated key of the current block of input.
 Key_t InputProcessor::GetKey() {
