@@ -11,7 +11,6 @@
 #include "PluginProcessor.h"
 #include "PluginEditor.h"
 #include <cstdint>
-#include "Enums.h"
 
 //==============================================================================
 DAWTestAudioProcessor::DAWTestAudioProcessor()
@@ -71,12 +70,32 @@ const String DAWTestAudioProcessor::getParameterText (int index) {
 }
 
 //This is where all the audio processing happens
-void DAWTestAudioProcessor::processBlock (AudioSampleBuffer& buffer, MidiBuffer& midiMessages) {
-    if(getNumInputChannels()<2) {
+void DAWTestAudioProcessor::processBlock(AudioSampleBuffer& buffer, MidiBuffer& midiMessages) {
+	if(getNumInputChannels()<2) {
         //Nothing to do here - processing is in-place, so doing nothing is pass-through (for NumInputs=NumOutputs) 
     } else {
         //Do processing!
 		mOutputController.ClockProcess(midiMessages);
+
+		mInputProcessor.SetBlock(buffer);
+		mInputProcessor.SetSampleRate(getSampleRate());
+		mInputProcessor.AnalyseBlock();
+		float currentFreq = mInputProcessor.GetFrequency();
+
+		float note = currentFreq;
+		//float note = mNoteAnalyser.getNote();
+		//TODO: Uncomment this when it returns a real frequency value and not just 0
+		
+		mOutputController.PlayNote(note, midiMessages, 0);
+
+		if (hasEditor())
+		{
+			//DAWTestAudioProcessorEditor *theOne = getActiveEditor();
+			AudioProcessorEditor *temp = getActiveEditor();
+			//TODO: get a reference to the editor and call UpdateGUILabel  
+			//temp->UpdateGUILable("Haha");
+			//DAWTestAudioProcessorEditor *tempDaw = static_cast<DAWTestAudioProcessorEditor>(*temp);
+		}
     }
 }
 

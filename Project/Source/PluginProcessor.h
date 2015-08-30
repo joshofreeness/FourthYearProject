@@ -13,7 +13,10 @@
 
 #include "Output/OutputController.h"
 #include "Input/InputProcessor.h"
+#include "Analysis/NoteAnalyser.h"
 #include "../JuceLibraryCode/JuceHeader.h"
+#include "Enums.h"
+#include "Logging.h"
 
 //==============================================================================
 /**
@@ -76,8 +79,12 @@ private:
     //Private Data, helper methods etc.
     float UserParams[totalNumParam];
 	bool UIUpdateFlag;
+
 	OutputController mOutputController;
 	InputProcessor mInputProcessor;
+	NoteAnalyser mNoteAnalyser;
+
+	bool first = true;
 	//==============================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (DAWTestAudioProcessor)
 };

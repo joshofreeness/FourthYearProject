@@ -20,5 +20,4 @@ enum class Key_t { A, A_sharp, B, C, C_sharp, D, D_sharp, E, F, F_sharp, G, G_sh
 // don't have to go look up what the number represents.
 enum class Chord_t { chord_1, chord_2, chord_3, chord_4, chord_5, chord_6, chord_7 };
 
-
 #endif  // ENUMS_H_INCLUDED
