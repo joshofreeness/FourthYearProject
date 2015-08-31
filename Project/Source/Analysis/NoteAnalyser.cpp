@@ -13,18 +13,19 @@
 /*
 Next note to play:	1	2	3	4	5	6	7	8
 Current note:	1
-2
-3      ############################
-4      ###### PROBABILITIES #######
-5      ######    GO HERE    #######
-6      ############################
-7
-8
+				2
+				3      ############################
+				4      ###### PROBABILITIES #######
+				5      ######    GO HERE    #######
+				6      ############################
+				7
+				8
 */
 
 NoteAnalyser::NoteAnalyser(){
-	std::vector<std::vector<float>> mInitial(rows, std::vector<float>(columns));
-	std::vector<std::vector<float>> mTransition(rows, std::vector<float>(columns));
+	//TODO: Find a way to initialise these without causing errors
+	//std::vector<std::vector<float>> mInitial(rows, std::vector<float>(columns));
+	//std::vector<std::vector<float>> mTransition(rows, std::vector<float>(columns));
 	// TODO: Fill transition matrix with state change probabilities
 }
 
