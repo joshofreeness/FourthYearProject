@@ -11,7 +11,7 @@
 #include "InputProcessor.h"
 
 InputProcessor::InputProcessor(){
-	fftObject = new juce::FFT(12, false);
+	fftObject = new juce::FFT(11, false);
 }
 
 InputProcessor::~InputProcessor(){
@@ -73,13 +73,21 @@ void InputProcessor::AnalyseBlock() {
 		//frequency(currentHightestIndex) = sampleRate*currentHightestIndex/2*blockSize
 		currentFrequency = (currentSampleRate*currentHighestIndex) / (currentBuffer.getNumSamples() * 2) ;
 
+		//NOTE: current frequency is only accurate to the nearest 10.8Hz so have to "auto-tune" the results
+		//The following takes frequency to the nearest semi-tone (assuming tuned to A=440)
+		int noteNum = int(0.5 + 12 * log2(currentFrequency / 27.5));
+		double filteredFrequency = 27.5 * pow(2.0, noteNum / 12.0);
 
-#ifdef WIN32
-		LOG("Fundamental frequency of channelData is " + std::to_string(currentFrequency) + " Buffer size is " + 
-			std::to_string(currentBuffer.getNumSamples()) + " Current sample rate is " + std::to_string(currentSampleRate)
-			 + " Highest Index is " + std::to_string(currentHighestIndex));
+		currentFrequency = filteredFrequency;
+
+
+
+//#ifdef WIN32
+		//LOG("Fundamental frequency of channelData is " + std::to_string(currentFrequency) + " Buffer size is " + 
+		//	std::to_string(currentBuffer.getNumSamples()) + " Current sample rate is " + std::to_string(currentSampleRate)
+	//		 + " Highest Index is " + std::to_string(currentHighestIndex));
 	//LOG("with a magnitude of " + std::to_string(pow(transformed[currentFrequency].r, 2) + pow(transformed[currentFrequency].i, 2)));
-#endif
+//#endif
 
 	}
 }
