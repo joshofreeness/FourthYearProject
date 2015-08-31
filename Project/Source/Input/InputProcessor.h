@@ -35,7 +35,7 @@ public:
 private:
 	juce::AudioSampleBuffer currentBuffer;
 	int currentHighestIndex;
-	int currentFrequency;
+	double currentFrequency;
 	double currentSampleRate;
 	juce::FFT* fftObject;
 };
