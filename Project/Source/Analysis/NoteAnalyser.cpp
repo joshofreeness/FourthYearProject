@@ -10,31 +10,39 @@
 
 #include "NoteAnalyser.h"
 
-NoteAnalyser::NoteAnalyser(){}
+/*
+Next note to play:	1	2	3	4	5	6	7	8
+Current note:	1
+				2
+				3      ############################
+				4      ###### PROBABILITIES #######
+				5      ######    GO HERE    #######
+				6      ############################
+				7
+				8
+*/
+
+NoteAnalyser::NoteAnalyser(){
+	//TODO: Find a way to initialise these without causing errors
+	//std::vector<std::vector<float>> mInitial(rows, std::vector<float>(columns));
+	//std::vector<std::vector<float>> mTransition(rows, std::vector<float>(columns));
+	// TODO: Fill transition matrix with state change probabilities
+}
+
 NoteAnalyser::~NoteAnalyser(){}
 
 // Look at the current (and previous) notes and chords, determine which note should be played next (probability/Markov/whatever), and return its frequency.
-float NoteAnalyser::getNote() {
-	return frequency;
+float NoteAnalyser::getNextNote(float currentFrequency) {
+	//TODO: Add helper function .h file (similar to enums, logging) that contains functions to convert freq - note and vice versa.
+	// Convert frequency to note
+	// Clear initial matrix
+	// Set current note as current state in initial matrix
+	// doTransition()
+	// Convert that note back into a frequency
+
+	return currentFrequency;
 }
 
-//TODO: Sort out what other functions may be needed.
-void placeholderProbabilityStuff() {
-	/*
-	Next note to play:	1	2	3	4	5	6	7	8
-	Current note:	1
-					2
-					3
-					4
-					5
-					6
-					7
-					8
-	*/
-
-	//TODO: Figure out how to move this into the header without causing compile errors.
-	std::vector<std::vector<float>> theMatrix;
-
-	// Creates a 2D vector of size 8x8, filled with 0s - our Markov probability matrix.
-	theMatrix.resize(8, std::vector<float>(8, 0));
+void doTransition() {
+	// Perform one iteration of the Markov Chain.
 }

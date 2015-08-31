@@ -20,16 +20,12 @@ public:
 	NoteAnalyser();
 	~NoteAnalyser();
 
-	void setFrequency(float frequency) { frequency = frequency; };
-	void setAmplitude(float amplitude) { amplitude = amplitude; };
-
-	float getNote();
+	float getNextNote(float currentFrequency);
 
 private:
-	void placeholderProbabilityStuff();
+	void doTransition();
 
-	float frequency;
-	float amplitude;
+	int rows, columns = 8;
 };
 
 
