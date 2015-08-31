@@ -39,6 +39,9 @@ public:
 	void SetFrequency(float frequency) { m_frequency = frequency; };
 	float GetFrequency(void){ return m_frequency; };
 
+	void SetKey(int key) { m_key = key; };
+	int GetKey(void){ return m_key; };
+
 private:
 	double unit = 44100.0; // Represents something to do with the number of channels in the sound driver, I think. Most common values 44,100 and 44,400. Idk. Google it.
 
@@ -46,6 +49,7 @@ private:
 
 	float m_volume;
 	float m_frequency;
+	int m_key;
 };
 
 #endif  // OUTPUTCONTROLLER_H_INCLUDED
