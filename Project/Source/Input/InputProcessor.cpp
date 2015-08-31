@@ -11,7 +11,7 @@
 #include "InputProcessor.h"
 
 InputProcessor::InputProcessor(){
-	fftObject = new juce::FFT(11, false);
+	fftObject = new juce::FFT(12, false);
 }
 
 InputProcessor::~InputProcessor(){
@@ -75,7 +75,9 @@ void InputProcessor::AnalyseBlock() {
 
 
 #ifdef WIN32
-	LOG("Fundamental frequency of channelData is " + std::to_string(currentFrequency));
+		LOG("Fundamental frequency of channelData is " + std::to_string(currentFrequency) + " Buffer size is " + 
+			std::to_string(currentBuffer.getNumSamples()) + " Current sample rate is " + std::to_string(currentSampleRate)
+			 + " Highest Index is " + std::to_string(currentHighestIndex));
 	//LOG("with a magnitude of " + std::to_string(pow(transformed[currentFrequency].r, 2) + pow(transformed[currentFrequency].i, 2)));
 #endif
 
