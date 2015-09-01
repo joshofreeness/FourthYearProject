@@ -21,8 +21,13 @@ void SenseMaker::clockTickFrequency(double freq, bool isBeat)
 	return;
 }
 
+void SenseMaker::setKeyTonic(int key)
+{
+	//currentKeyTonic = freq;
+}
 
-int SenseMaker::frequencyToNoteInKey(double ferq)
+
+int SenseMaker::frequencyToNoteInKey(double freq)
 {
 	return 0;
 }
