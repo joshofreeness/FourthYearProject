@@ -17,6 +17,7 @@
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "Enums.h"
 #include "Logging.h"
+#include "Analysis/SenseMaker.h"
 
 //==============================================================================
 /**
@@ -83,6 +84,7 @@ private:
 	OutputController mOutputController;
 	InputProcessor mInputProcessor;
 	NoteAnalyser mNoteAnalyser;
+	SenseMaker *mSenseMaker;
 
 	bool first = true;
 	//==============================================================================

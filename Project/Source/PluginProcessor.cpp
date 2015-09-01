@@ -23,10 +23,12 @@ DAWTestAudioProcessor::DAWTestAudioProcessor()
 	UserParams[Key] = 1; //default frequency 500Hz (no change)
 	mOutputController.SetKey(UserParams[Key]); //push VST default to effect
     UIUpdateFlag=true; //Request UI update
+	mSenseMaker = new SenseMaker();
 }
 
 DAWTestAudioProcessor::~DAWTestAudioProcessor()
 {
+	delete mSenseMaker;
 }
 
 int DAWTestAudioProcessor::getNumParameters(){ return totalNumParam; }
@@ -119,7 +121,7 @@ void DAWTestAudioProcessor::processBlock(AudioSampleBuffer& buffer, MidiBuffer& 
 			AudioProcessorEditor *temp = getActiveEditor();
 			//TODO: get a reference to the editor and call UpdateGUILabel  
 			//temp->UpdateGUILable("Haha");
-			//DAWTestAudioProcessorEditor *tempDaw = static_cast<DAWTestAudioProcessorEditor>(*temp);
+			//DAWTestAudioProcessorEditor *tempDaw = static_cast<DAWTestAudioProcessorEditor>(*temp); 
 		}
     }
 }
