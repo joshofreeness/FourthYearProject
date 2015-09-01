@@ -11,6 +11,8 @@
 #ifndef SENSEMAKER_H_INCLUDED
 #define SENSEMAKER_H_INCLUDED
 
+#include "../Logging.h"
+
 class SenseMaker
 {
 public:

@@ -10,6 +10,7 @@
 
 #include "SenseMaker.h"
 #include <math.h>
+#include <string>
 
 SenseMaker::SenseMaker(){}
 
@@ -19,6 +20,10 @@ SenseMaker::~SenseMaker(){}
 
 void SenseMaker::clockTickFrequency(double freq, bool isBeat)
 {
+	int note = frequencyToNoteInKey(freq);
+#ifdef WIN32
+	LOG("The key is " + std::to_string(currentKeyTonic) + " The current note is " + std::to_string(note));
+#endif
 	return;
 }
 
@@ -29,45 +34,59 @@ void SenseMaker::setKeyTonic(int key)
 	case 0:
 		//No Key selected
 		currentKeyTonic = 0;
+		break;
 	case 1:
 		//Key of C : 1
 		currentKeyTonic = 261.63;
+		break;
 	case 2:
 		//Key of Db / C#: 2
 		currentKeyTonic = 277.18;
+		break;
 	case 3:
 		//Key of D: 3
 		currentKeyTonic = 293.66;
+		break;
 	case 4:
 		//Key of Eb / D#: 4
 		currentKeyTonic = 311.13;
+		break;
 	case 5:
 		//Key of E: 5
 		currentKeyTonic = 329.63;
+		break;
 	case 6:
 		//Key of F: 6
 		currentKeyTonic = 349.23;
+		break;
 	case 7:
 		//Key of Gb / Key of F#: 7
 		currentKeyTonic = 369.99;
+		break;
 	case 8:
 		//Key of G: 8
 		currentKeyTonic = 392;
+		break;
 	case 9:
 		//Key of Ab / G#: 9
 		currentKeyTonic = 415.3;
+		break;
 	case 10:
 		//Key of A: 10
 		currentKeyTonic = 440;
+		break;
 	case 11:
 		//Key of Bb / A#: 11
 		currentKeyTonic = 466.16;
+		break;
 	case 12:
 		//Key of B / Key of Cb: 12
 		currentKeyTonic = 493.88;
+		break;
 	default:
 		//Unknown key selected
 		currentKeyTonic = 0;
+		break;
 	}
 }
 
@@ -90,8 +109,6 @@ int SenseMaker::frequencyToNoteInKey(double freq)
 
 	if (freq > currentKeyTonic)
 	{
-		
-		
 		double multiplier = aValue;
 
 		while (currentKeyTonic * multiplier < freq )

@@ -112,6 +112,7 @@ void DAWTestAudioProcessor::processBlock(AudioSampleBuffer& buffer, MidiBuffer& 
 		//float note = mNoteAnalyser.getNote();
 		//TODO: Uncomment this when it returns a real frequency value and not just 0
 		
+		mSenseMaker.clockTickFrequency((double)currentFreq, false);
 		mOutputController.PlayNote(note, midiMessages, 0);
 
 		if (hasEditor())
