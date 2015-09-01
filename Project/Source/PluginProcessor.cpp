@@ -20,15 +20,13 @@ DAWTestAudioProcessor::DAWTestAudioProcessor()
 	mOutputController.SetVolume(UserParams[Volume]); //push VST default to effect
 	UserParams[Frequency] = (1 / 3); //default frequency 500Hz (no change)
 	mOutputController.SetFrequency(UserParams[Frequency]); //push VST default to effect
-	UserParams[Key] = 1; //default frequency 500Hz (no change)
+	UserParams[Key] = 0; //default frequency 500Hz (no change)
 	mOutputController.SetKey(UserParams[Key]); //push VST default to effect
     UIUpdateFlag=true; //Request UI update
-	mSenseMaker = new SenseMaker();
 }
 
 DAWTestAudioProcessor::~DAWTestAudioProcessor()
 {
-	delete mSenseMaker;
 }
 
 int DAWTestAudioProcessor::getNumParameters(){ return totalNumParam; }
@@ -61,8 +59,9 @@ void DAWTestAudioProcessor::setParameter (int index, float newValue) {
 		case Key:
 			UserParams[Key] = newValue;
 			mOutputController.SetKey((int)newValue);
+			mSenseMaker.setKeyTonic((int)newValue);
 			/* Keys:
-			    Key of C: 1
+				Key of C: 1
 				Key of Db / C#: 2
 				Key of D: 3
 				Key of Eb / D#: 4

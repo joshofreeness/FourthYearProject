@@ -84,7 +84,7 @@ private:
 	OutputController mOutputController;
 	InputProcessor mInputProcessor;
 	NoteAnalyser mNoteAnalyser;
-	SenseMaker *mSenseMaker;
+	SenseMaker mSenseMaker;
 
 	bool first = true;
 	//==============================================================================
