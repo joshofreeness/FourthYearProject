@@ -83,7 +83,7 @@ int SenseMaker::frequencyToNoteInKey(double freq)
 		a = (2)1/12 = the twelth root of 2 = the number which when multiplied by itself 12 times equals 2 = 1.059463094359...
 		http://www.phy.mtu.edu/~suits/NoteFreqCalcs.html
 	*/
-	if (freq == currentKeyTonic){return 0;} 
+	if (freq == currentKeyTonic){return 1;} 
 	
 	int currentSteps = 0;
 	if (freq > currentKeyTonic)
@@ -97,14 +97,35 @@ int SenseMaker::frequencyToNoteInKey(double freq)
 			currentSteps++;
 			multiplier *= aValue;
 		}
+		currentSteps = currentSteps % 12;
 	}
 	else
 	{
 		//TODO: Implement if the freq is less than the tonic
 	}
 
-	//It is in the scale if it is 2, 4, 5, 7, 9, 11, 12
-	return 0;
+	//It is in the scale if it is 0, 2, 4, 5, 7, 9, 11, 12(0)
+	switch (currentSteps)
+	{
+		case 0:
+			return 1;
+		case 2:
+			return 2;
+		case 4:
+			return 3;
+		case 5:
+			return 4;
+		case 7:
+			return 5;
+		case 9:
+			return 6;
+		case 11:
+			return 7;
+		default:
+			//Note not in scale if return 0
+			return 0;
+	}
+
 }
 
 
