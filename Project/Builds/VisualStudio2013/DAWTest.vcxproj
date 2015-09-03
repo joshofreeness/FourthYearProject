@@ -131,6 +131,7 @@
     </Bscmake>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\Source\Analysis\BrainController.cpp"/>
     <ClCompile Include="..\..\Source\Analysis\SenseMaker.cpp"/>
     <ClCompile Include="..\..\Source\Analysis\Markov.cpp"/>
     <ClCompile Include="..\..\Source\Input\InputProcessor.cpp"/>
@@ -1269,6 +1270,7 @@
     <ClCompile Include="..\..\..\JUCE-LINUX\modules\juce_audio_plugin_client\VST3\juce_VST3_Wrapper.cpp"/>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\Source\Analysis\BrainController.h"/>
     <ClInclude Include="..\..\Source\Analysis\SenseMaker.h"/>
     <ClInclude Include="..\..\Source\Analysis\Markov.h"/>
     <ClInclude Include="..\..\Source\Logging.h"/>

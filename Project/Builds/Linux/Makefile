@@ -49,6 +49,7 @@ ifeq ($(CONFIG),Release)
 endif
 
 OBJECTS := \
+  $(OBJDIR)/BrainController_a43448e8.o \
   $(OBJDIR)/SenseMaker_9646ec4a.o \
   $(OBJDIR)/Markov_f935f908.o \
   $(OBJDIR)/InputProcessor_d1793ef6.o \
@@ -88,6 +89,11 @@ clean:
 strip:
 	@echo Stripping DAWTest
 	-@strip --strip-unneeded $(OUTDIR)/$(TARGET)
+
+$(OBJDIR)/BrainController_a43448e8.o: ../../Source/Analysis/BrainController.cpp
+	-@mkdir -p $(OBJDIR)
+	@echo "Compiling BrainController.cpp"
+	@$(CXX) $(CXXFLAGS) -o "$@" -c "$<"
 
 $(OBJDIR)/SenseMaker_9646ec4a.o: ../../Source/Analysis/SenseMaker.cpp
 	-@mkdir -p $(OBJDIR)

@@ -331,6 +331,9 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\Source\Analysis\BrainController.cpp">
+      <Filter>DAWTest\Source\Analysis</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\Source\Analysis\SenseMaker.cpp">
       <Filter>DAWTest\Source\Analysis</Filter>
     </ClCompile>
@@ -1605,6 +1608,9 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\Source\Analysis\BrainController.h">
+      <Filter>DAWTest\Source\Analysis</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\Source\Analysis\SenseMaker.h">
       <Filter>DAWTest\Source\Analysis</Filter>
     </ClInclude>
