@@ -80,6 +80,7 @@ private:
     //Private Data, helper methods etc.
     float UserParams[totalNumParam];
 	bool UIUpdateFlag;
+	bool noteOffMidiFlag;
 
 	OutputController mOutputController;
 	InputProcessor mInputProcessor;
