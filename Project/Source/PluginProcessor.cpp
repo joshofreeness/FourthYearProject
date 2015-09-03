@@ -20,7 +20,7 @@ DAWTestAudioProcessor::DAWTestAudioProcessor()
 	mOutputController.SetVolume(UserParams[Volume]); //push VST default to effect
 	UserParams[Frequency] = (1 / 3); //default frequency 500Hz (no change)
 	mOutputController.SetFrequency(UserParams[Frequency]); //push VST default to effect
-	UserParams[Key] = 1; //default frequency 500Hz (no change)
+	UserParams[Key] = 0; //default frequency 500Hz (no change)
 	mOutputController.SetKey(UserParams[Key]); //push VST default to effect
     UIUpdateFlag=true; //Request UI update
 }
@@ -59,8 +59,9 @@ void DAWTestAudioProcessor::setParameter (int index, float newValue) {
 		case Key:
 			UserParams[Key] = newValue;
 			mOutputController.SetKey((int)newValue);
+			mSenseMaker.setKeyTonic((int)newValue);
 			/* Keys:
-			    Key of C: 1
+				Key of C: 1
 				Key of Db / C#: 2
 				Key of D: 3
 				Key of Eb / D#: 4
@@ -111,6 +112,7 @@ void DAWTestAudioProcessor::processBlock(AudioSampleBuffer& buffer, MidiBuffer& 
 		//float note = mNoteAnalyser.getNote();
 		//TODO: Uncomment this when it returns a real frequency value and not just 0
 		
+		mSenseMaker.clockTickFrequency((double)currentFreq, false);
 		mOutputController.PlayNote(note, midiMessages, 0);
 
 		if (hasEditor())
@@ -119,7 +121,7 @@ void DAWTestAudioProcessor::processBlock(AudioSampleBuffer& buffer, MidiBuffer& 
 			AudioProcessorEditor *temp = getActiveEditor();
 			//TODO: get a reference to the editor and call UpdateGUILabel  
 			//temp->UpdateGUILable("Haha");
-			//DAWTestAudioProcessorEditor *tempDaw = static_cast<DAWTestAudioProcessorEditor>(*temp);
+			//DAWTestAudioProcessorEditor *tempDaw = static_cast<DAWTestAudioProcessorEditor>(*temp); 
 		}
     }
 }
