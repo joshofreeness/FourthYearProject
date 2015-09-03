@@ -111,7 +111,7 @@ int SenseMaker::frequencyToNoteInKey(double freq)
 	{
 		double multiplier = aValue;
 
-		while (currentKeyTonic * multiplier < freq )
+		while ((currentKeyTonic * multiplier) < freq )
 		{
 			currentSteps++;
 			multiplier *= aValue;
@@ -121,11 +121,11 @@ int SenseMaker::frequencyToNoteInKey(double freq)
 	else
 	{
 		//TODO: Implement if the freq is less than the tonic
-		double multiplier = -aValue;
-		while (currentKeyTonic * multiplier < freq)
+		double multiplier = aValue;
+		while ((currentKeyTonic * multiplier) < freq)
 		{
 			currentSteps--;
-			multiplier *= aValue;
+			multiplier *= 1/aValue;
 		}
 		currentSteps = currentSteps % -12;
 		currentSteps = currentSteps + 12;
@@ -149,7 +149,7 @@ int SenseMaker::frequencyToNoteInKey(double freq)
 		case 11:
 			return 7;
 		default:
-			//Note not in scale if return 0
+			//Note: not in scale if return 0
 			return 0;
 	}
 
