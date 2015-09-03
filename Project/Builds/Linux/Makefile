@@ -50,7 +50,7 @@ endif
 
 OBJECTS := \
   $(OBJDIR)/SenseMaker_9646ec4a.o \
-  $(OBJDIR)/NoteAnalyser_dccfee45.o \
+  $(OBJDIR)/Markov_f935f908.o \
   $(OBJDIR)/InputProcessor_d1793ef6.o \
   $(OBJDIR)/OutputController_5edcc5cc.o \
   $(OBJDIR)/PluginProcessor_a059e380.o \
@@ -94,9 +94,9 @@ $(OBJDIR)/SenseMaker_9646ec4a.o: ../../Source/Analysis/SenseMaker.cpp
 	@echo "Compiling SenseMaker.cpp"
 	@$(CXX) $(CXXFLAGS) -o "$@" -c "$<"
 
-$(OBJDIR)/NoteAnalyser_dccfee45.o: ../../Source/Analysis/NoteAnalyser.cpp
+$(OBJDIR)/Markov_f935f908.o: ../../Source/Analysis/Markov.cpp
 	-@mkdir -p $(OBJDIR)
-	@echo "Compiling NoteAnalyser.cpp"
+	@echo "Compiling Markov.cpp"
 	@$(CXX) $(CXXFLAGS) -o "$@" -c "$<"
 
 $(OBJDIR)/InputProcessor_d1793ef6.o: ../../Source/Input/InputProcessor.cpp

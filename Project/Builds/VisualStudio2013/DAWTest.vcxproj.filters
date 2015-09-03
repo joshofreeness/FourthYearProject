@@ -334,7 +334,7 @@
     <ClCompile Include="..\..\Source\Analysis\SenseMaker.cpp">
       <Filter>DAWTest\Source\Analysis</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Source\Analysis\NoteAnalyser.cpp">
+    <ClCompile Include="..\..\Source\Analysis\Markov.cpp">
       <Filter>DAWTest\Source\Analysis</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\Input\InputProcessor.cpp">
@@ -1608,13 +1608,10 @@
     <ClInclude Include="..\..\Source\Analysis\SenseMaker.h">
       <Filter>DAWTest\Source\Analysis</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Source\Analysis\NoteAnalyser.h">
+    <ClInclude Include="..\..\Source\Analysis\Markov.h">
       <Filter>DAWTest\Source\Analysis</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\Logging.h">
-      <Filter>DAWTest\Source</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\Enums.h">
       <Filter>DAWTest\Source</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\Input\InputProcessor.h">

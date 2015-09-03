@@ -1,14 +1,14 @@
 /*
   ==============================================================================
 
-    NoteAnalyser.cpp
+    Markov.cpp
     Created: 27 Jul 2015 4:21:34pm
     Author:  Michael
 
   ==============================================================================
 */
 
-#include "NoteAnalyser.h"
+#include "Markov.h"
 
 /*
 Next note to play:	1	2	3	4	5	6	7	8

@@ -13,9 +13,7 @@
 
 #include "Output/OutputController.h"
 #include "Input/InputProcessor.h"
-#include "Analysis/NoteAnalyser.h"
 #include "../JuceLibraryCode/JuceHeader.h"
-#include "Enums.h"
 #include "Logging.h"
 #include "Analysis/SenseMaker.h"
 
@@ -84,7 +82,6 @@ private:
 
 	OutputController mOutputController;
 	InputProcessor mInputProcessor;
-	NoteAnalyser mNoteAnalyser;
 	SenseMaker mSenseMaker;
 
 	bool first = true;

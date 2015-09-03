@@ -11,7 +11,6 @@
 #ifndef INPUTPROCESSOR_H_INCLUDED
 #define INPUTPROCESSOR_H_INCLUDED
 
-#include "../Enums.h"
 #include "../Logging.h"
 #include <JuceHeader.h>
 
@@ -29,8 +28,6 @@ public:
 	void SetBlock(juce::AudioSampleBuffer& buffer);
 	void AnalyseBlock();
 	void SetSampleRate(double rate);
-	Key_t GetKey();
-	Chord_t GetChord();
 	float GetFrequency();
 private:
 	juce::AudioSampleBuffer currentBuffer;

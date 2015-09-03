@@ -14,12 +14,10 @@
       <GROUP id="{9A3812E0-D5F5-50AC-AA93-DECBC129F46F}" name="Analysis">
         <FILE id="uZ9drx" name="SenseMaker.cpp" compile="1" resource="0" file="Source/Analysis/SenseMaker.cpp"/>
         <FILE id="mBloIA" name="SenseMaker.h" compile="0" resource="0" file="Source/Analysis/SenseMaker.h"/>
-        <FILE id="g1gWxO" name="NoteAnalyser.cpp" compile="1" resource="0"
-              file="Source/Analysis/NoteAnalyser.cpp"/>
-        <FILE id="tpN8mW" name="NoteAnalyser.h" compile="0" resource="0" file="Source/Analysis/NoteAnalyser.h"/>
+        <FILE id="g1gWxO" name="Markov.cpp" compile="1" resource="0" file="Source/Analysis/Markov.cpp"/>
+        <FILE id="tpN8mW" name="Markov.h" compile="0" resource="0" file="Source/Analysis/Markov.h"/>
       </GROUP>
       <FILE id="TTxG9h" name="Logging.h" compile="0" resource="0" file="Source/Logging.h"/>
-      <FILE id="W0pRlc" name="Enums.h" compile="0" resource="0" file="Source/Enums.h"/>
       <GROUP id="{EC824676-9CE1-4323-D469-72C8F3D05FDB}" name="Input">
         <FILE id="hToCi4" name="InputProcessor.cpp" compile="1" resource="0"
               file="Source/Input/InputProcessor.cpp"/>
