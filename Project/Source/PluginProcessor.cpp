@@ -23,6 +23,7 @@ DAWTestAudioProcessor::DAWTestAudioProcessor()
 	UserParams[Key] = 0; //default frequency 500Hz (no change)
 	mOutputController.SetKey(UserParams[Key]); //push VST default to effect
     UIUpdateFlag=true; //Request UI update
+	noteOffMidiFlag = false;
 }
 
 DAWTestAudioProcessor::~DAWTestAudioProcessor()
@@ -112,7 +113,23 @@ void DAWTestAudioProcessor::processBlock(AudioSampleBuffer& buffer, MidiBuffer& 
 		//float note = mNoteAnalyser.getNote();
 		//TODO: Uncomment this when it returns a real frequency value and not just 0
 		
-		mSenseMaker.clockTickFrequency((double)currentFreq, false);
+		bool isBeatTick = false;
+		if (!midiMessages.isEmpty())
+		{
+			
+			if (noteOffMidiFlag)
+			{
+				noteOffMidiFlag = false;
+			}
+			else
+			{
+				isBeatTick = true;
+				noteOffMidiFlag = true;
+			}
+			
+		}
+
+		mSenseMaker.clockTickFrequency((double)currentFreq, isBeatTick);
 		mOutputController.PlayNote(note, midiMessages, 0);
 
 		if (hasEditor())

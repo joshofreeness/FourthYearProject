@@ -22,7 +22,7 @@ void SenseMaker::clockTickFrequency(double freq, bool isBeat)
 {
 	int note = frequencyToNoteInKey(freq);
 #ifdef WIN32
-	LOG("The key is " + std::to_string(currentKeyTonic) + " The current note is " + std::to_string(note));
+	LOG("The key is " + std::to_string(currentKeyTonic) + " The current note is " + std::to_string(note) + " Is a beat " + std::to_string(isBeat));
 #endif
 	return;
 }
