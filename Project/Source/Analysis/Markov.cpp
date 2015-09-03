@@ -10,37 +10,37 @@
 
 #include "Markov.h"
 
-/*
-Next note to play:	1	2	3	4	5	6	7	8
-Current note:	1
-				2
-				3      ############################
-				4      ###### PROBABILITIES #######
-				5      ######    GO HERE    #######
-				6      ############################
-				7
-				8
-*/
+Markov::Markov(){
+	/*
+	Next note to play:	1	2	3	4	5	6	7	8
+	Current note:	1
+	2
+	3      ############################
+	4      ###### PROBABILITIES #######
+	5      ######    GO HERE    #######
+	6      ############################
+	7
+	8
+	*/
 
-NoteAnalyser::NoteAnalyser(){
-	//TODO: Find a way to initialise these without causing errors
-	//std::vector<std::vector<float>> mInitial(rows, std::vector<float>(columns));
-	//std::vector<std::vector<float>> mTransition(rows, std::vector<float>(columns));
-	// TODO: Fill transition matrix with state change probabilities
+	//TODO figure out how to fill matrix with values. will probably just be 64 push_back() calls, which looks bad but only happens once so it's fine.
 }
 
-NoteAnalyser::~NoteAnalyser(){}
+Markov::~Markov(){}
 
 // Look at the current (and previous) notes and chords, determine which note should be played next (probability/Markov/whatever), and return its frequency.
-float NoteAnalyser::getNextNote(float currentFrequency) {
-	//TODO: Add helper function .h file (similar to enums, logging) that contains functions to convert freq - note and vice versa.
-	// Convert frequency to note
-	// Clear initial matrix
-	// Set current note as current state in initial matrix
-	// doTransition()
-	// Convert that note back into a frequency
-
-	return currentFrequency;
+int Markov::getNextNote(int currentNote, int chord) {
+    // make a matrix (or array of arrays, vector of vectors, etc) of size matrix_dimension * matrix_dimension
+    // for the current row
+        // generate random number between 0 and 1
+        // for each probability
+            // if random value < sum of probabilities so far
+            // break
+            // else
+            // add probability to ongoing sum
+        // convert note int value to frequency?
+    int nextNote;
+	return nextNote;
 }
 
 void doTransition() {

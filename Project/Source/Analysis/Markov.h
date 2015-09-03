@@ -8,24 +8,24 @@
   ==============================================================================
 */
 
-#ifndef NOTEANALYSER_H_INCLUDED
-#define NOTEANALYSER_H_INCLUDED
+#ifndef MARKOV_H_INCLUDED
+#define MARKOV_H_INCLUDED
 
 #include "../Logging.h"
 #include <JuceHeader.h>
 
-class NoteAnalyser {
+class Markov {
 public:
-	NoteAnalyser();
-	~NoteAnalyser();
+	Markov();
+	~Markov();
 
-	float getNextNote(float currentFrequency);
+	int getNextNote(int currentNote, int chord);
 
 private:
 	void doTransition();
 
-	int rows, columns = 8;
+	std::vector<std::vector<float>> matrix(std::vector<float>());
 };
 
 
-#endif  // NOTEANALYSER_H_INCLUDED
+#endif  // MARKOV_H_INCLUDED
