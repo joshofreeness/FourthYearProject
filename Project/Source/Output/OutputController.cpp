@@ -41,7 +41,7 @@ void OutputController::PlayNote(float hertz, MidiBuffer& midiMessages, int delay
 		midiNoteValue = 1;
 	}
 
-	MidiMessage midiMessage = MidiMessage::noteOn(1, midiNoteValue, m_volume);
+	MidiMessage midiMessage = MidiMessage::noteOn(1, midiNoteValue, 1.0f);
 	//MidiMessage midiMessageOff = MidiMessage::noteOn(1, midiNoteValue, 0.0f);
 	midiMessage.setTimeStamp(Time::getMillisecondCounter());
 	//midiMessageOff.setTimeStamp(Time::getMillisecondCounter());

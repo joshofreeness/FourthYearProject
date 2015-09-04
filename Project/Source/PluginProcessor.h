@@ -81,7 +81,7 @@ private:
 	bool UIUpdateFlag;
 	bool noteOffMidiFlag;
 
-	OutputController mOutputController;
+	//OutputController mOutputController;
 	InputProcessor mInputProcessor;
 	BrainController mBrainController;
 
