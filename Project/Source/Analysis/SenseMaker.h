@@ -19,11 +19,11 @@ public:
 	SenseMaker();
 	~SenseMaker();
 
-	void clockTickFrequency(double freq, bool isBeat);
-	void setKeyTonic(int key);
+	double setKeyTonic(int key);
+	int frequencyToNoteInKey(double freq);
 
 private:
-	int frequencyToNoteInKey(double freq);
+	
 	double currentKeyTonic;
 
 };

@@ -16,6 +16,7 @@
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "Logging.h"
 #include "Analysis/SenseMaker.h"
+#include "Analysis/BrainController.h"
 
 //==============================================================================
 /**
@@ -82,7 +83,7 @@ private:
 
 	OutputController mOutputController;
 	InputProcessor mInputProcessor;
-	SenseMaker mSenseMaker;
+	BrainController mBrainController;
 
 	bool first = true;
 	//==============================================================================

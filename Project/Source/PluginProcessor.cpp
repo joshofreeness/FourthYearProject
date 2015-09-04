@@ -60,7 +60,7 @@ void DAWTestAudioProcessor::setParameter (int index, float newValue) {
 		case Key:
 			UserParams[Key] = newValue;
 			mOutputController.SetKey((int)newValue);
-			mSenseMaker.setKeyTonic((int)newValue);
+			mBrainController.setKeyTonic((int)newValue);
 			/* Keys:
 				Key of C: 1
 				Key of Db / C#: 2
@@ -127,16 +127,12 @@ void DAWTestAudioProcessor::processBlock(AudioSampleBuffer& buffer, MidiBuffer& 
 			
 		}
 
-		mSenseMaker.clockTickFrequency((double)currentFreq, isBeatTick);
+		mBrainController.clockTickFrequency((double)currentFreq, isBeatTick);
 		mOutputController.PlayNote(note, midiMessages, 0);
 
 		if (hasEditor())
 		{
-			//DAWTestAudioProcessorEditor *theOne = getActiveEditor();
 			AudioProcessorEditor *temp = getActiveEditor();
-			//TODO: get a reference to the editor and call UpdateGUILabel  
-			//temp->UpdateGUILable("Haha");
-			//DAWTestAudioProcessorEditor *tempDaw = static_cast<DAWTestAudioProcessorEditor>(*temp); 
 		}
     }
 }
