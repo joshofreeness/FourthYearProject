@@ -23,7 +23,7 @@ public:
 
 private:
 
-	std::vector<std::vector<float>> matrix;
+	std::vector<std::vector<double>> matrix;
 };
 
 

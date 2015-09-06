@@ -12,8 +12,8 @@
 
 Markov::Markov(){
 	/*
-	Next note to play:	1	2	3	4	5	6	7	8
-	Current note:	1
+	Note to play:		1	2	3	4	5	6	7	8
+	Note Heard :	1
 					2
 					3      ############################
 					4      ###### PROBABILITIES #######
@@ -23,14 +23,14 @@ Markov::Markov(){
 					8
 	*/
 
-	std::vector<float> row_1 = { 0, 0, 0, 0, 0, 0, 0, 0 };
-	std::vector<float> row_2 = { 0, 0, 0, 0, 0, 0, 0, 0 };
-	std::vector<float> row_3 = { 0, 0, 0, 0, 0, 0, 0, 0 };
-	std::vector<float> row_4 = { 0, 0, 0, 0, 0, 0, 0, 0 };
-	std::vector<float> row_5 = { 0, 0, 0, 0, 0, 0, 0, 0 };
-	std::vector<float> row_6 = { 0, 0, 0, 0, 0, 0, 0, 0 };
-	std::vector<float> row_7 = { 0, 0, 0, 0, 0, 0, 0, 0 };
-	std::vector<float> row_8 = { 0, 0, 0, 0, 0, 0, 0, 0 };
+	std::vector<double> row_1 = { 0, 0, 0, 0, 0, 0, 0, 0 };
+	std::vector<double> row_2 = { 0, 0, 0, 0, 0, 0, 0, 0 };
+	std::vector<double> row_3 = { 0, 0, 0, 0, 0, 0, 0, 0 };
+	std::vector<double> row_4 = { 0, 0, 0, 0, 0, 0, 0, 0 };
+	std::vector<double> row_5 = { 0, 0, 0, 0, 0, 0, 0, 0 };
+	std::vector<double> row_6 = { 0, 0, 0, 0, 0, 0, 0, 0 };
+	std::vector<double> row_7 = { 0, 0, 0, 0, 0, 0, 0, 0 };
+	std::vector<double> row_8 = { 0, 0, 0, 0, 0, 0, 0, 0 };
 	matrix[1] = row_1;
 	matrix[2] = row_2;
 	matrix[3] = row_3;
@@ -43,17 +43,35 @@ Markov::Markov(){
 
 Markov::~Markov(){}
 
-// Look at the current (and previous) notes and chords, determine which note should be played next (probability/Markov/whatever), and return its frequency.
+// Given the chord and the last note heard from the musician, determine which note the computer should play.
 int Markov::getNextNote(int currentNote, int chord) {
-    // make a matrix (or array of arrays, vector of vectors, etc) of size matrix_dimension * matrix_dimension
-    // for the current row
-        // generate random number between 0 and 1
-        // for each probability
-            // if random value < sum of probabilities so far
-            // break
-            // else
-            // add probability to ongoing sum
-        // convert note int value to frequency?
-    int nextNote;
+	std::vector<double> workingRow = matrix[currentNote];
+
+	// TODO: Are we using a temporary copy of matrix and editing it based on the chord?
+	// currently the chord has no effect on the outcome, just the probabilities.
+
+	// Random number between 0 and 1.
+	double r = ((double)rand() / (RAND_MAX));
+
+	int nextNote = 0;
+
+	for (int i = 1; i < workingRow.size(); i++) {
+
+		double currentProb = workingRow[i];
+
+		if (currentProb >= r) {
+			nextNote = i;
+			break;
+
+		} else {
+			r -= currentProb;
+
+		}
+	}
+
+#ifdef WIN32
+	LOG("Note chosen: " + std::to_string(nextNote) + " (note heard was: " + std::to_string(currentNote) + ").");
+#endif
+
 	return nextNote;
 }
