@@ -14,16 +14,31 @@ Markov::Markov(){
 	/*
 	Next note to play:	1	2	3	4	5	6	7	8
 	Current note:	1
-	2
-	3      ############################
-	4      ###### PROBABILITIES #######
-	5      ######    GO HERE    #######
-	6      ############################
-	7
-	8
+					2
+					3      ############################
+					4      ###### PROBABILITIES #######
+					5      ######    GO HERE    #######
+					6      ############################
+					7
+					8
 	*/
 
-	//TODO figure out how to fill matrix with values. will probably just be 64 push_back() calls, which looks bad but only happens once so it's fine.
+	std::vector<float> row_1 = { 0, 0, 0, 0, 0, 0, 0, 0 };
+	std::vector<float> row_2 = { 0, 0, 0, 0, 0, 0, 0, 0 };
+	std::vector<float> row_3 = { 0, 0, 0, 0, 0, 0, 0, 0 };
+	std::vector<float> row_4 = { 0, 0, 0, 0, 0, 0, 0, 0 };
+	std::vector<float> row_5 = { 0, 0, 0, 0, 0, 0, 0, 0 };
+	std::vector<float> row_6 = { 0, 0, 0, 0, 0, 0, 0, 0 };
+	std::vector<float> row_7 = { 0, 0, 0, 0, 0, 0, 0, 0 };
+	std::vector<float> row_8 = { 0, 0, 0, 0, 0, 0, 0, 0 };
+	matrix[1] = row_1;
+	matrix[2] = row_2;
+	matrix[3] = row_3;
+	matrix[4] = row_4;
+	matrix[5] = row_5;
+	matrix[6] = row_6;
+	matrix[7] = row_7;
+	matrix[8] = row_8;
 }
 
 Markov::~Markov(){}
@@ -41,8 +56,4 @@ int Markov::getNextNote(int currentNote, int chord) {
         // convert note int value to frequency?
     int nextNote;
 	return nextNote;
-}
-
-void doTransition() {
-	// Perform one iteration of the Markov Chain.
 }

@@ -22,9 +22,8 @@ public:
 	int getNextNote(int currentNote, int chord);
 
 private:
-	void doTransition();
 
-	std::vector<std::vector<float>> matrix(std::vector<float>());
+	std::vector<std::vector<float>> matrix;
 };
 
 
