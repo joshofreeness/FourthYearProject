@@ -16,8 +16,8 @@ Markov::Markov(){
 	Note Heard :	1
 					2
 					3      ############################
-					4      ###### PROBABILITIES #######
-					5      ######    GO HERE    #######
+					4      #### PROBABILITIES HERE ####
+					5      ####   FOR REFERENCE    ####
 					6      ############################
 					7
 					8
