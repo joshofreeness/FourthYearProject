@@ -23,8 +23,8 @@ public:
 
 private:
 
-	std::vector<std::vector<double>> note;
-	std::vector<std::vector<double>> chord;
+	std::vector<std::vector<double>>* note;
+	std::vector<std::vector<double>>* chord;
 };
 
 
