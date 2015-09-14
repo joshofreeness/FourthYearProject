@@ -23,7 +23,8 @@ public:
 
 private:
 
-	std::vector<std::vector<double>> matrix;
+	std::vector<std::vector<double>> note;
+	std::vector<std::vector<double>> chord;
 };
 
 
