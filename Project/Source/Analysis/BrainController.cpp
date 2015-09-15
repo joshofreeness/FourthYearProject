@@ -17,6 +17,7 @@ BrainController::BrainController()
 	trackStarted = false;
 	newChord = true;
 	previousNotePlayed = 1;
+	beatCounter = 0;
 }
 
 BrainController::~BrainController(){}
@@ -32,7 +33,17 @@ double BrainController::clockTickFrequency(double currentFreq, bool isBeatTick, 
 
 	int currentNote = mSenseMaker.frequencyToNoteInKey(currentFreq);
 
-	if (currentNote == 0){ return 0; }
+	if (isBeatTick && (beatSkip != 0))
+	{
+		if (!(beatCounter >= beatSkip))
+		{
+			beatCounter ++;
+			return 0;
+		}
+		beatCounter = 0;
+	}
+
+	//if (currentNote == 0){ return 0; }
 
 	notesHeardSinceLastChord.push_back(currentNote);
 

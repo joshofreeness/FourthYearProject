@@ -25,8 +25,13 @@ public:
 	void SetVolume(float newVolume){ volume = newVolume; };
 	float GetVolume(void){ return volume; };
 
-	void SetBeat(int newBeat) { beat = newBeat; };
+	void SetBeat(int newBeat) { beat = newBeat; beatSkip = newBeat - 1; if (newBeat == 3){ beatSkip++; } };
 	int GetBeat(void){ return beat; };
+	/* Beats:
+				1/16: 1
+				1/8: 2
+				1/4: 3
+			*/
 
 	void SetKey(int newKey){ key = newKey; currentKeyTonic = mSenseMaker.setKeyTonic(key); };
 	int GetKey(void){ return key; };
@@ -47,6 +52,9 @@ private:
 	int currentChord;
 	int previousNotePlayed;
 	bool newChord;
+
+	int beatCounter;
+	int beatSkip;
 
 	bool trackStarted;
 
