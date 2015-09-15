@@ -12,6 +12,7 @@
 #define SENSEMAKER_H_INCLUDED
 
 #include "../Logging.h"
+#include <math.h>
 
 class SenseMaker
 {

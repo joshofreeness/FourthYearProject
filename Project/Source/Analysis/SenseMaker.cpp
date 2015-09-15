@@ -9,7 +9,6 @@
 */
 
 #include "SenseMaker.h"
-#include <math.h>
 #include <string>
 
 SenseMaker::SenseMaker(){}
