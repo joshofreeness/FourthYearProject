@@ -44,6 +44,15 @@ Note last played:		1	2	3	4	5	6	7	8
 	std::vector<double> row_7 = { 0, 0, 0, 0, 0, 0, 0, 0 };
 	std::vector<double> row_8 = { 0, 0, 0, 0, 0, 0, 0, 0 };
 
+	std::vector<double> chord_row_1 = { 0, 0, 0, 0.5, 0.5, 0, 0, 0 };
+	std::vector<double> chord_row_2 = { 0.3, 0, 0, 0.34, 0.3, 0, 0, 0 };
+	std::vector<double> chord_row_3 = { 0.3, 0, 0, 0.3, 0.34, 0, 0, 0 };
+	std::vector<double> chord_row_4 = { 0.3, 0, 0, 0, 0.34, 0.3, 0, 0 };
+	std::vector<double> chord_row_5 = { 0.34, 0, 0, 0.3, 0, 0.3, 0, 0 };
+	std::vector<double> chord_row_6 = { 0.3, 0, 0, 0.3, 0.34, 0, 0, 0 };
+	std::vector<double> chord_row_7 = { 0.5, 0, 0, 0, 0.5, 0, 0, 0 };
+	std::vector<double> chord_row_8 = { 0, 0, 0, 0.5, 0.5, 0, 0, 0 };
+
 	note = new std::vector<std::vector<double>>(9);
 	chord = new std::vector<std::vector<double>>(9);
 
@@ -56,14 +65,14 @@ Note last played:		1	2	3	4	5	6	7	8
 	note->operator[](6) = row_7;
 	note->operator[](7) = row_8;
 
-	chord->operator[](0) = row_1;
-	chord->operator[](1) = row_2;
-	chord->operator[](2) = row_3;
-	chord->operator[](3) = row_4;
-	chord->operator[](4) = row_5;
-	chord->operator[](5) = row_6;
-	chord->operator[](6) = row_7;
-	chord->operator[](7) = row_8;
+	chord->operator[](0) = chord_row_1;
+	chord->operator[](1) = chord_row_2;
+	chord->operator[](2) = chord_row_3;
+	chord->operator[](3) = chord_row_4;
+	chord->operator[](4) = chord_row_5;
+	chord->operator[](5) = chord_row_6;
+	chord->operator[](6) = chord_row_7;
+	chord->operator[](7) = chord_row_8;
 
 }
 

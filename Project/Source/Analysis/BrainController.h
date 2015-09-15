@@ -42,6 +42,7 @@ private:
 	bool doesNoteBelong(int note);
 	std::list<int> chordsNoteMayBelongTo(int note);
 	int convertNoteFromChordToKey(int note, int chord);
+	int convertNoteFromKeyToChord(int note, int chord);
 	int pickNewChord(int currentNote, int currentChord);
 
 	double currentKeyTonic;
