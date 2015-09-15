@@ -70,11 +70,38 @@ Note last played:		1	2	3	4	5	6	7	8
 Markov::~Markov(){}
 
 // Given the chord and the last note heard from the musician, determine which note the computer should play.
-int Markov::getNextNote(int currentNote, int chord) {
+int Markov::getNextNote(int currentNote) {
 	std::vector<double> workingRow = note->operator[](currentNote);
 
-	// TODO: Are we using a temporary copy of matrix and editing it based on the chord?
-	// currently the chord has no effect on the outcome, just the probabilities.
+	// Random number between 0 and 1.
+	double r = ((double)rand() / (RAND_MAX));
+
+	int nextNote = 0;
+
+	for (int i = 1; i < workingRow.size(); i++) {
+
+		double currentProb = workingRow[i];
+
+		if (currentProb >= r) {
+			nextNote = i;
+			break;
+
+		} else {
+			r -= currentProb;
+
+		}
+	}
+
+#ifdef WIN32
+	LOG("Note chosen: " + std::to_string(nextNote) + " (note heard was: " + std::to_string(currentNote) + ").");
+#endif
+
+	return nextNote;
+}
+
+// Given the chord and the last note heard from the musician, determine which note the computer should play.
+int Markov::getNextChord(int currentChord) {
+	std::vector<double> workingRow = note->operator[](currentNote);
 
 	// Random number between 0 and 1.
 	double r = ((double)rand() / (RAND_MAX));

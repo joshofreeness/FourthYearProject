@@ -19,7 +19,8 @@ public:
 	Markov();
 	~Markov();
 
-	int getNextNote(int currentNote, int chord);
+	int getNextNote(int currentNote);
+	int getNextChord(int currentChord);
 
 private:
 
