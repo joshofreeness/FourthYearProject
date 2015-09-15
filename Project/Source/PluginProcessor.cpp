@@ -125,7 +125,12 @@ void DAWTestAudioProcessor::processBlock(AudioSampleBuffer& buffer, MidiBuffer& 
 
 				float note = currentFreq;
 
-				mBrainController.clockTickFrequency((double)currentFreq, isBeatTick, midiMessages);
+				double noteForOutput = mBrainController.clockTickFrequency((double)currentFreq, isBeatTick, midiMessages);
+
+				if (noteForOutput != 0)
+				{
+					mOutputController.PlayNote(noteForOutput, midiMessages, 0);
+				}
 
 				if (hasEditor())
 				{

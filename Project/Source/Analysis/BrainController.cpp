@@ -15,23 +15,34 @@ BrainController::BrainController()
 	currentKeyTonic = 0;
 	currentChord = 1; //This will probably be the case at the start most of the time
 	trackStarted = false;
+	newChord = true;
+	previousNotePlayed = 1;
 }
 
 BrainController::~BrainController(){}
 
-void BrainController::clockTickFrequency(double currentFreq, bool isBeatTick, MidiBuffer& midiMessages)
+double BrainController::clockTickFrequency(double currentFreq, bool isBeatTick, MidiBuffer& midiMessages)
 {
 	//Wait for the midi track to start so that chord doesn't get changed to something weird from background noise
 	if (!trackStarted)
 	{
-		if (!isBeatTick){ return; }
+		if (!isBeatTick){ return 0; }
 		trackStarted = true;
 	}
 
 	int currentNote = mSenseMaker.frequencyToNoteInKey(currentFreq);
-	int chord = 0;
+	
+	int noteToPlay = 0;
+	if (newChord)
+	{
+		newChord = false;
+		noteToPlay = 1;
+		previousNotePlayed = 1;
+	}
 
-	double freqToPlay = mMarkov.getNextNote(currentNote);
+
+	noteToPlay = mMarkov.getNextNote(previousNotePlayed);
+	previousNotePlayed = noteToPlay;
 
 	// I thought brainController is meant to pass freqToPlay back to PluginProcessor, and then PluginProcessor calls OutputController?
 	//mOutputController.PlayNote(freqToPlay, midiMessages, 0); 
@@ -41,6 +52,7 @@ void BrainController::clockTickFrequency(double currentFreq, bool isBeatTick, Mi
 #ifdef WIN32
 	LOG("The key is " + std::to_string(currentKeyTonic) + " The current note is " + std::to_string(currentNote) + " Is a beat " + std::to_string(isBeatTick));
 #endif
+	return 0;
 }
 
 

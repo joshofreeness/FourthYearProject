@@ -20,7 +20,7 @@ public:
 	~BrainController();
 
 	
-	void clockTickFrequency(double currentFreq, bool isBeatTick, MidiBuffer& midiMessages);
+	double clockTickFrequency(double currentFreq, bool isBeatTick, MidiBuffer& midiMessages);
 
 	void SetVolume(float newVolume){ volume = newVolume; };
 	float GetVolume(void){ return volume; };
@@ -37,6 +37,8 @@ private:
 	Markov mMarkov;
 	double currentKeyTonic;
 	int currentChord;
+	int previousNotePlayed;
+	bool newChord;
 
 	bool trackStarted;
 
