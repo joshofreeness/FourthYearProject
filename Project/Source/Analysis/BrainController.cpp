@@ -31,7 +31,8 @@ double BrainController::clockTickFrequency(double currentFreq, bool isBeatTick, 
 	}
 
 	int currentNote = mSenseMaker.frequencyToNoteInKey(currentFreq);
-	
+	notesHeardSinceLastChord.push_back(currentNote);
+
 	int noteToPlay = 0;
 	if (newChord)
 	{
@@ -55,5 +56,13 @@ double BrainController::clockTickFrequency(double currentFreq, bool isBeatTick, 
 	return 0;
 }
 
+bool BrainController::doesNoteBelong(int note)
+{
+	return true;
+}
 
+std::list<int> BrainController::chordsNoteMayBelongTo(int note)
+{
+	return std::list<int>();
+}
 

@@ -12,6 +12,7 @@
 #define BRAINCONTROLLER_H_INCLUDED
 #include "SenseMaker.h"
 #include "Markov.h"
+#include <list>
 
 class BrainController
 {
@@ -35,6 +36,11 @@ private:
 
 	SenseMaker mSenseMaker;
 	Markov mMarkov;
+	std::list<int> notesHeardSinceLastChord;
+
+	bool doesNoteBelong(int note);
+	std::list<int> chordsNoteMayBelongTo(int note);
+
 	double currentKeyTonic;
 	int currentChord;
 	int previousNotePlayed;
