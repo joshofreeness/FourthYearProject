@@ -70,7 +70,7 @@ public:
     void setStateInformation (const void* data, int sizeInBytes) override;
     
     //Custom Methods, Params and Public Data
-    enum Parameters{Volume, Frequency, Key, totalNumParam};
+    enum Parameters{Volume, Beat, Key, totalNumParam};
     bool NeedsUIUpdate(){return UIUpdateFlag;};
     void RequestUIUpdate(){UIUpdateFlag=true;};
     void ClearUIUpdateFlag(){UIUpdateFlag=false;};

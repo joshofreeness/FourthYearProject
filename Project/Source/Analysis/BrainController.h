@@ -20,15 +20,13 @@ public:
 	BrainController();
 	~BrainController();
 
-	
 	double clockTickFrequency(double currentFreq, bool isBeatTick, MidiBuffer& midiMessages);
-
 
 	void SetVolume(float newVolume){ volume = newVolume; };
 	float GetVolume(void){ return volume; };
 
-	void SetFrequency(float newFrequency) { frequency = newFrequency; };
-	float GetFrequency(void){ return frequency; };
+	void SetBeat(int newBeat) { beat = newBeat; };
+	int GetBeat(void){ return beat; };
 
 	void SetKey(int newKey){ key = newKey; currentKeyTonic = mSenseMaker.setKeyTonic(key); };
 	int GetKey(void){ return key; };
@@ -53,9 +51,8 @@ private:
 
 	//Values for GUI
 	float volume;
-	float frequency;
 	int key;
-
+	int beat;
 };
 
 

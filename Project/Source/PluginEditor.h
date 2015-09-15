@@ -68,12 +68,10 @@ private:
     //==============================================================================
     ScopedPointer<Slider> sliderVolume;
     ScopedPointer<Label> lblVolume;
-    ScopedPointer<Slider> sliderFrequency;
-    ScopedPointer<Label> lblFrequency;
-    ScopedPointer<Label> lblFrequencyInput;
-    ScopedPointer<Label> lblFrequencyInputDisplay;
     ScopedPointer<ComboBox> comboKey;
     ScopedPointer<Label> lblKey;
+    ScopedPointer<ComboBox> comboBeat;
+    ScopedPointer<Label> lblBeat;
 
 
     //==============================================================================
