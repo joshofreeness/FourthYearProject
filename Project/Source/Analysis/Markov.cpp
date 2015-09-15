@@ -12,6 +12,18 @@
 
 Markov::Markov(){
 	/*
+Note last played:		1	2	3	4	5	6	7	8
+	Note Heard :	1           1
+					2
+					3  0.5              0.5   
+					4     
+					5           1 
+					6     
+					7
+					8
+	*/
+
+	/*
 	Note to play:		1	2	3	4	5	6	7	8
 	Note Heard :	1
 					2
@@ -23,11 +35,11 @@ Markov::Markov(){
 					8
 	*/
 
-	std::vector<double> row_1 = { 0, 0, 0, 0, 0, 0, 0, 0 };
+	std::vector<double> row_1 = { 0, 0, 1, 0, 0, 0, 0, 0 };
 	std::vector<double> row_2 = { 0, 0, 0, 0, 0, 0, 0, 0 };
-	std::vector<double> row_3 = { 0, 0, 0, 0, 0, 0, 0, 0 };
+	std::vector<double> row_3 = { 0.5, 0, 0, 0, 0.5, 0, 0, 0 };
 	std::vector<double> row_4 = { 0, 0, 0, 0, 0, 0, 0, 0 };
-	std::vector<double> row_5 = { 0, 0, 0, 0, 0, 0, 0, 0 };
+	std::vector<double> row_5 = { 0, 0, 1, 0, 0, 0, 0, 0 };
 	std::vector<double> row_6 = { 0, 0, 0, 0, 0, 0, 0, 0 };
 	std::vector<double> row_7 = { 0, 0, 0, 0, 0, 0, 0, 0 };
 	std::vector<double> row_8 = { 0, 0, 0, 0, 0, 0, 0, 0 };
