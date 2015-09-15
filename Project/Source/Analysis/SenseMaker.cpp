@@ -96,7 +96,6 @@ int SenseMaker::frequencyToNoteInKey(double freq)
 	if (freq == currentKeyTonic){return 1;} 
 	
 	int currentSteps = 0;
-	double aValue = pow(2, 1.0 / 12.0);
 
 	if (freq > currentKeyTonic)
 	{
@@ -148,8 +147,48 @@ int SenseMaker::frequencyToNoteInKey(double freq)
 
 double SenseMaker::noteInKeytoFrequency(int note)
 {
-	//TODO: Implement
-	return currentKeyTonic;
+	int numSteps = 0;
+
+	// Convert from note id back to number of semitones from the tonic freq.
+	switch (note)
+	{
+	case 1:
+		numSteps = 0;
+		break;
+
+	case 2:
+		numSteps = 2;
+		break;
+
+	case 3:
+		numSteps = 4;
+		break;
+
+	case 4:
+		numSteps = 5;
+		break;
+
+	case 5:
+		numSteps = 7;
+		break;
+
+	case 6:
+		numSteps = 9;
+		break;
+
+	case 7:
+		numSteps = 11;
+		break;
+
+	default:
+		//Note: not in scale if return 0
+		return 0;
+	}
+
+	// fn = f0 * (a^n)
+	double frequency = currentKeyTonic * (pow(aValue, numSteps));
+
+	return frequency;
 }
 
 

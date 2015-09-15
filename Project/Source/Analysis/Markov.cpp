@@ -47,23 +47,23 @@ Note last played:		1	2	3	4	5	6	7	8
 	note = new std::vector<std::vector<double>>(9);
 	chord = new std::vector<std::vector<double>>(9);
 
-	note->operator[](1) = row_1;
-	note->operator[](2) = row_1;
-	note->operator[](3) = row_1;
-	note->operator[](4) = row_1;
-	note->operator[](5) = row_1;
-	note->operator[](6) = row_1;
-	note->operator[](7) = row_1;
-	note->operator[](8) = row_1;
+	note->operator[](0) = row_1;
+	note->operator[](1) = row_2;
+	note->operator[](2) = row_3;
+	note->operator[](3) = row_4;
+	note->operator[](4) = row_5;
+	note->operator[](5) = row_6;
+	note->operator[](6) = row_7;
+	note->operator[](7) = row_8;
 
-	chord->operator[](1) = row_1;
-	chord->operator[](2) = row_1;
-	chord->operator[](3) = row_1;
-	chord->operator[](4) = row_1;
-	chord->operator[](5) = row_1;
-	chord->operator[](6) = row_1;
-	chord->operator[](7) = row_1;
-	chord->operator[](8) = row_1;
+	chord->operator[](0) = row_1;
+	chord->operator[](1) = row_2;
+	chord->operator[](2) = row_3;
+	chord->operator[](3) = row_4;
+	chord->operator[](4) = row_5;
+	chord->operator[](5) = row_6;
+	chord->operator[](6) = row_7;
+	chord->operator[](7) = row_8;
 
 }
 
@@ -78,12 +78,14 @@ int Markov::getNextNote(int currentNote) {
 
 	int nextNote = 0;
 
-	for (int i = 1; i < workingRow.size(); i++) {
+	for (int i = 0; i < workingRow.size(); i++) {
 
 		double currentProb = workingRow[i];
 
 		if (currentProb >= r) {
-			nextNote = i;
+
+			// Increment because array index starts at 0
+			nextNote = i + 1;
 			break;
 
 		} else {
@@ -108,12 +110,14 @@ int Markov::getNextChord(int currentChord) {
 
 	int nextChord = 0;
 
-	for (int i = 1; i < workingRow.size(); i++) {
+	for (int i = 0; i < workingRow.size(); i++) {
 
 		double currentProb = workingRow[i];
 
 		if (currentProb >= r) {
-			nextChord = i;
+
+			// Increment because array index starts at 0
+			nextChord = i + 1;
 			break;
 
 		} else {

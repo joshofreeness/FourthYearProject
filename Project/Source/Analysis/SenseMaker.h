@@ -26,6 +26,7 @@ public:
 private:
 	
 	double currentKeyTonic;
+	double aValue = pow(2, 1.0 / 12.0);
 
 };
 
