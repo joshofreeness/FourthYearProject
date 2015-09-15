@@ -69,7 +69,7 @@ Note last played:		1	2	3	4	5	6	7	8
 
 Markov::~Markov(){}
 
-// Given the chord and the last note heard from the musician, determine which note the computer should play.
+// Given the last note heard from the musician, determine which note the computer should play next.
 int Markov::getNextNote(int currentNote) {
 	std::vector<double> workingRow = note->operator[](currentNote);
 
@@ -99,21 +99,21 @@ int Markov::getNextNote(int currentNote) {
 	return nextNote;
 }
 
-// Given the chord and the last note heard from the musician, determine which note the computer should play.
+// Given the current chord, determine which chord our next note should be in.
 int Markov::getNextChord(int currentChord) {
-	std::vector<double> workingRow = note->operator[](currentNote);
+	std::vector<double> workingRow = chord->operator[](currentChord);
 
 	// Random number between 0 and 1.
 	double r = ((double)rand() / (RAND_MAX));
 
-	int nextNote = 0;
+	int nextChord = 0;
 
 	for (int i = 1; i < workingRow.size(); i++) {
 
 		double currentProb = workingRow[i];
 
 		if (currentProb >= r) {
-			nextNote = i;
+			nextChord = i;
 			break;
 
 		} else {
@@ -123,8 +123,8 @@ int Markov::getNextChord(int currentChord) {
 	}
 
 #ifdef WIN32
-	LOG("Note chosen: " + std::to_string(nextNote) + " (note heard was: " + std::to_string(currentNote) + ").");
+	LOG("Chord chosen: " + std::to_string(nextChord) + " (chord heard was: " + std::to_string(currentChord) + ").");
 #endif
 
-	return nextNote;
+	return nextChord;
 }

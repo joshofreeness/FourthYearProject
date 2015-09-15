@@ -31,7 +31,7 @@ void BrainController::clockTickFrequency(double currentFreq, bool isBeatTick, Mi
 	int currentNote = mSenseMaker.frequencyToNoteInKey(currentFreq);
 	int chord = 0;
 
-	double freqToPlay = mMarkov.getNextNote(currentNote, chord);
+	double freqToPlay = mMarkov.getNextNote(currentNote);
 
 	// I thought brainController is meant to pass freqToPlay back to PluginProcessor, and then PluginProcessor calls OutputController?
 	//mOutputController.PlayNote(freqToPlay, midiMessages, 0); 
