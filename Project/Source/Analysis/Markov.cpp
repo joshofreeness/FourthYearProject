@@ -71,7 +71,7 @@ Markov::~Markov(){}
 
 // Given the last note heard from the musician, determine which note the computer should play next.
 int Markov::getNextNote(int currentNote) {
-	std::vector<double> workingRow = note->operator[](currentNote);
+	std::vector<double> workingRow = note->operator[](currentNote-1);
 
 	// Random number between 0 and 1.
 	double r = ((double)rand() / (RAND_MAX));
@@ -95,7 +95,7 @@ int Markov::getNextNote(int currentNote) {
 	}
 
 #ifdef WIN32
-	LOG("Note chosen: " + std::to_string(nextNote) + " (note heard was: " + std::to_string(currentNote) + ").");
+	LOG("Note chosen: " + std::to_string(nextNote) + " (note transition from: " + std::to_string(currentNote) + ").");
 #endif
 
 	return nextNote;

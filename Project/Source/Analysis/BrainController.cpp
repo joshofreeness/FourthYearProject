@@ -36,26 +36,29 @@ double BrainController::clockTickFrequency(double currentFreq, bool isBeatTick, 
 	int noteToPlay = 0;
 	if (newChord)
 	{
-		newChord = false;
 		noteToPlay = 1;
 		previousNotePlayed = 1;
+		newChord = false;
 	}
+	else {
 
-	if (!doesNoteBelong(currentNote))
-	{
-		int newChord = pickNewChord(currentNote, currentChord);
+		/*if (!doesNoteBelong(currentNote))
+		{
+			int newChord = pickNewChord(currentNote, currentChord);
+		}
+		else{*/
+			noteToPlay = mMarkov.getNextNote(previousNotePlayed);
+			previousNotePlayed = noteToPlay;
+		/*}*/
 	}
-
-	noteToPlay = mMarkov.getNextNote(previousNotePlayed);
-	previousNotePlayed = noteToPlay;
-
 	
+	int noteInKey = convertNoteFromChordToKey(noteToPlay, currentChord);
 
 #ifdef WIN32
-	LOG("The key is " + std::to_string(currentKeyTonic) + " The current note is " + std::to_string(currentNote) + " Is a beat " + std::to_string(isBeatTick));
+	//LOG("The key is " + std::to_string(currentKeyTonic) + " The current note is " + std::to_string(currentNote) + " Is a beat " + std::to_string(isBeatTick));
+	LOG("The key is " + std::to_string(currentKeyTonic) + " The current note is " + std::to_string(noteInKey) + " Is a beat " + std::to_string(isBeatTick) + " Note Heard: " + std::to_string(currentNote));
 #endif
 
-	int noteInKey = convertNoteFromChordToKey(noteToPlay, currentChord);
 	return mSenseMaker.noteInKeytoFrequency(noteInKey);
 }
 
