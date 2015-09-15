@@ -18,8 +18,8 @@ DAWTestAudioProcessor::DAWTestAudioProcessor()
 {
 	UserParams[Volume] = 1.0f; //default volume 1.0 (no change)
 	mBrainController.SetVolume(UserParams[Volume]); //push VST default to effect
-	UserParams[Frequency] = (1 / 3); //default frequency 500Hz (no change)
-	mBrainController.SetFrequency(UserParams[Frequency]); //push VST default to effect
+	UserParams[Beat] = (1); //default beat 1/15 (no change)
+	mBrainController.SetBeat(UserParams[Beat]); //push VST default to effect
 	UserParams[Key] = 0; //default frequency 500Hz (no change)
 	mBrainController.SetKey(UserParams[Key]); //push VST default to effect
     UIUpdateFlag=true; //Request UI update
@@ -37,9 +37,8 @@ float DAWTestAudioProcessor::getParameter (int index) {
 		case Volume://example update from internal
 			UserParams[Volume] = mBrainController.GetVolume();
 			return UserParams[Volume];
-		case Frequency://example update from internal
-			UserParams[Frequency] = mBrainController.GetFrequency();
-			return UserParams[Frequency];
+		case Beat://example update from internal
+			return UserParams[Beat];
 		case Key://example update from internal
 			UserParams[Key] = mBrainController.GetKey();
 			return UserParams[Key];
@@ -53,9 +52,18 @@ void DAWTestAudioProcessor::setParameter (int index, float newValue) {
 			UserParams[Volume] = newValue;
 			mBrainController.SetVolume(UserParams[Volume]);
 			break;
-		case Frequency:
-			UserParams[Frequency] = newValue;
-			mBrainController.SetFrequency(UserParams[Frequency] * 1200); //Convert from parameter to Hz value.
+		case Beat:
+			UserParams[Beat] = newValue;
+			mBrainController.SetBeat((int)newValue);
+			/* Beats:
+				1/16: 1
+				1/8: 2
+				1/4: 3
+			*/
+
+#ifdef WIN32
+			LOG("Beat updated to " + std::to_string((int)newValue));
+#endif
 			break;
 		case Key:
 			UserParams[Key] = newValue;
@@ -83,7 +91,7 @@ void DAWTestAudioProcessor::setParameter (int index, float newValue) {
 const String DAWTestAudioProcessor::getParameterName (int index) {
 	switch (index) {
 		case Volume: return "Volume";
-		case Frequency: return "Frequency";
+		case Beat: return "Beat";
 		case Key: return "Key";
         default:return String::empty;
     }
@@ -147,8 +155,8 @@ void DAWTestAudioProcessor::getStateInformation (MemoryBlock& destData) {
 	XmlElement *el;
 	el = root.createNewChildElement("Volume");
 	el->addTextElement(String(UserParams[Volume]));
-	el = root.createNewChildElement("Frequency");
-	el->addTextElement(String(UserParams[Frequency]));
+	el = root.createNewChildElement("Beat");
+	el->addTextElement(String(UserParams[Beat]));
 	el = root.createNewChildElement("Key");
 	el->addTextElement(String(UserParams[Key]));
     copyXmlToBinary(root,destData);
@@ -163,9 +171,9 @@ void DAWTestAudioProcessor::setStateInformation (const void* data, int sizeInByt
 			if (pChild->hasTagName("Volume")) {
 				String text = pChild->getAllSubText();
 				setParameter(Volume, text.getFloatValue());
-			} else if (pChild->hasTagName("Frequency")) {
+			} else if (pChild->hasTagName("Beat")) {
 				String text = pChild->getAllSubText();
-				setParameter(Frequency, text.getFloatValue());
+				setParameter(Beat, text.getFloatValue());
 			} else if (pChild->hasTagName("Key")) {
 				String text = pChild->getAllSubText();
 				setParameter(Key, text.getFloatValue());
