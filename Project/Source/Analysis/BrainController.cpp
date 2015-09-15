@@ -55,14 +55,15 @@ double BrainController::clockTickFrequency(double currentFreq, bool isBeatTick, 
 	LOG("The key is " + std::to_string(currentKeyTonic) + " The current note is " + std::to_string(currentNote) + " Is a beat " + std::to_string(isBeatTick));
 #endif
 
-
-	return mSenseMaker.noteInKeytoFrequency(noteToPlay);
+	int noteInKey = convertNoteFromChordToKey(noteToPlay, currentChord);
+	return mSenseMaker.noteInKeytoFrequency(noteInKey);
 }
 
 int BrainController::convertNoteFromChordToKey(int note, int chord)
 {
-	//TODO: Implement
-	return 0;
+	int noteInKey = note + chord - 1;
+	
+	return noteInKey % 8;
 }
 
 int BrainController::pickNewChord(int currentNote, int currentChordTransitionFrom)
