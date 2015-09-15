@@ -99,37 +99,39 @@ const String DAWTestAudioProcessor::getParameterText (int index) {
 void DAWTestAudioProcessor::processBlock(AudioSampleBuffer& buffer, MidiBuffer& midiMessages) {
 	if(getNumInputChannels()<2) {
         //Nothing to do here - processing is in-place, so doing nothing is pass-through (for NumInputs=NumOutputs) 
+		//TODO: Maybe remove this if statement, I think it's left over from the tutorial project this is based on.
+		// may not actually do anything useful anymore
     } else {
-        //Do processing!
-		mInputProcessor.SetBlock(buffer);
-		mInputProcessor.SetSampleRate(getSampleRate());
-		mInputProcessor.AnalyseBlock();
-		float currentFreq = mInputProcessor.GetFrequency();
-
-		float note = currentFreq;
-
 		bool isBeatTick = false;
+
 		if (!midiMessages.isEmpty())
 		{
-			
+
 			if (noteOffMidiFlag)
 			{
+				// Not a beat tick, so don't do anything.
 				noteOffMidiFlag = false;
 			}
 			else
 			{
 				isBeatTick = true;
 				noteOffMidiFlag = true;
+
+				//Do processing!
+				mInputProcessor.SetBlock(buffer);
+				mInputProcessor.SetSampleRate(getSampleRate());
+				mInputProcessor.AnalyseBlock();
+				float currentFreq = mInputProcessor.GetFrequency();
+
+				float note = currentFreq;
+
+				mBrainController.clockTickFrequency((double)currentFreq, isBeatTick, midiMessages);
+
+				if (hasEditor())
+				{
+					AudioProcessorEditor *temp = getActiveEditor();
+				}
 			}
-			
-		}
-
-		mBrainController.clockTickFrequency((double)currentFreq, isBeatTick, midiMessages);
-		
-
-		if (hasEditor())
-		{
-			AudioProcessorEditor *temp = getActiveEditor();
 		}
     }
 }

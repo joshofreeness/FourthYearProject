@@ -35,7 +35,6 @@ Markov::Markov(){
 	note = new std::vector<std::vector<double>>(9);
 	chord = new std::vector<std::vector<double>>(9);
 
-
 	note->operator[](1) = row_1;
 	note->operator[](2) = row_1;
 	note->operator[](3) = row_1;
