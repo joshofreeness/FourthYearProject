@@ -146,5 +146,10 @@ int SenseMaker::frequencyToNoteInKey(double freq)
 
 }
 
+double SenseMaker::noteInKeytoFrequency(int note)
+{
+	//TODO: Implement
+	return currentKeyTonic;
+}
 
 

@@ -53,7 +53,9 @@ double BrainController::clockTickFrequency(double currentFreq, bool isBeatTick, 
 #ifdef WIN32
 	LOG("The key is " + std::to_string(currentKeyTonic) + " The current note is " + std::to_string(currentNote) + " Is a beat " + std::to_string(isBeatTick));
 #endif
-	return 0;
+
+
+	return mSenseMaker.noteInKeytoFrequency(noteToPlay);
 }
 
 bool BrainController::doesNoteBelong(int note)

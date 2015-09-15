@@ -21,6 +21,7 @@ public:
 
 	double setKeyTonic(int key);
 	int frequencyToNoteInKey(double freq);
+	double noteInKeytoFrequency(int note);
 
 private:
 	
