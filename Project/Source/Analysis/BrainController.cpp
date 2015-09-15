@@ -103,22 +103,21 @@ int BrainController::pickNewChord(int currentNote, int currentChordTransitionFro
 		//if it might be the suggested chord, then return suggested
 		return probableChord;
 	}
-		//return the closest chord (this might not make the most sense musically, but for the timebeing, meh)
-		int smallestDiff = 999;
-		int smallestChord = 0;
+	//return the closest chord (this might not make the most sense musically, but for the timebeing, meh)
+	int smallestDiff = 999;
+	int smallestChord = 1;
 
-		for (std::list<int>::const_iterator iterator = possibleChords.begin(), end = possibleChords.end(); iterator != end; ++iterator) {
-			std::cout << *iterator;
-			int diff = abs(*iterator - currentChordTransitionFrom);
-			if (diff< smallestDiff)
-			{
-				smallestDiff = diff;
-				smallestChord = *iterator;
+	for (std::list<int>::const_iterator iterator = possibleChords.begin(), end = possibleChords.end(); iterator != end; ++iterator) {
+		int diff = abs(*iterator - currentChordTransitionFrom);
+		if (diff< smallestDiff)
+		{
+			smallestDiff = diff;
+			smallestChord = *iterator;
 
-			}
 		}
+	}
 
-		return smallestChord;
+	return smallestChord;
 }
 
 
@@ -129,6 +128,7 @@ bool BrainController::doesNoteBelong(int note)
 	{
 		return true;
 	}
+	if (note == 0){ return true; } //Don't change chord on 0 note
 	return false;
 }
 
