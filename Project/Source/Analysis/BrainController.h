@@ -23,6 +23,7 @@ public:
 	
 	double clockTickFrequency(double currentFreq, bool isBeatTick, MidiBuffer& midiMessages);
 
+
 	void SetVolume(float newVolume){ volume = newVolume; };
 	float GetVolume(void){ return volume; };
 
@@ -40,6 +41,8 @@ private:
 
 	bool doesNoteBelong(int note);
 	std::list<int> chordsNoteMayBelongTo(int note);
+	int convertNoteFromChordToKey(int note, int chord);
+	int pickNewChord(int currentNote, int currentChord);
 
 	double currentKeyTonic;
 	int currentChord;

@@ -41,14 +41,15 @@ double BrainController::clockTickFrequency(double currentFreq, bool isBeatTick, 
 		previousNotePlayed = 1;
 	}
 
+	if (!doesNoteBelong(currentNote))
+	{
+		int newChord = pickNewChord(currentNote, currentChord);
+	}
 
 	noteToPlay = mMarkov.getNextNote(previousNotePlayed);
 	previousNotePlayed = noteToPlay;
 
-	// I thought brainController is meant to pass freqToPlay back to PluginProcessor, and then PluginProcessor calls OutputController?
-	//mOutputController.PlayNote(freqToPlay, midiMessages, 0); 
-	//TODO: change this to accept the int note and outputcontroller handles conversion
-	// pretty sure we should keep the int stuff contained within the brain classes, convert back to frequency before passing back to pluginprocessor and outputcontroller
+	
 
 #ifdef WIN32
 	LOG("The key is " + std::to_string(currentKeyTonic) + " The current note is " + std::to_string(currentNote) + " Is a beat " + std::to_string(isBeatTick));
@@ -58,13 +59,30 @@ double BrainController::clockTickFrequency(double currentFreq, bool isBeatTick, 
 	return mSenseMaker.noteInKeytoFrequency(noteToPlay);
 }
 
+int BrainController::convertNoteFromChordToKey(int note, int chord)
+{
+	//TODO: Implement
+	return 0;
+}
+
+int BrainController::pickNewChord(int currentNote, int currentChordTransitionFrom)
+{
+	std::list<int> possibleChords = chordsNoteMayBelongTo(currentNote);
+	int probableChord = mMarkov.getNextChord(currentChordTransitionFrom);
+	//TODO: Implement
+	return 1;
+}
+
+
 bool BrainController::doesNoteBelong(int note)
 {
+	//TODO: Implement
 	return true;
 }
 
 std::list<int> BrainController::chordsNoteMayBelongTo(int note)
 {
+	//TODO: Implement
 	return std::list<int>();
 }
 
