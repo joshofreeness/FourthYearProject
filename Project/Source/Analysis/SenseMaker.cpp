@@ -179,6 +179,10 @@ double SenseMaker::noteInKeytoFrequency(int note)
 		numSteps = 11;
 		break;
 
+	case 8:
+		numSteps = 0;
+		break;
+
 	default:
 		//Note: not in scale if return 0
 		return 0;
