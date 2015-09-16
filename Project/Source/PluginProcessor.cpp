@@ -106,9 +106,6 @@ const String DAWTestAudioProcessor::getParameterText (int index) {
 //This is where all the audio processing happens
 void DAWTestAudioProcessor::processBlock(AudioSampleBuffer& buffer, MidiBuffer& midiMessages) {
 	if(getNumInputChannels()<2) {
-        //Nothing to do here - processing is in-place, so doing nothing is pass-through (for NumInputs=NumOutputs) 
-		//TODO: Maybe remove this if statement, I think it's left over from the tutorial project this is based on.
-		// may not actually do anything useful anymore
     } else {
 		bool isBeatTick = false;
 
@@ -117,7 +114,7 @@ void DAWTestAudioProcessor::processBlock(AudioSampleBuffer& buffer, MidiBuffer& 
 
 			if (noteOffMidiFlag)
 			{
-				// Not a beat tick, so don't do anything.
+				// Not a beat tick, so don't do anything
 				noteOffMidiFlag = false;
 			}
 			else
@@ -125,7 +122,7 @@ void DAWTestAudioProcessor::processBlock(AudioSampleBuffer& buffer, MidiBuffer& 
 				isBeatTick = true;
 				noteOffMidiFlag = true;
 
-				//Do processing!
+				// Perform FFT for pitch detection
 				mInputProcessor.SetBlock(buffer);
 				mInputProcessor.SetSampleRate(getSampleRate());
 				mInputProcessor.AnalyseBlock();
@@ -133,6 +130,7 @@ void DAWTestAudioProcessor::processBlock(AudioSampleBuffer& buffer, MidiBuffer& 
 
 				float note = currentFreq;
 
+				// Perform analysis to determine which note should be played
 				double noteForOutput = mBrainController.clockTickFrequency((double)currentFreq, isBeatTick, midiMessages);
 
 				if (noteForOutput != 0)

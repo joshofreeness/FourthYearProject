@@ -20,20 +20,11 @@ OutputController::~OutputController(){
 }
 
 
-void OutputController::ClockProcess(MidiBuffer& midiMessages) {
-	//Lots of help from http://www.juce.com/forum/topic/midi-accuracy, particularly comment #12
-
-	//Notes were being sent far too fast
-	//if (Time::getMillisecondCounter() % 500 <= 10) {
-	//	PlayNote(m_frequency, midiMessages, 2);
-	//}
-}
+void OutputController::ClockProcess(MidiBuffer& midiMessages) {}
 
 //This method will schedule a note to be played
 void OutputController::PlayNote(float hertz, MidiBuffer& midiMessages, int delay)
 {
-
-
 	//https://en.wikipedia.org/wiki/MIDI_Tuning_Standard
 	int midiNoteValue = 69 + (12 * log2f(hertz / 440.0f)); //midi note from provided frequency
 	midiNoteValue++;
@@ -56,8 +47,4 @@ void OutputController::PlayNote(float hertz, MidiBuffer& midiMessages, int delay
 	double time = Time::getMillisecondCounter() + delay; // The time at which the note is to be played. Time::getMillisecondCounter() = current time.
 	midiOutput->sendBlockOfMessages(midiMessages, time, unit);
 	midiMessages.clear();
-
-#ifdef WIN32
-	LOG("Played note " + std::to_string(midiNoteValue) + " Played freq: " + std::to_string(hertz));
-#endif
 }

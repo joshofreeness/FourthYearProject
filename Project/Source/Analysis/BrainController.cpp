@@ -43,8 +43,6 @@ double BrainController::clockTickFrequency(double currentFreq, bool isBeatTick, 
 		beatCounter = 0;
 	}
 
-	//if (currentNote == 0){ return 0; }
-
 	notesHeardSinceLastChord.push_back(currentNote);
 
 	int noteToPlay = 0;
@@ -71,11 +69,6 @@ double BrainController::clockTickFrequency(double currentFreq, bool isBeatTick, 
 	}
 	
 	int noteInKey = convertNoteFromChordToKey(noteToPlay, currentChord);
-
-#ifdef WIN32
-	//LOG("The key is " + std::to_string(currentKeyTonic) + " The current note is " + std::to_string(currentNote) + " Is a beat " + std::to_string(isBeatTick));
-	LOG("The key is " + std::to_string(currentKeyTonic) + " The current Chord is " + std::to_string(currentChord) + " The current note is " + std::to_string(noteInKey) + " Is a beat " + std::to_string(isBeatTick) + " Note Heard: " + std::to_string(currentNote));
-#endif
 
 	return mSenseMaker.noteInKeytoFrequency(noteInKey);
 }

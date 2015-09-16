@@ -11,30 +11,9 @@
 #include "Markov.h"
 
 Markov::Markov(){
-	/*
-Note last played:		1	2	3	4	5	6	7	8
-	Note Heard :	1           1
-					2
-					3  0.5              0.5   
-					4     
-					5           1 
-					6     
-					7
-					8
-	*/
 
-	/*
-	Note to play:		1	2	3	4	5	6	7	8
-	Note Heard :	1
-					2
-					3      ############################
-					4      #### PROBABILITIES HERE ####
-					5      ####   FOR REFERENCE    ####
-					6      ############################
-					7
-					8
-	*/
-
+	// Row = note heard
+	// Column = note to play
 	std::vector<double> row_1 = { 0, 0, 1, 0, 0, 0, 0, 0 };
 	std::vector<double> row_2 = { 0, 0, 0, 0, 0, 0, 0, 0 };
 	std::vector<double> row_3 = { 0.5, 0, 0, 0, 0.5, 0, 0, 0 };
@@ -44,6 +23,8 @@ Note last played:		1	2	3	4	5	6	7	8
 	std::vector<double> row_7 = { 0, 0, 0, 0, 0, 0, 0, 0 };
 	std::vector<double> row_8 = { 0, 0, 0, 0, 0, 0, 0, 0 };
 
+	// Row = current chord
+	// Column = chord to transition to
 	std::vector<double> chord_row_1 = { 0, 0, 0, 0.5, 0.5, 0, 0, 0 };
 	std::vector<double> chord_row_2 = { 0.3, 0, 0, 0.34, 0.3, 0, 0, 0 };
 	std::vector<double> chord_row_3 = { 0.3, 0, 0, 0.3, 0.34, 0, 0, 0 };
@@ -53,8 +34,8 @@ Note last played:		1	2	3	4	5	6	7	8
 	std::vector<double> chord_row_7 = { 0.5, 0, 0, 0, 0.5, 0, 0, 0 };
 	std::vector<double> chord_row_8 = { 0, 0, 0, 0.5, 0.5, 0, 0, 0 };
 
-	note = new std::vector<std::vector<double>>(9);
-	chord = new std::vector<std::vector<double>>(9);
+	note = new std::vector<std::vector<double>>(8);
+	chord = new std::vector<std::vector<double>>(8);
 
 	note->operator[](0) = row_1;
 	note->operator[](1) = row_2;
@@ -103,10 +84,6 @@ int Markov::getNextNote(int currentNote) {
 		}
 	}
 
-#ifdef WIN32
-	LOG("Note chosen: " + std::to_string(nextNote) + " (note transition from: " + std::to_string(currentNote) + ").");
-#endif
-
 	return nextNote;
 }
 
@@ -134,10 +111,6 @@ int Markov::getNextChord(int currentChord) {
 
 		}
 	}
-
-#ifdef WIN32
-	LOG("Chord chosen: " + std::to_string(nextChord) + " (chord heard was: " + std::to_string(currentChord) + ").");
-#endif
 
 	return nextChord;
 }

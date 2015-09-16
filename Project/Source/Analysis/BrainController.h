@@ -58,7 +58,7 @@ private:
 
 	bool trackStarted;
 
-	//Values for GUI
+	// Values from GUI
 	float volume;
 	int key;
 	int beat;

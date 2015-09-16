@@ -109,7 +109,6 @@ int SenseMaker::frequencyToNoteInKey(double freq)
 	}
 	else
 	{
-		//TODO: Implement if the freq is less than the tonic
 		double multiplier = aValue;
 		while ((currentKeyTonic * multiplier) < freq)
 		{
@@ -189,6 +188,7 @@ double SenseMaker::noteInKeytoFrequency(int note)
 	}
 
 	// fn = f0 * (a^n)
+	// http://www.phy.mtu.edu/~suits/NoteFreqCalcs.html
 	double frequency = currentKeyTonic * (pow(aValue, numSteps));
 
 	return frequency;
