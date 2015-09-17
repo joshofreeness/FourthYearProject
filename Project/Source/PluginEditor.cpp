@@ -7,12 +7,12 @@
   the "//[xyz]" and "//[/xyz]" sections will be retained when the file is loaded
   and re-saved.
 
-  Created with Introjucer version: 3.1.0
+  Created with Introjucer version: 3.2.0
 
   ------------------------------------------------------------------------------
 
   The Introjucer is part of the JUCE library - "Jules' Utility Class Extensions"
-  Copyright 2004-13 by Raw Material Software Ltd.
+  Copyright (c) 2015 - ROLI Ltd.
 
   ==============================================================================
 */
@@ -30,6 +30,9 @@
 DAWTestAudioProcessorEditor::DAWTestAudioProcessorEditor (DAWTestAudioProcessor& ownerFilter)
     : AudioProcessorEditor(ownerFilter)
 {
+    //[Constructor_pre] You can add your own custom stuff here..
+    //[/Constructor_pre]
+
     addAndMakeVisible (sliderVolume = new Slider ("sliderVolume"));
     sliderVolume->setRange (0, 1, 0.01);
     sliderVolume->setSliderStyle (Slider::LinearHorizontal);
@@ -45,11 +48,46 @@ DAWTestAudioProcessorEditor::DAWTestAudioProcessorEditor (DAWTestAudioProcessor&
     lblVolume->setColour (TextEditor::textColourId, Colours::black);
     lblVolume->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
 
+    addAndMakeVisible (sliderFrequency = new Slider ("sliderFrequency"));
+    sliderFrequency->setRange (50, 1200, 1);
+    sliderFrequency->setSliderStyle (Slider::LinearHorizontal);
+    sliderFrequency->setTextBoxStyle (Slider::TextBoxLeft, false, 80, 20);
+    sliderFrequency->addListener (this);
+
+    addAndMakeVisible (lblFrequency = new Label ("lblFrequency",
+                                                 TRANS("Frequency")));
+    lblFrequency->setFont (Font ("Avenir Next LT Pro", 20.00f, Font::bold));
+    lblFrequency->setJustificationType (Justification::centredLeft);
+    lblFrequency->setEditable (false, false, false);
+    lblFrequency->setColour (Label::textColourId, Colours::lightgrey);
+    lblFrequency->setColour (TextEditor::textColourId, Colours::black);
+    lblFrequency->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
+
+    addAndMakeVisible (lblFrequencyInput = new Label ("new lblFrequencyInput",
+                                                      TRANS("Frequency Input :")));
+    lblFrequencyInput->setFont (Font (15.00f, Font::plain));
+    lblFrequencyInput->setJustificationType (Justification::centredLeft);
+    lblFrequencyInput->setEditable (false, false, false);
+    lblFrequencyInput->setColour (Label::textColourId, Colours::white);
+    lblFrequencyInput->setColour (TextEditor::textColourId, Colours::black);
+    lblFrequencyInput->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
+
+    addAndMakeVisible (lblFrequencyInputDisplay = new Label ("lblFrequencyInputDisplay",
+                                                             TRANS("0Hz")));
+    lblFrequencyInputDisplay->setFont (Font (15.00f, Font::plain));
+    lblFrequencyInputDisplay->setJustificationType (Justification::centredLeft);
+    lblFrequencyInputDisplay->setEditable (false, false, false);
+    lblFrequencyInputDisplay->setColour (Label::textColourId, Colours::white);
+    lblFrequencyInputDisplay->setColour (TextEditor::textColourId, Colours::black);
+    lblFrequencyInputDisplay->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
+
 
     //[UserPreSize]
+	sliderFrequency->setValue(450);
+	sliderVolume->setValue(1);
     //[/UserPreSize]
 
-    setSize (600, 100);
+    setSize (600, 200);
 
 
     //[Constructor] You can add your own custom stuff here..
@@ -65,6 +103,10 @@ DAWTestAudioProcessorEditor::~DAWTestAudioProcessorEditor()
 
     sliderVolume = nullptr;
     lblVolume = nullptr;
+    sliderFrequency = nullptr;
+    lblFrequency = nullptr;
+    lblFrequencyInput = nullptr;
+    lblFrequencyInputDisplay = nullptr;
 
 
     //[Destructor]. You can add your own custom destruction code here..
@@ -88,8 +130,12 @@ void DAWTestAudioProcessorEditor::resized()
     //[UserPreResize] Add your own custom resize code here..
     //[/UserPreResize]
 
-    sliderVolume->setBounds (24, 40, 560, 40);
-    lblVolume->setBounds (24, 16, 150, 24);
+    sliderVolume->setBounds (16, 40, 560, 40);
+    lblVolume->setBounds (16, 16, 150, 24);
+    sliderFrequency->setBounds (16, 112, 560, 40);
+    lblFrequency->setBounds (8, 80, 150, 24);
+    lblFrequencyInput->setBounds (16, 160, 150, 24);
+    lblFrequencyInputDisplay->setBounds (152, 160, 150, 24);
     //[UserResized] Add your own custom resize handling here..
     //[/UserResized]
 }
@@ -105,6 +151,12 @@ void DAWTestAudioProcessorEditor::sliderValueChanged (Slider* sliderThatWasMoved
         //[UserSliderCode_sliderVolume] -- add your slider handling code here..
         ourProcessor->setParameter(DAWTestAudioProcessor::Volume, (float)sliderVolume->getValue());
         //[/UserSliderCode_sliderVolume]
+    }
+    else if (sliderThatWasMoved == sliderFrequency)
+    {
+        //[UserSliderCode_sliderFrequency] -- add your slider handling code here..
+		ourProcessor->setParameter(DAWTestAudioProcessor::Frequency, (float)sliderFrequency->getValue() / 1200);
+        //[/UserSliderCode_sliderFrequency]
     }
 
     //[UsersliderValueChanged_Post]
@@ -138,17 +190,36 @@ BEGIN_JUCER_METADATA
                  componentName="" parentClasses="public AudioProcessorEditor, public Timer"
                  constructorParams="DAWTestAudioProcessor&amp; ownerFilter" variableInitialisers="AudioProcessorEditor(ownerFilter)"
                  snapPixels="8" snapActive="1" snapShown="1" overlayOpacity="0.330"
-                 fixedSize="1" initialWidth="600" initialHeight="100">
+                 fixedSize="1" initialWidth="600" initialHeight="200">
   <BACKGROUND backgroundColour="ff514f4f"/>
   <SLIDER name="sliderVolume" id="d834204f246a0f88" memberName="sliderVolume"
-          virtualName="" explicitFocusOrder="0" pos="24 40 560 40" min="0"
+          virtualName="" explicitFocusOrder="0" pos="16 40 560 40" min="0"
           max="1" int="0.01" style="LinearHorizontal" textBoxPos="TextBoxLeft"
           textBoxEditable="1" textBoxWidth="80" textBoxHeight="20" skewFactor="1"/>
   <LABEL name="lblVolume" id="e3981c189293ff08" memberName="lblVolume"
-         virtualName="" explicitFocusOrder="0" pos="24 16 150 24" textCol="ffd3d3d3"
+         virtualName="" explicitFocusOrder="0" pos="16 16 150 24" textCol="ffd3d3d3"
          edTextCol="ff000000" edBkgCol="0" labelText="Volume" editableSingleClick="0"
          editableDoubleClick="0" focusDiscardsChanges="0" fontname="Avenir Next LT Pro"
          fontsize="20" bold="1" italic="0" justification="33"/>
+  <SLIDER name="sliderFrequency" id="e42b5e5b430a6417" memberName="sliderFrequency"
+          virtualName="" explicitFocusOrder="0" pos="16 112 560 40" min="50"
+          max="1200" int="1" style="LinearHorizontal" textBoxPos="TextBoxLeft"
+          textBoxEditable="1" textBoxWidth="80" textBoxHeight="20" skewFactor="1"/>
+  <LABEL name="lblFrequency" id="711836deab664bff" memberName="lblFrequency"
+         virtualName="" explicitFocusOrder="0" pos="8 80 150 24" textCol="ffd3d3d3"
+         edTextCol="ff000000" edBkgCol="0" labelText="Frequency" editableSingleClick="0"
+         editableDoubleClick="0" focusDiscardsChanges="0" fontname="Avenir Next LT Pro"
+         fontsize="20" bold="1" italic="0" justification="33"/>
+  <LABEL name="new lblFrequencyInput" id="1fe995cda4b85faa" memberName="lblFrequencyInput"
+         virtualName="" explicitFocusOrder="0" pos="16 160 150 24" textCol="ffffffff"
+         edTextCol="ff000000" edBkgCol="0" labelText="Frequency Input :"
+         editableSingleClick="0" editableDoubleClick="0" focusDiscardsChanges="0"
+         fontname="Default font" fontsize="15" bold="0" italic="0" justification="33"/>
+  <LABEL name="lblFrequencyInputDisplay" id="6a0ff7e579eec604" memberName="lblFrequencyInputDisplay"
+         virtualName="" explicitFocusOrder="0" pos="152 160 150 24" textCol="ffffffff"
+         edTextCol="ff000000" edBkgCol="0" labelText="0Hz" editableSingleClick="0"
+         editableDoubleClick="0" focusDiscardsChanges="0" fontname="Default font"
+         fontsize="15" bold="0" italic="0" justification="33"/>
 </JUCER_COMPONENT>
 
 END_JUCER_METADATA

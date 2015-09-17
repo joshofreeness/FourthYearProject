@@ -38,10 +38,8 @@
   </PropertyGroup>
   <PropertyGroup>
     <_ProjectFileVersion>10.0.30319.1</_ProjectFileVersion>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\Debug\</OutDir>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">DAWTest</TargetName>
     <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</GenerateManifest>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\Release\</OutDir>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">DAWTest</TargetName>
     <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</GenerateManifest>
     <PlatformToolset>v120</PlatformToolset>
@@ -57,7 +55,7 @@
     <ClCompile>
       <Optimization>Disabled</Optimization>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
-      <AdditionalIncludeDirectories>..\..\JuceLibraryCode;..\..\..\JUCE-LINUX\modules;..\..\..\VST3 SDK;..\..\Source\StereoWidthCtrl;..\..\Source\ChangeVolume;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\JuceLibraryCode;..\..\..\JUCE-LINUX\modules;..\..\..\VST3 SDK;..\..\Source\StereoWidthCtrl;..\..\Source\ChangeVolume;..\..\Source\Output\OutputController;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_WINDOWS;DEBUG;_DEBUG;JUCER_VS2013_78A5020=1;JUCE_APP_VERSION=1.0.0;JUCE_APP_VERSION_HEX=0x10000;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
@@ -99,7 +97,7 @@
     </Midl>
     <ClCompile>
       <Optimization>Full</Optimization>
-      <AdditionalIncludeDirectories>..\..\JuceLibraryCode;..\..\..\JUCE-LINUX\modules;..\..\..\VST3 SDK;..\..\Source\StereoWidthCtrl;..\..\Source\ChangeVolume;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\JuceLibraryCode;..\..\..\JUCE-LINUX\modules;..\..\..\VST3 SDK;..\..\Source\StereoWidthCtrl;..\..\Source\ChangeVolume;..\..\Source\Output\OutputController;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;JUCER_VS2013_78A5020=1;JUCE_APP_VERSION=1.0.0;JUCE_APP_VERSION_HEX=0x10000;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
@@ -133,7 +131,9 @@
     </Bscmake>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\Source\ChangeVolume\ChangeVolume.cpp"/>
+    <ClCompile Include="..\..\Source\Analysis\NoteAnalyser.cpp"/>
+    <ClCompile Include="..\..\Source\Input\InputProcessor.cpp"/>
+    <ClCompile Include="..\..\Source\Output\OutputController.cpp"/>
     <ClCompile Include="..\..\Source\PluginProcessor.cpp"/>
     <ClCompile Include="..\..\Source\PluginEditor.cpp"/>
     <ClCompile Include="..\..\..\JUCE-LINUX\modules\juce_audio_basics\buffers\juce_AudioDataConverters.cpp">
@@ -158,6 +158,9 @@
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\..\..\JUCE-LINUX\modules\juce_audio_basics\midi\juce_MidiMessageSequence.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\..\JUCE-LINUX\modules\juce_audio_basics\effects\juce_FFT.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\..\..\JUCE-LINUX\modules\juce_audio_basics\effects\juce_IIRFilter.cpp">
@@ -544,6 +547,9 @@
     <ClCompile Include="..\..\..\JUCE-LINUX\modules\juce_core\native\juce_android_Threads.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="..\..\..\JUCE-LINUX\modules\juce_core\native\juce_curl_Network.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="..\..\..\JUCE-LINUX\modules\juce_core\native\juce_linux_CommonFile.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
@@ -592,10 +598,16 @@
     <ClCompile Include="..\..\..\JUCE-LINUX\modules\juce_cryptography\hashing\juce_SHA256.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="..\..\..\JUCE-LINUX\modules\juce_cryptography\hashing\juce_Whirlpool.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="..\..\..\JUCE-LINUX\modules\juce_data_structures\values\juce_Value.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\..\..\JUCE-LINUX\modules\juce_data_structures\values\juce_ValueTree.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\..\JUCE-LINUX\modules\juce_data_structures\values\juce_ValueTreeSynchroniser.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\..\..\JUCE-LINUX\modules\juce_data_structures\undomanager\juce_UndoManager.cpp">
@@ -1256,7 +1268,11 @@
     <ClCompile Include="..\..\..\JUCE-LINUX\modules\juce_audio_plugin_client\VST3\juce_VST3_Wrapper.cpp"/>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\Source\ChangeVolume\ChangeVolume.h"/>
+    <ClInclude Include="..\..\Source\Analysis\NoteAnalyser.h"/>
+    <ClInclude Include="..\..\Source\Logging.h"/>
+    <ClInclude Include="..\..\Source\Enums.h"/>
+    <ClInclude Include="..\..\Source\Input\InputProcessor.h"/>
+    <ClInclude Include="..\..\Source\Output\OutputController.h"/>
     <ClInclude Include="..\..\Source\PluginProcessor.h"/>
     <ClInclude Include="..\..\Source\PluginEditor.h"/>
     <ClInclude Include="..\..\..\JUCE-LINUX\modules\juce_audio_basics\buffers\juce_AudioDataConverters.h"/>
@@ -1268,6 +1284,7 @@
     <ClInclude Include="..\..\..\JUCE-LINUX\modules\juce_audio_basics\midi\juce_MidiMessage.h"/>
     <ClInclude Include="..\..\..\JUCE-LINUX\modules\juce_audio_basics\midi\juce_MidiMessageSequence.h"/>
     <ClInclude Include="..\..\..\JUCE-LINUX\modules\juce_audio_basics\effects\juce_Decibels.h"/>
+    <ClInclude Include="..\..\..\JUCE-LINUX\modules\juce_audio_basics\effects\juce_FFT.h"/>
     <ClInclude Include="..\..\..\JUCE-LINUX\modules\juce_audio_basics\effects\juce_IIRFilter.h"/>
     <ClInclude Include="..\..\..\JUCE-LINUX\modules\juce_audio_basics\effects\juce_LagrangeInterpolator.h"/>
     <ClInclude Include="..\..\..\JUCE-LINUX\modules\juce_audio_basics\effects\juce_Reverb.h"/>
@@ -1463,9 +1480,11 @@
     <ClInclude Include="..\..\..\JUCE-LINUX\modules\juce_cryptography\encryption\juce_RSAKey.h"/>
     <ClInclude Include="..\..\..\JUCE-LINUX\modules\juce_cryptography\hashing\juce_MD5.h"/>
     <ClInclude Include="..\..\..\JUCE-LINUX\modules\juce_cryptography\hashing\juce_SHA256.h"/>
+    <ClInclude Include="..\..\..\JUCE-LINUX\modules\juce_cryptography\hashing\juce_Whirlpool.h"/>
     <ClInclude Include="..\..\..\JUCE-LINUX\modules\juce_cryptography\juce_cryptography.h"/>
     <ClInclude Include="..\..\..\JUCE-LINUX\modules\juce_data_structures\values\juce_Value.h"/>
     <ClInclude Include="..\..\..\JUCE-LINUX\modules\juce_data_structures\values\juce_ValueTree.h"/>
+    <ClInclude Include="..\..\..\JUCE-LINUX\modules\juce_data_structures\values\juce_ValueTreeSynchroniser.h"/>
     <ClInclude Include="..\..\..\JUCE-LINUX\modules\juce_data_structures\undomanager\juce_UndoableAction.h"/>
     <ClInclude Include="..\..\..\JUCE-LINUX\modules\juce_data_structures\undomanager\juce_UndoManager.h"/>
     <ClInclude Include="..\..\..\JUCE-LINUX\modules\juce_data_structures\app_properties\juce_ApplicationProperties.h"/>

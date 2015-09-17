@@ -8,8 +8,14 @@
     <Filter Include="DAWTest\Source">
       <UniqueIdentifier>{C2CEA443-1419-8F1D-4985-CD0D8A282237}</UniqueIdentifier>
     </Filter>
-    <Filter Include="DAWTest\Source\ChangeVolume">
-      <UniqueIdentifier>{C90FBDF7-3C55-D6F0-DA29-C4969BCC4830}</UniqueIdentifier>
+    <Filter Include="DAWTest\Source\Analysis">
+      <UniqueIdentifier>{F7EEEC50-9F6B-32F7-19EE-1C8C51E7A097}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="DAWTest\Source\Input">
+      <UniqueIdentifier>{FB6AC29D-D390-E2D2-E731-DB8D7FA69C33}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="DAWTest\Source\Output">
+      <UniqueIdentifier>{5F8A09A2-C62B-DED2-4DB8-C9AEC4CFF804}</UniqueIdentifier>
     </Filter>
     <Filter Include="Juce Modules">
       <UniqueIdentifier>{422C46B7-0467-2DB0-BF3C-16DFCAFD69AC}</UniqueIdentifier>
@@ -325,8 +331,14 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\Source\ChangeVolume\ChangeVolume.cpp">
-      <Filter>DAWTest\Source\ChangeVolume</Filter>
+    <ClCompile Include="..\..\Source\Analysis\NoteAnalyser.cpp">
+      <Filter>DAWTest\Source\Analysis</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Input\InputProcessor.cpp">
+      <Filter>DAWTest\Source\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Output\OutputController.cpp">
+      <Filter>DAWTest\Source\Output</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\PluginProcessor.cpp">
       <Filter>DAWTest\Source</Filter>
@@ -357,6 +369,9 @@
     </ClCompile>
     <ClCompile Include="..\..\..\JUCE-LINUX\modules\juce_audio_basics\midi\juce_MidiMessageSequence.cpp">
       <Filter>Juce Modules\juce_audio_basics\midi</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\JUCE-LINUX\modules\juce_audio_basics\effects\juce_FFT.cpp">
+      <Filter>Juce Modules\juce_audio_basics\effects</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\JUCE-LINUX\modules\juce_audio_basics\effects\juce_IIRFilter.cpp">
       <Filter>Juce Modules\juce_audio_basics\effects</Filter>
@@ -766,6 +781,9 @@
     <ClCompile Include="..\..\..\JUCE-LINUX\modules\juce_core\native\juce_android_Threads.cpp">
       <Filter>Juce Modules\juce_core\native</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\JUCE-LINUX\modules\juce_core\native\juce_curl_Network.cpp">
+      <Filter>Juce Modules\juce_core\native</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\..\JUCE-LINUX\modules\juce_core\native\juce_linux_CommonFile.cpp">
       <Filter>Juce Modules\juce_core\native</Filter>
     </ClCompile>
@@ -829,10 +847,16 @@
     <ClCompile Include="..\..\..\JUCE-LINUX\modules\juce_cryptography\hashing\juce_SHA256.cpp">
       <Filter>Juce Modules\juce_cryptography\hashing</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\JUCE-LINUX\modules\juce_cryptography\hashing\juce_Whirlpool.cpp">
+      <Filter>Juce Modules\juce_cryptography\hashing</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\..\JUCE-LINUX\modules\juce_data_structures\values\juce_Value.cpp">
       <Filter>Juce Modules\juce_data_structures\values</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\JUCE-LINUX\modules\juce_data_structures\values\juce_ValueTree.cpp">
+      <Filter>Juce Modules\juce_data_structures\values</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\JUCE-LINUX\modules\juce_data_structures\values\juce_ValueTreeSynchroniser.cpp">
       <Filter>Juce Modules\juce_data_structures\values</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\JUCE-LINUX\modules\juce_data_structures\undomanager\juce_UndoManager.cpp">
@@ -1578,8 +1602,20 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\Source\ChangeVolume\ChangeVolume.h">
-      <Filter>DAWTest\Source\ChangeVolume</Filter>
+    <ClInclude Include="..\..\Source\Analysis\NoteAnalyser.h">
+      <Filter>DAWTest\Source\Analysis</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Logging.h">
+      <Filter>DAWTest\Source</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Enums.h">
+      <Filter>DAWTest\Source</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Input\InputProcessor.h">
+      <Filter>DAWTest\Source\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Output\OutputController.h">
+      <Filter>DAWTest\Source\Output</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\PluginProcessor.h">
       <Filter>DAWTest\Source</Filter>
@@ -1612,6 +1648,9 @@
       <Filter>Juce Modules\juce_audio_basics\midi</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\JUCE-LINUX\modules\juce_audio_basics\effects\juce_Decibels.h">
+      <Filter>Juce Modules\juce_audio_basics\effects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\JUCE-LINUX\modules\juce_audio_basics\effects\juce_FFT.h">
       <Filter>Juce Modules\juce_audio_basics\effects</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\JUCE-LINUX\modules\juce_audio_basics\effects\juce_IIRFilter.h">
@@ -2199,6 +2238,9 @@
     <ClInclude Include="..\..\..\JUCE-LINUX\modules\juce_cryptography\hashing\juce_SHA256.h">
       <Filter>Juce Modules\juce_cryptography\hashing</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\JUCE-LINUX\modules\juce_cryptography\hashing\juce_Whirlpool.h">
+      <Filter>Juce Modules\juce_cryptography\hashing</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\..\JUCE-LINUX\modules\juce_cryptography\juce_cryptography.h">
       <Filter>Juce Modules\juce_cryptography</Filter>
     </ClInclude>
@@ -2206,6 +2248,9 @@
       <Filter>Juce Modules\juce_data_structures\values</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\JUCE-LINUX\modules\juce_data_structures\values\juce_ValueTree.h">
+      <Filter>Juce Modules\juce_data_structures\values</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\JUCE-LINUX\modules\juce_data_structures\values\juce_ValueTreeSynchroniser.h">
       <Filter>Juce Modules\juce_data_structures\values</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\JUCE-LINUX\modules\juce_data_structures\undomanager\juce_UndoableAction.h">
