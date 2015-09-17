@@ -35,28 +35,6 @@ void InputProcessor::AnalyseBlock() {
 			doubleLength[i] = channelData[i];
 		}
 
-		/* KissFFT Temporarily commented out.
-		// Config object with settings and stuff
-		kiss_fftr_cfg cfg = kiss_fftr_alloc( currentBuffer.getNumSamples(), false, 0, 0 );
-		
-		// Array of complex data that the FFT output will be written to.
-		kiss_fft_cpx transformed[2048];
-
-		// Do the FFT
-		kiss_fftr( cfg , channelData , transformed );
-            
-		// Delete the config object
-		free(cfg);
-
-		// Find the fundamental frequency
-		currentFrequency = 0;
-		for (int i = 0; i < currentBuffer.getNumSamples(); i ++)
-		{
-			if ((pow(transformed[i].r, 2) + pow(transformed[i].i, 2))>(pow(transformed[currentFrequency].r, 2) + pow(transformed[currentFrequency].i, 2))){
-				currentFrequency = i;
-			}
-		}*/
-
 		fftObject->performRealOnlyForwardTransform(doubleLength);
 
 		// Find the fundamental frequency
@@ -79,33 +57,12 @@ void InputProcessor::AnalyseBlock() {
 		double filteredFrequency = 27.5 * pow(2.0, noteNum / 12.0);
 
 		currentFrequency = filteredFrequency;
-
-
-
-//#ifdef WIN32
-		//LOG("Fundamental frequency of channelData is " + std::to_string(currentFrequency) + " Buffer size is " + 
-		//	std::to_string(currentBuffer.getNumSamples()) + " Current sample rate is " + std::to_string(currentSampleRate)
-	//		 + " Highest Index is " + std::to_string(currentHighestIndex));
-	//LOG("with a magnitude of " + std::to_string(pow(transformed[currentFrequency].r, 2) + pow(transformed[currentFrequency].i, 2)));
-//#endif
-
 	}
 }
 
 void InputProcessor::SetSampleRate(double rate)
 {
 	currentSampleRate = rate;
-}
-
-
-// Returns the estimated key of the current block of input.
-Key_t InputProcessor::GetKey() {
-	return Key_t::A;
-}
-
-// Returns the estimated chord of the current block of input.
-Chord_t InputProcessor::GetChord() {
-	return Chord_t::chord_1;
 }
 
 float InputProcessor::GetFrequency()

@@ -1,32 +1,32 @@
 /*
   ==============================================================================
 
-    NoteAnalyser.h
+    Markov.h
     Created: 27 Jul 2015 4:21:34pm
     Author:  Michael
 
   ==============================================================================
 */
 
-#ifndef NOTEANALYSER_H_INCLUDED
-#define NOTEANALYSER_H_INCLUDED
+#ifndef MARKOV_H_INCLUDED
+#define MARKOV_H_INCLUDED
 
-#include "../Enums.h"
 #include "../Logging.h"
 #include <JuceHeader.h>
 
-class NoteAnalyser {
+class Markov {
 public:
-	NoteAnalyser();
-	~NoteAnalyser();
+	Markov();
+	~Markov();
 
-	float getNextNote(float currentFrequency);
+	int getNextNote(int currentNote);
+	int getNextChord(int currentChord);
 
 private:
-	void doTransition();
 
-	int rows, columns = 8;
+	std::vector<std::vector<double>>* note;
+	std::vector<std::vector<double>>* chord;
 };
 
 
-#endif  // NOTEANALYSER_H_INCLUDED
+#endif  // MARKOV_H_INCLUDED

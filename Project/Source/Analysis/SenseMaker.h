@@ -12,6 +12,7 @@
 #define SENSEMAKER_H_INCLUDED
 
 #include "../Logging.h"
+#include <math.h>
 
 class SenseMaker
 {
@@ -19,12 +20,14 @@ public:
 	SenseMaker();
 	~SenseMaker();
 
-	void clockTickFrequency(double freq, bool isBeat);
-	void setKeyTonic(int key);
+	double setKeyTonic(int key);
+	int frequencyToNoteInKey(double freq);
+	double noteInKeytoFrequency(int note);
 
 private:
-	int frequencyToNoteInKey(double freq);
+	
 	double currentKeyTonic;
+	double aValue = pow(2, 1.0 / 12.0);
 
 };
 

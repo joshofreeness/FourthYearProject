@@ -9,7 +9,6 @@
 */
 
 #include "SenseMaker.h"
-#include <math.h>
 #include <string>
 
 SenseMaker::SenseMaker(){}
@@ -18,75 +17,66 @@ SenseMaker::~SenseMaker(){}
 
 
 
-void SenseMaker::clockTickFrequency(double freq, bool isBeat)
-{
-	int note = frequencyToNoteInKey(freq);
-#ifdef WIN32
-	LOG("The key is " + std::to_string(currentKeyTonic) + " The current note is " + std::to_string(note) + " Is a beat " + std::to_string(isBeat));
-#endif
-	return;
-}
-
-void SenseMaker::setKeyTonic(int key)
+double SenseMaker::setKeyTonic(int key)
 {
 	switch (key)
 	{
 	case 0:
 		//No Key selected
 		currentKeyTonic = 0;
-		break;
+		return currentKeyTonic;
 	case 1:
 		//Key of C : 1
 		currentKeyTonic = 261.63;
-		break;
+		return currentKeyTonic;
 	case 2:
 		//Key of Db / C#: 2
 		currentKeyTonic = 277.18;
-		break;
+		return currentKeyTonic;
 	case 3:
 		//Key of D: 3
 		currentKeyTonic = 293.66;
-		break;
+		return currentKeyTonic;
 	case 4:
 		//Key of Eb / D#: 4
 		currentKeyTonic = 311.13;
-		break;
+		return currentKeyTonic;
 	case 5:
 		//Key of E: 5
 		currentKeyTonic = 329.63;
-		break;
+		return currentKeyTonic;
 	case 6:
 		//Key of F: 6
 		currentKeyTonic = 349.23;
-		break;
+		return currentKeyTonic;
 	case 7:
 		//Key of Gb / Key of F#: 7
 		currentKeyTonic = 369.99;
-		break;
+		return currentKeyTonic;
 	case 8:
 		//Key of G: 8
 		currentKeyTonic = 392;
-		break;
+		return currentKeyTonic;
 	case 9:
 		//Key of Ab / G#: 9
 		currentKeyTonic = 415.3;
-		break;
+		return currentKeyTonic;
 	case 10:
 		//Key of A: 10
 		currentKeyTonic = 440;
-		break;
+		return currentKeyTonic;
 	case 11:
 		//Key of Bb / A#: 11
 		currentKeyTonic = 466.16;
-		break;
+		return currentKeyTonic;
 	case 12:
 		//Key of B / Key of Cb: 12
 		currentKeyTonic = 493.88;
-		break;
+		return currentKeyTonic;
 	default:
 		//Unknown key selected
 		currentKeyTonic = 0;
-		break;
+		return currentKeyTonic;
 	}
 }
 
@@ -105,7 +95,6 @@ int SenseMaker::frequencyToNoteInKey(double freq)
 	if (freq == currentKeyTonic){return 1;} 
 	
 	int currentSteps = 0;
-	double aValue = pow(2, 1.0 / 12.0);
 
 	if (freq > currentKeyTonic)
 	{
@@ -120,7 +109,6 @@ int SenseMaker::frequencyToNoteInKey(double freq)
 	}
 	else
 	{
-		//TODO: Implement if the freq is less than the tonic
 		double multiplier = aValue;
 		while ((currentKeyTonic * multiplier) < freq)
 		{
@@ -155,5 +143,55 @@ int SenseMaker::frequencyToNoteInKey(double freq)
 
 }
 
+double SenseMaker::noteInKeytoFrequency(int note)
+{
+	int numSteps = 0;
+
+	// Convert from note id back to number of semitones from the tonic freq.
+	switch (note)
+	{
+	case 1:
+		numSteps = 0;
+		break;
+
+	case 2:
+		numSteps = 2;
+		break;
+
+	case 3:
+		numSteps = 4;
+		break;
+
+	case 4:
+		numSteps = 5;
+		break;
+
+	case 5:
+		numSteps = 7;
+		break;
+
+	case 6:
+		numSteps = 9;
+		break;
+
+	case 7:
+		numSteps = 11;
+		break;
+
+	case 8:
+		numSteps = 0;
+		break;
+
+	default:
+		//Note: not in scale if return 0
+		return 0;
+	}
+
+	// fn = f0 * (a^n)
+	// http://www.phy.mtu.edu/~suits/NoteFreqCalcs.html
+	double frequency = currentKeyTonic * (pow(aValue, numSteps));
+
+	return frequency;
+}
 
 
