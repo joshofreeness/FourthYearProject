@@ -13,10 +13,10 @@
 
 #include "Output/OutputController.h"
 #include "Input/InputProcessor.h"
-#include "Analysis/NoteAnalyser.h"
 #include "../JuceLibraryCode/JuceHeader.h"
-#include "Enums.h"
 #include "Logging.h"
+#include "Analysis/SenseMaker.h"
+#include "Analysis/BrainController.h"
 
 //==============================================================================
 /**
@@ -70,7 +70,7 @@ public:
     void setStateInformation (const void* data, int sizeInBytes) override;
     
     //Custom Methods, Params and Public Data
-    enum Parameters{Volume, Frequency, totalNumParam};
+    enum Parameters{Volume, Beat, Key, totalNumParam};
     bool NeedsUIUpdate(){return UIUpdateFlag;};
     void RequestUIUpdate(){UIUpdateFlag=true;};
     void ClearUIUpdateFlag(){UIUpdateFlag=false;};
@@ -79,10 +79,11 @@ private:
     //Private Data, helper methods etc.
     float UserParams[totalNumParam];
 	bool UIUpdateFlag;
+	bool noteOffMidiFlag;
 
 	OutputController mOutputController;
 	InputProcessor mInputProcessor;
-	NoteAnalyser mNoteAnalyser;
+	BrainController mBrainController;
 
 	bool first = true;
 	//==============================================================================

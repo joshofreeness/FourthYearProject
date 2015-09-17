@@ -37,7 +37,8 @@
 */
 class DAWTestAudioProcessorEditor  : public AudioProcessorEditor,
                                      public Timer,
-                                     public SliderListener
+                                     public SliderListener,
+                                     public ComboBoxListener
 {
 public:
     //==============================================================================
@@ -56,6 +57,7 @@ public:
     void paint (Graphics& g);
     void resized();
     void sliderValueChanged (Slider* sliderThatWasMoved);
+    void comboBoxChanged (ComboBox* comboBoxThatHasChanged);
 
 
 
@@ -66,10 +68,10 @@ private:
     //==============================================================================
     ScopedPointer<Slider> sliderVolume;
     ScopedPointer<Label> lblVolume;
-    ScopedPointer<Slider> sliderFrequency;
-    ScopedPointer<Label> lblFrequency;
-    ScopedPointer<Label> lblFrequencyInput;
-    ScopedPointer<Label> lblFrequencyInputDisplay;
+    ScopedPointer<ComboBox> comboKey;
+    ScopedPointer<Label> lblKey;
+    ScopedPointer<ComboBox> comboBeat;
+    ScopedPointer<Label> lblBeat;
 
 
     //==============================================================================
