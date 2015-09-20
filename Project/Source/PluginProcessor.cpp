@@ -46,12 +46,14 @@ float DAWTestAudioProcessor::getParameter (int index) {
     }
 }
 
+// Called by PluginEditor when a GUI value changes.
 void DAWTestAudioProcessor::setParameter (int index, float newValue) {
 	switch (index) {
 		case Volume:
 			UserParams[Volume] = newValue;
 			mBrainController.SetVolume(UserParams[Volume]);
 			break;
+
 		case Beat:
 			UserParams[Beat] = newValue;
 			mBrainController.SetBeat((int)newValue);
@@ -60,11 +62,8 @@ void DAWTestAudioProcessor::setParameter (int index, float newValue) {
 				1/8: 2
 				1/4: 3
 			*/
-
-#ifdef WIN32
-			LOG("Beat updated to " + std::to_string((int)newValue));
-#endif
 			break;
+
 		case Key:
 			UserParams[Key] = newValue;
 			mBrainController.SetKey((int)newValue);
@@ -83,6 +82,7 @@ void DAWTestAudioProcessor::setParameter (int index, float newValue) {
 				Key of B / Key of Cb: 12
 			*/
 			break;
+
 		default: return;
     }
     UIUpdateFlag=true;//Request UI update -- Some OSX hosts use alternate editors, this updates ours
@@ -103,12 +103,14 @@ const String DAWTestAudioProcessor::getParameterText (int index) {
     else return String::empty;
 }
 
-//This is where all the audio processing happens
+// This function contains all the processing, and is called every time a new block of samples is provided by the DAW.
+// At a sampling rate of 44,100Hz, this happens approximately 22 times per second.
 void DAWTestAudioProcessor::processBlock(AudioSampleBuffer& buffer, MidiBuffer& midiMessages) {
 	if(getNumInputChannels()<2) {
     } else {
 		bool isBeatTick = false;
 
+		// If the beat track has not been started, do nothing.
 		if (!midiMessages.isEmpty())
 		{
 

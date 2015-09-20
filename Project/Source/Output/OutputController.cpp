@@ -5,6 +5,9 @@
     Created: 20 Jun 2015 11:42:09pm
     Author:  Joshua
 
+	Takes the frequency of a note, and outputs a MIDI instruction to the DAW 
+	that will be passed on to a synthesiser to produce the real output.
+
   ==============================================================================
 */
 
@@ -36,9 +39,8 @@ void OutputController::PlayNote(float hertz, MidiBuffer& midiMessages, int delay
 	}
 
 	MidiMessage midiMessage = MidiMessage::noteOn(1, midiNoteValue, 1.0f);
-	//MidiMessage midiMessageOff = MidiMessage::noteOn(1, midiNoteValue, 0.0f);
+
 	midiMessage.setTimeStamp(Time::getMillisecondCounter());
-	//midiMessageOff.setTimeStamp(Time::getMillisecondCounter());
 
 	double aBpmRatio = (double)60 / 120; //the divisor here is the bpm
 	midiMessages.clear();

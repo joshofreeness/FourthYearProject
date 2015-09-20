@@ -5,12 +5,16 @@
     Created: 23 Jun 2015 3:24:42pm
     Author:  Michael
 
+	Takes the current block of raw audio samples, and performs the FFT for pitch detection.
+	Returns the frequency of the current note heard to PluginProcessor.
+
   ==============================================================================
 */
 
 #include "InputProcessor.h"
 
-InputProcessor::InputProcessor(){
+InputProcessor::InputProcessor() {
+	// log2(2048 samples per block) = 11, FFT isInverse = false
 	fftObject = new juce::FFT(11, false);
 }
 
@@ -48,7 +52,6 @@ void InputProcessor::AnalyseBlock() {
 			}
 		}
 
-		//frequency(currentHightestIndex) = sampleRate*currentHightestIndex/2*blockSize
 		currentFrequency = (currentSampleRate*currentHighestIndex) / (currentBuffer.getNumSamples() * 2) ;
 
 		//NOTE: current frequency is only accurate to the nearest 10.8Hz so have to "auto-tune" the results

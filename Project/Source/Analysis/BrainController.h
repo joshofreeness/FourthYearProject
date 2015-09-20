@@ -5,6 +5,10 @@
     Created: 4 Sep 2015 11:35:56am
     Author:  Joshua
 
+	Controller class to abstract the use of the analysis classes (SenseMaker and Markov)
+	away from PluginProcessor. Takes the frequency of the current note heard and returns
+	the frequency of the next note to play.
+
   ==============================================================================
 */
 

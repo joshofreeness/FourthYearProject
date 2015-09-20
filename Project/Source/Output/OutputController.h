@@ -5,6 +5,9 @@
     Created: 20 Jun 2015 11:42:09pm
     Author:  Joshua
 
+	Takes the frequency of a note, and outputs a MIDI instruction to the DAW 
+	that will be passed on to a synthesiser to produce the real output.
+
   ==============================================================================
 */
 
@@ -33,14 +36,10 @@ public:
 	void ClockProcess(MidiBuffer& midiMessages);
 	void PlayNote(float hertz, MidiBuffer& midiMessages, int delay);
 
-	
-	
-
 private:
-	double unit = 44100.0; // Represents something to do with the number of channels in the sound driver, I think. Most common values 44,100 and 44,400. Idk. Google it.
+	double unit = 44100.0; // Sampling rate. In future, change this to be asked of the DAW instead of hardcoded as the plugin will likely fail if it changes.
 
 	MidiOutput* midiOutput = MidiOutput::openDevice(0);
-
 };
 
 #endif  // OUTPUTCONTROLLER_H_INCLUDED

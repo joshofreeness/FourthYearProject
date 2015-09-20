@@ -5,6 +5,10 @@
     Created: 4 Sep 2015 11:35:56am
     Author:  Joshua
 
+	Controller class to abstract the use of the analysis classes (SenseMaker and Markov)
+	away from PluginProcessor. Takes the frequency of the current note heard and returns
+	the frequency of the next note to play.
+
   ==============================================================================
 */
 
@@ -87,6 +91,7 @@ int BrainController::convertNoteFromKeyToChord(int note, int chord)
 	return noteInChord;
 }
 
+// When a note is heard that is not in the current chord, this function is used to choose the new chord.
 int BrainController::pickNewChord(int currentNote, int currentChordTransitionFrom)
 {
 	std::list<int> possibleChords = chordsNoteMayBelongTo(currentNote);
@@ -113,7 +118,7 @@ int BrainController::pickNewChord(int currentNote, int currentChordTransitionFro
 	return smallestChord;
 }
 
-
+// Check if a given note is in the current chord or not.
 bool BrainController::doesNoteBelong(int note)
 {
 	int noteRelativeChord = convertNoteFromKeyToChord(note, currentChord);
@@ -125,6 +130,7 @@ bool BrainController::doesNoteBelong(int note)
 	return false;
 }
 
+// Calculates the list of chords that contain a given note.
 std::list<int> BrainController::chordsNoteMayBelongTo(int note)
 {
 	std::list<int> possibilites = std::list<int>();

@@ -5,6 +5,9 @@
     Created: 1 Sep 2015 2:01:56pm
     Author:  Joshua
 
+	This class provides functions to convert between our internal note 
+	representation and the raw frequency.
+
   ==============================================================================
 */
 
@@ -15,8 +18,7 @@ SenseMaker::SenseMaker(){}
 
 SenseMaker::~SenseMaker(){}
 
-
-
+// Set the key, required for the conversion calculations.
 double SenseMaker::setKeyTonic(int key)
 {
 	switch (key)
@@ -80,19 +82,21 @@ double SenseMaker::setKeyTonic(int key)
 	}
 }
 
-
+// Convert a given frequency to an integer note (in the current key).
 int SenseMaker::frequencyToNoteInKey(double freq)
 {
 	/*
-		fn = f0 * (a)n 
-		where
+		Inverse of the formula fn = f0 *(a^n) where:
 		f0 = the frequency of one fixed note which must be defined. A common choice is setting the A above middle C (A4) at f0 = 440 Hz.
 		n = the number of half steps away from the fixed note you are. If you are at a higher note, n is positive. If you are on a lower note, n is negative.
 		fn = the frequency of the note n half steps away.
 		a = (2)1/12 = the twelth root of 2 = the number which when multiplied by itself 12 times equals 2 = 1.059463094359...
 		http://www.phy.mtu.edu/~suits/NoteFreqCalcs.html
+
+		We solve for n, the number of semitones away from the tonic, and then convert to the number of notes away from the tonic.
+		This is due to the mix of full-tone and semitone jumps.
 	*/
-	if (freq == currentKeyTonic){return 1;} 
+	if (freq == currentKeyTonic){ return 1; } 
 	
 	int currentSteps = 0;
 
@@ -140,9 +144,9 @@ int SenseMaker::frequencyToNoteInKey(double freq)
 			//Note: not in scale if return 0
 			return 0;
 	}
-
 }
 
+// Convert an integer note in the current key back to a frequency.
 double SenseMaker::noteInKeytoFrequency(int note)
 {
 	int numSteps = 0;

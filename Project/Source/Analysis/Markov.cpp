@@ -5,6 +5,9 @@
     Created: 27 Jul 2015 4:21:34pm
     Author:  Michael
 
+	This class contains the stochastic matrices for chord and note transitions, 
+	and functions to utilise their probability values to calculate the next chord & note.
+
   ==============================================================================
 */
 

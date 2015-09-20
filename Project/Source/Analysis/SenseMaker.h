@@ -5,6 +5,9 @@
     Created: 1 Sep 2015 2:01:56pm
     Author:  Joshua
 
+	This class provides functions to convert between our internal note 
+	representation and the raw frequency.
+
   ==============================================================================
 */
 

@@ -5,6 +5,8 @@
     Created: 14 Jul 2015 4:00:51pm
     Author:  Michael
 
+	A helper file containing macros for logging strings to the Visual Studio console when a DAW is attached for debugging.
+
   ==============================================================================
 */
 
@@ -20,18 +22,6 @@
 	#include <sstream>
 
 	#ifdef WIN32
-		#include <Windows.h>
-
-		// Use this for logging on Windows - different characterset or something.
-		#define LOG_W( s )            \
-		{                             \
-			std::wostringstream os_;    \
-			os_ << s;                   \
-			os_ << "\n";					\
-			OutputDebugStringW( os_.str().c_str() );  \
-		}
-
-		// Use this for logging on Linux.
 		#define LOG( s )            \
 		{                             \
 			std::ostringstream os_;    \

@@ -5,6 +5,9 @@
     Created: 23 Jun 2015 3:24:42pm
     Author:  Michael
 
+	Takes the current block of raw audio samples, and performs the FFT for pitch detection.
+	Returns the frequency of the current note heard to PluginProcessor.
+
   ==============================================================================
 */
 
@@ -29,6 +32,7 @@ public:
 	void AnalyseBlock();
 	void SetSampleRate(double rate);
 	float GetFrequency();
+
 private:
 	juce::AudioSampleBuffer currentBuffer;
 	int currentHighestIndex;
