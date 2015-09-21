@@ -27,17 +27,19 @@ The output will be a VST plugin (.so file on Linux).
 
 #### Mac OS
 TODO: TALK ABOUT HOW WE CAN'T GET IT TO COMPILE, BUT IN A WAY THAT DOESN'T MAKE US SOUND INCOMPETENT
-particularly how it has never compiled, not even the auto-produced empty Juce project
+(particularly how it has never compiled, not even the auto-produced empty Juce project)
 
 ### Usage Instructions
 #### Windows
-If Visual Studio 2013 is not installed, you will need to manually find copies of the following files: 
-TODO: LIST THE DLLs
+If Visual Studio 2013 is not installed, you will need to manually find copies of the following files in C:/Windows/System32: 
+ - gpsvc.dll
+ - IEShims.dll
+ - msvcp120.dll
+ - msvcr120.dll
+and put them in the same directory as the plugin's .dll file.
 
 Select the plugin in your host DAW, and use the provided MIDI file to supply the beat (or create your own).
-TODO: ADD SCREENSHOTS
 
 Set up a MIDI synthesiser/digital instrument, and route the plugin's output into it.
-TODO: MORE SCREENSHOTS (I think you don't actually need to do anything in Cantabile though, make a note of that)
 
 Start the beat track to begin producing output.
