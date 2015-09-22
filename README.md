@@ -26,8 +26,7 @@ To build you need to install the package libasound2-dev, and run `make` from the
 The output will be a VST plugin (.so file on Linux).
 
 #### Mac OS
-TODO: TALK ABOUT HOW WE CAN'T GET IT TO COMPILE, BUT IN A WAY THAT DOESN'T MAKE US SOUND INCOMPETENT
-(particularly how it has never compiled, not even the auto-produced empty Juce project)
+Unfortunately, due to a known bug with XCode, Juce projects do not currently compile on Mac OS.
 
 ### Usage Instructions
 #### Windows
