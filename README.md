@@ -15,6 +15,7 @@ The proposed project seeks to develop an intelligent accompanist system for clas
 
 More about scope investigations, project development and decisions can be found in the [project wiki](https://github.com/joshofreeness/FourthYearProject/wiki)
 
+Files in `VST3 SDK/pluginterfaces/vst2.x/` no longer exist
 ### Compile Instructions
 #### Linux
 To build you need to install the package libasound2-dev, and run `make` from the terminal in the folder Project/Builds/Linux.

@@ -69,5 +69,8 @@ Network Trash Folder
 Temporary Items
 .apdisk
 
+#Needed to ignore content that was issued a DMCA takedown notice
+VST3 SDK/pluginterfaces/vst2.x/
+
 JUCE-WINDOWS
 JUCE-WINDOWS/
